@@ -7,8 +7,8 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: start;
   width: 100%;
-  height: 100vh;
-  padding: 20px 0;
+  height: 100%;
+  padding: 10px 0;
 `;
 
 export const Content = styled.div`
@@ -17,7 +17,7 @@ export const Content = styled.div`
   align-items: start;
   width: 100%;
   height: 100%;
-  padding: 0 20px;
+  padding: 0 10px;
   margin-top: 30px;
 `;
 
@@ -27,7 +27,7 @@ export const TopRow = styled.div`
   justify-content: space-between;
   width: 100%;
   margin: 10px 0;
-  padding: 0 10px;
+  padding: 10px;
 `;
 
 
@@ -42,7 +42,15 @@ export const List = styled.ul`
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 10px;
   list-style: none;
-  margin: 30px 0;
+  margin: 30px 0 0 0;
+  
+    @media (min-width: 768px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+  
+    @media (min-width: 1024px) {
+        grid-template-columns: repeat(4, 1fr);
+    }
 `;
 
 

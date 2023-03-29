@@ -1,13 +1,7 @@
 import {Title, List, Container,Content, TopRow, BackIcon, MenuIcon } from './styles'
 import { PokeCard } from '../../components/PokeCard/index.jsx'
-import {useAllPokemons} from "../../hooks/useAllPokemons/index.js";
 
-export const Pokedex = () => {
-
-    const {pokemons, loading} = useAllPokemons('https://pokeapi.co/api/v2/pokemon?limit=500&offset=0');
-    if (loading) {
-        return <div>Loading...</div>;
-    }
+export const Pokedex = ({pokemons}) => {
     return (
         <Container>
             <TopRow>
