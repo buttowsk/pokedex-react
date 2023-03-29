@@ -1,7 +1,15 @@
 import {InfoText, InfoRow} from "../PokeAbout/styles.js";
 import {NumberText, StatusBar} from "./styles.js";
 
-export const PokeStats = ({ pokeInfo }) => {
+export const PokeStats = ({ pokeInfo, typeInfo }) => {
+
+    if (!pokeInfo) {
+        return <div>Loading...</div>
+    }
+
+    console.log('PokeStats aba: ',typeInfo)
+
+
     return (
         <>
             <InfoRow>

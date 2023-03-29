@@ -40,6 +40,7 @@ export const PokeEvolutions = ({ pokemonName }) => {
                     <PokeName>{evolutions[1]?.name}</PokeName>
                 </PokeContainer>
             </EvolutionChain>
+            {evolutions[2] && (
                 <EvolutionChain>
                     <PokeContainer>
                         <PokeImage src={pokeInfo[1]?.sprites?.other?.dream_world?.front_default} />
@@ -54,6 +55,7 @@ export const PokeEvolutions = ({ pokemonName }) => {
                         <PokeName>{evolutions[2]?.name}</PokeName>
                     </PokeContainer>
                 </EvolutionChain>
+            )}
         </>
     );
 };

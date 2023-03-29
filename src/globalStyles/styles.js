@@ -13,25 +13,6 @@ export const GlobalStyle = createGlobalStyle`
   }
 `;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 export const themes = {
     fire: {
         name: 'fire',
@@ -115,7 +96,7 @@ export const themes = {
     },
     steel: {
         name: 'steel',
-        color: '#d1d1e0',
+        color: '#0B2447',
         backgroundColor: '#B7B7CE',
     },
     dark: {

@@ -6,7 +6,7 @@ export const StatusBar = styled.div`
   background-color: #949494;
   border-radius: 3px;
   position: relative;
-  margin-top: 18px;
+  margin-top: 20px;
 
   &::after {
     content: '';
@@ -14,11 +14,17 @@ export const StatusBar = styled.div`
     top: 0;
     left: 0;
     width: ${({percentual}) => percentual}%;
-    max-width: 150%;
+    max-width: 120%;
     height: 6px;
     ${({percentual}) => percentual < 50 ? 'background-color: #ff0000;' : 'background-color: #23dd7a;'}
     border-radius: 3px;
   }
+  
+  
+  @media (min-width: 768px) {
+    width: 400px;
+  }
+  
 `;
 
 export const NumberText = styled.h3`

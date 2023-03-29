@@ -59,6 +59,11 @@ export const PokeImage = styled.img`
   z-index: 999;
   filter: drop-shadow(0 0 12px rgba(87, 197, 182, 0.5));
   transform: scaleX(-1);
+
+  @media (min-width: 768px) {
+    width: 340px;
+    height: 340px;
+  }
 `;
 
 export const PokeNameContainer = styled.div`
@@ -120,6 +125,11 @@ export const InfoContainerTopRow = styled.div`
   position: relative;
   background-color: transparent;
   padding: 0 15px;
+  
+  @media (min-width: 768px) {
+    justify-content: space-around;
+  }
+  
 `;
 
 export const InfoContainerBottomColumn = styled.div`
@@ -132,6 +142,20 @@ export const InfoContainerBottomColumn = styled.div`
   border-radius: 10px;
   position: relative;
   transition: all 0.5s ease-in-out;
+  
+  ${({page}) => page === 'Base Stats' && `
+  @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: start;
+    justify-content: space-between;
+    flex-flow: row wrap;
+    
+    & > * {
+      margin: 14px 0;
+    }
+  }
+`}
+
 `;
 
 export const PageTitle = styled.h2`
@@ -140,7 +164,7 @@ export const PageTitle = styled.h2`
   margin-top: 10px;
   transition: all 0.5s ease-in-out;
   cursor: pointer;
-  
+
   &:after {
     content: "";
     display: block;

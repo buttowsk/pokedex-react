@@ -9,7 +9,7 @@ import { NotFound } from '../pages/NotFound';
 import {useAllPokemons} from "../hooks/useAllPokemons/index.js";
 function App() {
 
-    const {pokemons, loading} = useAllPokemons('https://pokeapi.co/api/v2/pokemon?limit=12&offset=0');
+    const {pokemons, loading} = useAllPokemons('https://pokeapi.co/api/v2/pokemon?limit=282&offset=0');
 
 
     if (loading || !pokemons) {

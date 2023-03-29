@@ -16,9 +16,11 @@ import {themes} from "../../globalStyles/styles.js";
 import {PokeAbout} from "../PokeAbout/index.jsx";
 import {PokeStats} from "../PokeStats/index.jsx";
 import {PokeEvolutions} from "../PokeEvolutions/index.jsx";
+import {useGenerateTypeInfo} from "../../hooks/useGenerateTypeInfo/index.js";
 
 export const PokeModal = ({ pokeInfo, isModalOpen, setIsModalOpen, pokeSpecies }) => {
     const { id, name, types, sprites, height, weight, abilities } = pokeInfo;
+    const { typeInfo, isLoading } = useGenerateTypeInfo(types[0]?.type.url);
     const { generation } = pokeSpecies;
     const [isFavorite, setIsFavorite] = useState(false);
     const [selectedPage, setSelectedPage] = useState('about');
@@ -47,6 +49,8 @@ export const PokeModal = ({ pokeInfo, isModalOpen, setIsModalOpen, pokeSpecies }
         setIsFavorite(!isFavorite);
     };
     const theme = themes[pokeInfo.types[0]?.type.name];
+
+    console.log('pokeInfo Modal total ', typeInfo);
 
     return (
         <>
@@ -82,12 +86,12 @@ export const PokeModal = ({ pokeInfo, isModalOpen, setIsModalOpen, pokeSpecies }
                                         Moves
                                     </PageTitle>
                                 </InfoContainerTopRow>
-                                <InfoContainerBottomColumn>
+                                <InfoContainerBottomColumn page={selectedPage}>
                                     {selectedPage === 'about' && (
                                         <PokeAbout pokeInfo={pokeInfo} pokeSpecies={pokeSpecies} />
                                     )}
-                                    {selectedPage === 'Base Stats' && (
-                                        <PokeStats pokeInfo={pokeInfo} />
+                                    {!isLoading && selectedPage === 'Base Stats' && (
+                                        <PokeStats pokeInfo={pokeInfo} typeInfo={typeInfo?.damage_relations} />
                                     )}
                                     {selectedPage === 'Evolution' && (
                                         <PokeEvolutions pokemonName={name} />
