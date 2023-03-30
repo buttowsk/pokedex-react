@@ -5,7 +5,6 @@ import { Moves } from '../pages/Moves';
 import { Abilities } from '../pages/Abilities';
 import { Items } from '../pages/Items';
 import { Locations } from '../pages/Locations';
-import { NotFound } from '../pages/NotFound';
 import {useAllPokemons} from "../hooks/useAllPokemons/index.js";
 function App() {
 
@@ -24,7 +23,6 @@ function App() {
                 <Route path="/abilities" element={<Abilities />} />
                 <Route path="/items" element={<Items />} />
                 <Route path="/locations" element={<Locations />} />
-                <Route path="*" element={<NotFound />} />
             </Routes>
     )
 }
