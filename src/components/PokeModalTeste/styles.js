@@ -10,8 +10,8 @@ export const Modal = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  background-color: ${({theme}) => theme.backgroundColor};
-  color: ${({theme}) => theme.color};
+  ${({bg}) => bg && `background-color: ${bg}`};
+  ${({color}) => color && `color: ${color}`};
   z-index: 999;
 `;
 
@@ -45,10 +45,9 @@ export const NameText = styled.p`
 `;
 
 export const PokeImage = styled.img`
-  width: 240px;
-  height: 240px;
+  width: 210px;
+  height: 210px;
   margin: auto;
-  filter: drop-shadow(0 0 12px rgba(87, 197, 182, 0.5));
 
   @media (min-width: 768px) {
     width: 340px;

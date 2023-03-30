@@ -19,7 +19,7 @@ export const EvolutionChain = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 120px;
+  height: 110px;
   border-radius: 10px;
   position: relative;
   background-color: transparent;

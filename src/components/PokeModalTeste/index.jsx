@@ -7,7 +7,7 @@ import {PokeStats} from "../PokeStats/index.jsx";
 import {PokeEvolutions} from "../PokeEvolutions/index.jsx";
 import {useGenerateTypeInfo} from "../../hooks/useGenerateTypeInfo/index.js";
 
-export const PokeModalTeste = ({ pokeInfo, isModalOpen, setIsModalOpen, pokeSpecies }) => {
+export const PokeModalTeste = ({ pokeInfo, isModalOpen, setIsModalOpen, pokeSpecies, color, bgColor }) => {
     const { id, name, types, sprites, height, weight, abilities } = pokeInfo;
     const { typeInfo, isLoading, error } = useGenerateTypeInfo(types);
     const { generation } = pokeSpecies;
@@ -41,12 +41,11 @@ export const PokeModalTeste = ({ pokeInfo, isModalOpen, setIsModalOpen, pokeSpec
     };
     const theme = themes[pokeInfo.types[0]?.type.name];
 
-
     return (
         <>
             {isModalOpen && (
                 <ThemeProvider theme={theme}>
-                    <Modal>
+                    <Modal bg={bgColor} textColor={color}>
                         <BackButton onClick={() => setIsModalOpen(false)} />
                         <TopColumn>
                             <IdText>#{id}</IdText>

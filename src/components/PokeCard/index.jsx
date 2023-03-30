@@ -6,11 +6,16 @@ import { useState } from "react";
 import { usePokemonSpecies } from "../../hooks/usePokemonSpecies/index.js";
 import {LoadingComponent} from "../LoadingComponent/index.jsx";
 import {PokeModalTeste} from "../PokeModalTeste/index.jsx";
+import {useGetBgColor} from "../../hooks/useGetBgColor/index.js";
+import {getColor} from "../../hooks/getColor/index.js";
 
 export const PokeCard = ({url}) => {
     const { pokeInfo, isLoading } = usePokemonInfo(url);
     const { pokeSpecies } = usePokemonSpecies(pokeInfo?.species?.url);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const bgColor = useGetBgColor(pokeInfo.sprites?.other['official-artwork']?.front_default);
+    const color = getColor(bgColor);
+
 
     const handleOpenModal = () => {
         setIsModalOpen(!isModalOpen);
@@ -22,9 +27,10 @@ export const PokeCard = ({url}) => {
 
     const theme = themes[pokeInfo.types[0]?.type.name];
 
+
     return (
         <ThemeProvider theme={theme}>
-            { isModalOpen && <PokeModalTeste pokeInfo={pokeInfo} pokeSpecies={pokeSpecies} setIsModalOpen={setIsModalOpen} isModalOpen={isModalOpen} /> }
+            { isModalOpen && <PokeModalTeste pokeInfo={pokeInfo} pokeSpecies={pokeSpecies} setIsModalOpen={setIsModalOpen} isModalOpen={isModalOpen} bgColor={bgColor} color={color} /> }
             <PokeCardContainer onClick={handleOpenModal}>
                 <>
                     <PokeImage src={pokeInfo.sprites?.other['official-artwork']?.front_default} />
