@@ -1,3 +1,4 @@
+/*
 import {
     PokeImage,
     PokeType,
@@ -7,7 +8,6 @@ import {
     Modal,
     PokeContainer,
     PokeId,
-    HeartButton,
     BackButton, InfoContainerBottomColumn, PageTitle, PokeNameContainer,
 } from './styles';
 import {useEffect, useState} from "react";
@@ -20,10 +20,12 @@ import {useGenerateTypeInfo} from "../../hooks/useGenerateTypeInfo/index.js";
 
 export const PokeModal = ({ pokeInfo, isModalOpen, setIsModalOpen, pokeSpecies }) => {
     const { id, name, types, sprites, height, weight, abilities } = pokeInfo;
-    const { typeInfo, isLoading } = useGenerateTypeInfo(types[0]?.type.url);
+    const { typeInfo, isLoading, error } = useGenerateTypeInfo(types);
     const { generation } = pokeSpecies;
     const [isFavorite, setIsFavorite] = useState(false);
     const [selectedPage, setSelectedPage] = useState('about');
+
+
 
     const handlePageTitleClick = (page) => {
         setSelectedPage(page);
@@ -50,7 +52,6 @@ export const PokeModal = ({ pokeInfo, isModalOpen, setIsModalOpen, pokeSpecies }
     };
     const theme = themes[pokeInfo.types[0]?.type.name];
 
-    console.log('pokeInfo Modal total ', typeInfo);
 
     return (
         <>
@@ -58,7 +59,6 @@ export const PokeModal = ({ pokeInfo, isModalOpen, setIsModalOpen, pokeSpecies }
                 <ThemeProvider theme={theme}>
                     <Modal>
                         <BackButton onClick={() => setIsModalOpen(false)} />
-                        <HeartButton onClick={handleFavorite} />
                         <PokeContainer>
                             <PokeNameContainer>
                                 <PokeName>{name}</PokeName>
@@ -70,7 +70,7 @@ export const PokeModal = ({ pokeInfo, isModalOpen, setIsModalOpen, pokeSpecies }
                                 )}
                             </PokeNameContainer>
                             <PokeId>#{id}</PokeId>
-                            <PokeImage src={sprites?.other?.dream_world?.front_default} />
+                            <PokeImage src={sprites?.other['official-artwork']?.front_default} />
                             <InfoContainer>
                                 <InfoContainerTopRow>
                                     <PageTitle page={selectedPage === 'about' ? 'selected' : ''} onClick={() => handlePageTitleClick('about')}>
@@ -91,7 +91,7 @@ export const PokeModal = ({ pokeInfo, isModalOpen, setIsModalOpen, pokeSpecies }
                                         <PokeAbout pokeInfo={pokeInfo} pokeSpecies={pokeSpecies} />
                                     )}
                                     {!isLoading && selectedPage === 'Base Stats' && (
-                                        <PokeStats pokeInfo={pokeInfo} typeInfo={typeInfo?.damage_relations} />
+                                        <PokeStats pokeInfo={pokeInfo} typeInfo={typeInfo} />
                                     )}
                                     {selectedPage === 'Evolution' && (
                                         <PokeEvolutions pokemonName={name} />
@@ -105,4 +105,4 @@ export const PokeModal = ({ pokeInfo, isModalOpen, setIsModalOpen, pokeSpecies }
         </>
     );
 
-}
+}*/

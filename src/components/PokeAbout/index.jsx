@@ -1,4 +1,4 @@
-import {InfoRow, InfoText} from "./styles";
+import {InfoRow, InfoText, Container, TextRow} from "./styles";
 
 export const PokeAbout = ({pokeInfo, pokeSpecies}) => {
 
@@ -7,23 +7,44 @@ export const PokeAbout = ({pokeInfo, pokeSpecies}) => {
     }
 
     return (
-        <>
+        <Container>
             <InfoRow>
-                <InfoText>Habitat</InfoText>
-                {pokeSpecies.habitat?.name === null ? <InfoText>Unknown</InfoText> : <InfoText>{pokeSpecies?.habitat?.name}</InfoText>}
+                <TextRow>
+                    <InfoText>Height:
+                        {(pokeInfo.height / 10) >= 1 ? ` ${pokeInfo.height / 10}m` : ` ${pokeInfo.height}cm` }
+                    </InfoText>
+                </TextRow>
+                <TextRow>
+                    <InfoText>Weight:
+                        { (pokeInfo.weight / 10) >= 1 ? ` ${pokeInfo.weight / 10}kg` : ` ${pokeInfo.weight/10}g` }
+                    </InfoText>
+                </TextRow>
             </InfoRow>
             <InfoRow>
-                <InfoText>Height</InfoText>
-                { (pokeInfo.height / 10) >= 1 ? <InfoText>{pokeInfo.height / 10} m</InfoText> : <InfoText>{pokeInfo.height/10} cm</InfoText> }
+                <TextRow>
+                    <InfoText>
+
+                        {` ${100 -(pokeSpecies.gender_rate * 10)}% Male`}
+                    </InfoText>
+                </TextRow>
+                <TextRow>
+                    <InfoText>
+                        {`  ${pokeSpecies.gender_rate * 10}% Female`}</InfoText>
+                </TextRow>
             </InfoRow>
             <InfoRow>
-                <InfoText>Weight</InfoText>
-                { (pokeInfo.weight / 10) >= 1 ? <InfoText>{pokeInfo.weight / 10} kg</InfoText> : <InfoText>{pokeInfo.weight/10} g</InfoText> }
+                <InfoText>
+                    Abilities:
+                    {` ${pokeInfo.abilities[0]?.ability?.name}`}, {`${pokeInfo.abilities[1]?.ability?.name}`}
+                </InfoText>
             </InfoRow>
             <InfoRow>
-                <InfoText>Abilities</InfoText>
-                <InfoText>{pokeInfo.abilities[0]?.ability?.name}, {pokeInfo.abilities[1]?.ability?.name}</InfoText>
+                <InfoText>
+                    Generation:
+                    {` ${pokeSpecies.generation?.name}`}
+                </InfoText>
             </InfoRow>
-        </>
+        </Container>
+
     )
 }

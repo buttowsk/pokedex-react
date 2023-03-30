@@ -1,19 +1,35 @@
 import styled from "styled-components";
 
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  text-transform: capitalize;
+  gap: 10px;
+`;
+
 export const InfoRow = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: start;
-  border-radius: 10px;
-  max-height: 40px;
-  position: relative;
-  opacity: 0.8;
-  padding: 0 15px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 50px;
+  padding: 8px 16px;
+`;
+
+export const TextRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 50%;
+  height: 100%;
 `;
 
 export const InfoText = styled.h3`
-  font-size: 20px;
-  color: #000;
-  min-width: 100px;
-  margin-top: 10px;
+  font-size: 18px;
 `;

@@ -1,5 +1,5 @@
 import {usePokemonEvolutions} from "../../hooks/usePokemonEvolutions/index.js";
-import {EvolutionChain, Title, PokeImage, PokeName, PokeContainer, PokeArrow} from "./styles.js";
+import {EvolutionChain, PokeArrow, PokeContainer, PokeImage, PokeName, Title, Container } from "./styles.js";
 import {useEffect, useState} from "react";
 import axios from "axios";
 
@@ -24,38 +24,46 @@ export const PokeEvolutions = ({ pokemonName }) => {
 
 
     return (
-        <>
-            <Title>Evolution Chain</Title>
-            <EvolutionChain>
-                <PokeContainer>
-                    <PokeImage src={pokeInfo[0]?.sprites?.other?.dream_world?.front_default} />
-                    <PokeName>{evolutions[0]?.name}</PokeName>
-                </PokeContainer>
-                <PokeContainer>
-                    <PokeArrow />
-                    <Title>Level {evolutions[1]?.min_level}</Title>
-                </PokeContainer>
-                <PokeContainer>
-                    <PokeImage src={pokeInfo[1]?.sprites?.other?.dream_world?.front_default} />
-                    <PokeName>{evolutions[1]?.name}</PokeName>
-                </PokeContainer>
-            </EvolutionChain>
+        <Container>
+            {evolutions[1] ? (
+                <EvolutionChain>
+                    <PokeContainer>
+                        <PokeImage src={pokeInfo[0]?.sprites?.other['official-artwork']?.front_default} />
+                        <PokeName>{evolutions[0]?.name}</PokeName>
+                    </PokeContainer>
+                    <PokeContainer>
+                        <PokeArrow />
+                        {evolutions[1]?.min_level && <Title>Level {evolutions[1]?.min_level}</Title>}
+                    </PokeContainer>
+                    <PokeContainer>
+                        <PokeImage src={pokeInfo[1]?.sprites?.other['official-artwork']?.front_default} />
+                        <PokeName>{evolutions[1]?.name}</PokeName>
+                    </PokeContainer>
+                </EvolutionChain>
+            ) : (
+                <EvolutionChain>
+                    <PokeContainer>
+                        <PokeImage src={pokeInfo[0]?.sprites?.other['official-artwork']?.front_default} />
+                        <PokeName>{evolutions[0]?.name}</PokeName>
+                    </PokeContainer>
+                </EvolutionChain>
+            )}
             {evolutions[2] && (
                 <EvolutionChain>
                     <PokeContainer>
-                        <PokeImage src={pokeInfo[1]?.sprites?.other?.dream_world?.front_default} />
+                        <PokeImage src={pokeInfo[1]?.sprites?.other['official-artwork']?.front_default} />
                         <PokeName>{evolutions[1]?.name}</PokeName>
                     </PokeContainer>
                     <PokeContainer>
                         <PokeArrow />
-                        <Title>Level {evolutions[2]?.min_level}</Title>
+                        {evolutions[2]?.min_level && <Title>Level {evolutions[2]?.min_level}</Title>}
                     </PokeContainer>
                     <PokeContainer>
-                        <PokeImage src={pokeInfo[2]?.sprites?.other?.dream_world?.front_default} />
+                        <PokeImage src={pokeInfo[2]?.sprites?.other['official-artwork']?.front_default} />
                         <PokeName>{evolutions[2]?.name}</PokeName>
                     </PokeContainer>
                 </EvolutionChain>
             )}
-        </>
+        </Container>
     );
 };

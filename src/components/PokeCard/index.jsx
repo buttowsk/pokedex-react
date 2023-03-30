@@ -3,8 +3,9 @@ import { usePokemonInfo } from "../../hooks/usePokemonInfo/index.js";
 import { ThemeProvider } from "styled-components";
 import { themes } from "../../globalStyles/styles.js";
 import { useState } from "react";
-import { PokeModal } from "../PokeModal/index.jsx";
 import { usePokemonSpecies } from "../../hooks/usePokemonSpecies/index.js";
+import {LoadingComponent} from "../LoadingComponent/index.jsx";
+import {PokeModalTeste} from "../PokeModalTeste/index.jsx";
 
 export const PokeCard = ({url}) => {
     const { pokeInfo, isLoading } = usePokemonInfo(url);
@@ -16,17 +17,17 @@ export const PokeCard = ({url}) => {
     }
 
     if (isLoading) {
-        return (<div>Loading...</div>)
+        return <LoadingComponent />
     }
 
     const theme = themes[pokeInfo.types[0]?.type.name];
 
     return (
         <ThemeProvider theme={theme}>
-            { isModalOpen && <PokeModal pokeInfo={pokeInfo} pokeSpecies={pokeSpecies} setIsModalOpen={setIsModalOpen} isModalOpen={isModalOpen} /> }
+            { isModalOpen && <PokeModalTeste pokeInfo={pokeInfo} pokeSpecies={pokeSpecies} setIsModalOpen={setIsModalOpen} isModalOpen={isModalOpen} /> }
             <PokeCardContainer onClick={handleOpenModal}>
                 <>
-                    <PokeImage src={pokeInfo.sprites?.other?.dream_world?.front_default} />
+                    <PokeImage src={pokeInfo.sprites?.other['official-artwork']?.front_default} />
                     <PokeName>{pokeInfo.name}</PokeName>
                     <PokeTypeContainer>
                         { theme && <PokeType theme={theme}>{ pokeInfo.types[0]?.type.name }</PokeType> }

@@ -6,7 +6,7 @@ export const Modal = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   width: 100%;
   height: 100vh;
   background-color: ${({ theme }) => theme.backgroundColor};
@@ -19,20 +19,11 @@ export const Modal = styled.div`
 `;
 
 
+
 export const BackButton = styled(IoIosArrowBack)`
   position: absolute;
   top: 20px;
   left: 30px;
-  font-size: 24px;
-  color: #fff;
-  cursor: pointer;
-  z-index: 999;
-`;
-
-export const HeartButton = styled(BsHeart)`
-  position: absolute;
-  top: 20px;
-  right: 40px;
   font-size: 24px;
   color: #fff;
   cursor: pointer;
@@ -45,9 +36,8 @@ export const PokeContainer = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100%;
+  max-height: 450px;
   border-radius: 10px;
-  position: relative;
 `;
 
 export const PokeImage = styled.img`
@@ -73,7 +63,7 @@ export const PokeNameContainer = styled.div`
   justify-content: space-between;
   gap: 10px;
   width: 100%;
-  max-height: 120px;
+  max-height: 60px;
   border-radius: 24px 24px 0 0;
   position: relative;
   padding: 20px;
@@ -108,10 +98,10 @@ export const InfoContainer = styled.div`
   flex-direction: column;
   align-items: start;
   width: 100%;
-  height: 100%;
-  border-radius: 24px 24px 0 0;
+  max-height: 340px;
+  border-top: 1px solid #fff;
   position: relative;
-  background-color: #fff;
+ 
 `;
 
 export const InfoContainerTopRow = styled.div`

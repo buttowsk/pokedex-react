@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -91,7 +91,7 @@ export const themes = {
     },
     ice: {
         name: 'ice',
-        color: '#98d8d8',
+        color: '#F8F8F8',
         backgroundColor: '#96D9D6',
     },
     steel: {
