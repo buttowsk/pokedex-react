@@ -1,5 +1,5 @@
 import {usePokemonEvolutions} from "../../hooks/usePokemonEvolutions/index.js";
-import {EvolutionChain, PokeArrow, PokeContainer, PokeImage, PokeName, Title, Container } from "./styles.js";
+import {EvolutionChain, PokeArrow, PokeContainer, PokeImage, PokeName, Container, Title } from "./styles.js";
 import {useEffect, useState} from "react";
 import axios from "axios";
 
@@ -33,7 +33,7 @@ export const PokeEvolutions = ({ pokemonName }) => {
                     </PokeContainer>
                     <PokeContainer>
                         <PokeArrow />
-                        {evolutions[1]?.min_level && <Title>Level {evolutions[1]?.min_level}</Title>}
+                        {evolutions[1]?.min_level && <Title>{`Level ${evolutions[1]?.min_level}`}</Title>}
                     </PokeContainer>
                     <PokeContainer>
                         <PokeImage src={pokeInfo[1]?.sprites?.other['official-artwork']?.front_default} />
@@ -56,7 +56,7 @@ export const PokeEvolutions = ({ pokemonName }) => {
                     </PokeContainer>
                     <PokeContainer>
                         <PokeArrow />
-                        {evolutions[2]?.min_level && <Title>Level {evolutions[2]?.min_level}</Title>}
+                        {evolutions[1]?.min_level && <Title>{`Level ${evolutions[2]?.min_level}`}</Title>}
                     </PokeContainer>
                     <PokeContainer>
                         <PokeImage src={pokeInfo[2]?.sprites?.other['official-artwork']?.front_default} />

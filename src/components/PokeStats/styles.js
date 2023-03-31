@@ -51,7 +51,7 @@ export const StatusRow = styled.div`
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  height: 40px;
+  max-height: 40px;
   gap: 20px;
 `;
 

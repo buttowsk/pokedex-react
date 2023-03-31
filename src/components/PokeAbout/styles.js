@@ -17,7 +17,7 @@ export const InfoRow = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: 50px;
+  max-height: 40px;
   padding: 8px 16px;
 `;
 
