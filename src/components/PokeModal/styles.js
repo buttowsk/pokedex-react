@@ -16,6 +16,7 @@ export const Modal = styled.div`
 
   @media (min-width: 769px) {
     flex-direction: row;
+    text-shadow: 0 0 12px rgb(0 0 0 / 25%)
   }
 `;
 
