@@ -4,11 +4,22 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: start;
-  justify-content: center;
   width: 100%;
   height: 100%;
   text-transform: capitalize;
   padding: 20px;
+  font-size: 1.2rem;
+  gap: 8px;
+
+  @media (min-width: 769px) {  
+    width: 80%;
+    margin-top: 12px;
+    justify-content: center;
+    align-items: center;
+    height: 40%;
+    border-left: 4px solid rgba(255,255,255,.35);
+    gap: 20px;
+  }
 `;
 
 
@@ -39,7 +50,6 @@ export const StatusBar = styled.div`
 `;
 
 export const NumberText = styled.h3`
-  font-size: 20px;
   text-align: center;
   width: 45px;
 `;
@@ -65,6 +75,5 @@ export const ValuesRow = styled.div`
 `;
 
 export const StatusText = styled.h3`
-  font-size: 20px;
   width: 120px;
 `;

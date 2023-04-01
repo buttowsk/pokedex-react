@@ -1,15 +1,15 @@
-/*
 import {
     PokeImage,
-    PokeType,
-    PokeName,
-    InfoContainer,
-    InfoContainerTopRow,
+    IdText,
+    NameText,
     Modal,
-    PokeContainer,
-    PokeId,
-    BackButton, InfoContainerBottomColumn, PageTitle, PokeNameContainer,
-} from './styles';
+    MenuItem,
+    MenuRow,
+    FirstColumn,
+    SecondColumn,
+    BackButton,
+    ElementsRow, TypeText,
+} from './styles.js';
 import {useEffect, useState} from "react";
 import {ThemeProvider} from "styled-components";
 import {themes} from "../../globalStyles/styles.js";
@@ -18,7 +18,7 @@ import {PokeStats} from "../PokeStats/index.jsx";
 import {PokeEvolutions} from "../PokeEvolutions/index.jsx";
 import {useGenerateTypeInfo} from "../../hooks/useGenerateTypeInfo/index.js";
 
-export const PokeModal = ({ pokeInfo, isModalOpen, setIsModalOpen, pokeSpecies }) => {
+export const PokeModal = ({ pokeInfo, isModalOpen, setIsModalOpen, pokeSpecies, color, bgColor }) => {
     const { id, name, types, sprites, height, weight, abilities } = pokeInfo;
     const { typeInfo, isLoading, error } = useGenerateTypeInfo(types);
     const { generation } = pokeSpecies;
@@ -46,63 +46,37 @@ export const PokeModal = ({ pokeInfo, isModalOpen, setIsModalOpen, pokeSpecies }
         };
     }, [isModalOpen]);
 
-
-    const handleFavorite = () => {
-        setIsFavorite(!isFavorite);
-    };
     const theme = themes[pokeInfo.types[0]?.type.name];
 
-
     return (
-        <>
-            {isModalOpen && (
-                <ThemeProvider theme={theme}>
-                    <Modal>
-                        <BackButton onClick={() => setIsModalOpen(false)} />
-                        <PokeContainer>
-                            <PokeNameContainer>
-                                <PokeName>{name}</PokeName>
-                                { theme && <PokeType theme={theme}>{ pokeInfo.types[0]?.type.name }</PokeType> }
-                                { pokeInfo.types[1]?.type.name && themes[pokeInfo.types[1]?.type.name] && (
-                                    <PokeType theme={ themes[pokeInfo.types[1]?.type.name] }>
-                                        { pokeInfo.types[1]?.type.name }
-                                    </PokeType>
-                                )}
-                            </PokeNameContainer>
-                            <PokeId>#{id}</PokeId>
-                            <PokeImage src={sprites?.other['official-artwork']?.front_default} />
-                            <InfoContainer>
-                                <InfoContainerTopRow>
-                                    <PageTitle page={selectedPage === 'about' ? 'selected' : ''} onClick={() => handlePageTitleClick('about')}>
-                                        About
-                                    </PageTitle>
-                                    <PageTitle page={selectedPage === 'Base Stats' ? 'selected' : ''} onClick={() => handlePageTitleClick('Base Stats')}>
-                                        Base Stats
-                                    </PageTitle>
-                                    <PageTitle page={selectedPage === 'Evolution' ? 'selected' : ''} onClick={() => handlePageTitleClick('Evolution')}>
-                                        Evolution
-                                    </PageTitle>
-                                    <PageTitle page={selectedPage === 'Moves' ? 'selected' : ''} onClick={() => handlePageTitleClick('Moves')}>
-                                        Moves
-                                    </PageTitle>
-                                </InfoContainerTopRow>
-                                <InfoContainerBottomColumn page={selectedPage}>
-                                    {selectedPage === 'about' && (
-                                        <PokeAbout pokeInfo={pokeInfo} pokeSpecies={pokeSpecies} />
-                                    )}
-                                    {!isLoading && selectedPage === 'Base Stats' && (
-                                        <PokeStats pokeInfo={pokeInfo} typeInfo={typeInfo} />
-                                    )}
-                                    {selectedPage === 'Evolution' && (
-                                        <PokeEvolutions pokemonName={name} />
-                                    )}
-                                </InfoContainerBottomColumn>
-                            </InfoContainer>
-                        </PokeContainer>
-                    </Modal>
-                </ThemeProvider>
-            )}
-        </>
+      <>
+          {isModalOpen && (
+            <ThemeProvider theme={theme}>
+                <Modal bg={bgColor} textColor={color}>
+                    <BackButton onClick={() => setIsModalOpen(false)} />
+                    <FirstColumn>
+                        <IdText>#{id}</IdText>
+                        <NameText>{name}</NameText>
+                        <ElementsRow>
+                            <TypeText theme={themes[types[0]?.type.name]}>{types[0]?.type?.name}</TypeText>
+                            {types[1]?.type?.name && <TypeText theme={themes[types[1]?.type.name]}>{types[1]?.type.name}</TypeText>}
+                        </ElementsRow>
+                        <PokeImage src={sprites.other['official-artwork'].front_default} />
+                    </FirstColumn>
+                    <SecondColumn selectedPage={selectedPage}>
+                        <MenuRow>
+                            <MenuItem page={selectedPage === 'about' ? 'selected' : ''} onClick={() => handlePageTitleClick('about')}>About</MenuItem>
+                            <MenuItem page={selectedPage === 'stats' ? 'selected' : ''} onClick={() => handlePageTitleClick('stats')}>Stats</MenuItem>
+                            <MenuItem page={selectedPage === 'evolutions' ? 'selected' : ''} onClick={() => handlePageTitleClick('evolutions')}>Evolutions</MenuItem>
+                        </MenuRow>
+                        {selectedPage === 'about' && <PokeAbout pokeInfo={pokeInfo} pokeSpecies={pokeSpecies} />}
+                        {selectedPage === 'stats' && <PokeStats pokeInfo={pokeInfo} typeInfo={typeInfo} />}
+                        {selectedPage === 'evolutions' && <PokeEvolutions pokemonName={name} />}
+                    </SecondColumn>
+                </Modal>
+            </ThemeProvider>
+          )}
+      </>
     );
 
-}*/
+}

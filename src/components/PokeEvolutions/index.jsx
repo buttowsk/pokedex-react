@@ -22,48 +22,47 @@ export const PokeEvolutions = ({ pokemonName }) => {
         return <p>Loading...</p>;
     }
 
-
     return (
-        <Container>
-            {evolutions[1] ? (
-                <EvolutionChain>
-                    <PokeContainer>
-                        <PokeImage src={pokeInfo[0]?.sprites?.other['official-artwork']?.front_default} />
-                        <PokeName>{evolutions[0]?.name}</PokeName>
-                    </PokeContainer>
-                    <PokeContainer>
-                        <PokeArrow />
-                        {evolutions[1]?.min_level && <Title>{`Level ${evolutions[1]?.min_level}`}</Title>}
-                    </PokeContainer>
-                    <PokeContainer>
-                        <PokeImage src={pokeInfo[1]?.sprites?.other['official-artwork']?.front_default} />
-                        <PokeName>{evolutions[1]?.name}</PokeName>
-                    </PokeContainer>
-                </EvolutionChain>
-            ) : (
-                <EvolutionChain>
-                    <PokeContainer>
-                        <PokeImage src={pokeInfo[0]?.sprites?.other['official-artwork']?.front_default} />
-                        <PokeName>{evolutions[0]?.name}</PokeName>
-                    </PokeContainer>
-                </EvolutionChain>
-            )}
-            {evolutions[2] && (
-                <EvolutionChain>
-                    <PokeContainer>
-                        <PokeImage src={pokeInfo[1]?.sprites?.other['official-artwork']?.front_default} />
-                        <PokeName>{evolutions[1]?.name}</PokeName>
-                    </PokeContainer>
-                    <PokeContainer>
-                        <PokeArrow />
-                        {evolutions[1]?.min_level && <Title>{`Level ${evolutions[2]?.min_level}`}</Title>}
-                    </PokeContainer>
-                    <PokeContainer>
-                        <PokeImage src={pokeInfo[2]?.sprites?.other['official-artwork']?.front_default} />
-                        <PokeName>{evolutions[2]?.name}</PokeName>
-                    </PokeContainer>
-                </EvolutionChain>
-            )}
-        </Container>
+      <Container>
+          {evolutions[1] ? (
+            <EvolutionChain>
+                <PokeContainer>
+                    <PokeImage src={pokeInfo[0]?.sprites?.other['official-artwork']?.front_default} />
+                    <PokeName>{evolutions[0]?.name}</PokeName>
+                </PokeContainer>
+                <PokeContainer>
+                    <PokeArrow />
+                    {evolutions[1]?.min_level && <Title>{`Level ${evolutions[1]?.min_level}`}</Title>}
+                </PokeContainer>
+                <PokeContainer>
+                    <PokeImage src={pokeInfo[1]?.sprites?.other['official-artwork']?.front_default} />
+                    <PokeName>{evolutions[1]?.name}</PokeName>
+                </PokeContainer>
+            </EvolutionChain>
+          ) : (
+            <EvolutionChain>
+                <PokeContainer>
+                    <PokeImage src={pokeInfo[0]?.sprites?.other['official-artwork']?.front_default} />
+                    <PokeName>{evolutions[0]?.name}</PokeName>
+                </PokeContainer>
+            </EvolutionChain>
+          )}
+          {evolutions[2] && (
+            <EvolutionChain>
+                <PokeContainer>
+                    <PokeImage src={pokeInfo[1]?.sprites?.other['official-artwork']?.front_default} />
+                    <PokeName>{evolutions[1]?.name}</PokeName>
+                </PokeContainer>
+                <PokeContainer>
+                    <PokeArrow />
+                    {evolutions[1]?.min_level && <Title>{`Level ${evolutions[2]?.min_level}`}</Title>}
+                </PokeContainer>
+                <PokeContainer>
+                    <PokeImage src={pokeInfo[2]?.sprites?.other['official-artwork']?.front_default} />
+                    <PokeName>{evolutions[2]?.name}</PokeName>
+                </PokeContainer>
+            </EvolutionChain>
+          )}
+      </Container>
     );
 };

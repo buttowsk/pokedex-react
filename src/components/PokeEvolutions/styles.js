@@ -8,11 +8,23 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-height: 300px;
+  max-height: 400px;
   text-transform: capitalize;
   gap: 10px;
   padding: 10px 0 ;
-  
+
+  @media (min-width: 769px) {
+    width: 80%;
+    margin-top: 12px;
+    align-items: center;
+    justify-content: center;
+    height: 40%;
+    border-left: 4px solid rgba(255,255,255,.35);
+    gap: 50px;
+    font-size: 1.5rem;
+    padding: 20px 0;
+  }
+
 `;
 
 export const EvolutionChain = styled.div`
@@ -20,17 +32,22 @@ export const EvolutionChain = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+	margin-top: 20px;
   width: 100%;
   height: 90px;
   position: relative;
   background-color: transparent;
   padding: 0 15px;
+
+  @media (min-width: 769px) {
+    height: 130px;
+  }
 `;
 
 export const Title = styled.h2`
-  font-size: 20px;
+  font-size: 1.2rem;
   margin: 0 0 10px 0;
-  padding: 0 15px;
+  padding: 8px 0;
 `;
 
 
@@ -40,13 +57,22 @@ export const PokeContainer = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
+
+  @media (min-width: 769px) {
+    height: 100%;
+  }
 `;
 
 
 export const PokeImage = styled.img`
-  max-width: 60px;
-  max-height: 60px;
+  width: 70px;
+  height: 70px;
   margin: 0 10px;
+
+  @media (min-width: 769px) {
+    width: 130px;
+    height: 130px;
+  }
 `;
 
 export const PokeName = styled.h1`

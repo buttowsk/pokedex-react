@@ -5,7 +5,7 @@ import { themes } from "../../globalStyles/styles.js";
 import { useState } from "react";
 import { usePokemonSpecies } from "../../hooks/usePokemonSpecies/index.js";
 import {LoadingComponent} from "../LoadingComponent/index.jsx";
-import {PokeModalTeste} from "../PokeModalTeste/index.jsx";
+import {PokeModal} from "../PokeModal/index.jsx";
 import {useGetBgColor} from "../../hooks/useGetBgColor/index.js";
 import {getColor} from "../../hooks/getColor/index.js";
 
@@ -29,22 +29,22 @@ export const PokeCard = ({url}) => {
 
 
     return (
-        <ThemeProvider theme={theme}>
-            { isModalOpen && <PokeModalTeste pokeInfo={pokeInfo} pokeSpecies={pokeSpecies} setIsModalOpen={setIsModalOpen} isModalOpen={isModalOpen} bgColor={bgColor} color={color} /> }
-            <PokeCardContainer onClick={handleOpenModal}>
-                <>
-                    <PokeImage src={pokeInfo.sprites?.other['official-artwork']?.front_default} />
-                    <PokeName>{pokeInfo.name}</PokeName>
-                    <PokeTypeContainer>
-                        { theme && <PokeType theme={theme}>{ pokeInfo.types[0]?.type.name }</PokeType> }
-                        { pokeInfo.types[1]?.type.name && themes[pokeInfo.types[1]?.type.name] && (
-                            <PokeType theme={ themes[pokeInfo.types[1]?.type.name] }>
-                                { pokeInfo.types[1]?.type.name }
-                            </PokeType>
-                        )}
-                    </PokeTypeContainer>
-                </>
-            </PokeCardContainer>
-        </ThemeProvider>
+      <ThemeProvider theme={theme}>
+          { isModalOpen && <PokeModal pokeInfo={pokeInfo} pokeSpecies={pokeSpecies} setIsModalOpen={setIsModalOpen} isModalOpen={isModalOpen} bgColor={bgColor} color={color} /> }
+          <PokeCardContainer onClick={handleOpenModal}>
+              <>
+                  <PokeImage src={pokeInfo.sprites?.other['official-artwork']?.front_default} />
+                  <PokeName>{pokeInfo.name}</PokeName>
+                  <PokeTypeContainer>
+                      { theme && <PokeType theme={theme}>{ pokeInfo.types[0]?.type.name }</PokeType> }
+                      { pokeInfo.types[1]?.type.name && themes[pokeInfo.types[1]?.type.name] && (
+                        <PokeType theme={ themes[pokeInfo.types[1]?.type.name] }>
+                            { pokeInfo.types[1]?.type.name }
+                        </PokeType>
+                      )}
+                  </PokeTypeContainer>
+              </>
+          </PokeCardContainer>
+      </ThemeProvider>
     );
 };

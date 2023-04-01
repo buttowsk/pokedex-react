@@ -4,11 +4,25 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+	margin-top: 20px;
   width: 100%;
   height: 100%;
   text-transform: capitalize;
-  gap: 10px;
+  gap: 25px;
+  transition: all .3s ease-in-out;
+  font-size: 1rem;
+
+  @media (min-width: 769px) {
+    width: 80%;
+    margin-top: 12px;
+    align-items: center;
+    justify-content: flex-start;
+    height: 40%;
+    border-left: 4px solid rgba(255,255,255,.35);
+    gap: 30px;
+    font-size: 1.5rem;
+    padding: 20px 0;
+  }
 `;
 
 export const InfoRow = styled.div`
@@ -19,6 +33,10 @@ export const InfoRow = styled.div`
   width: 100%;
   max-height: 40px;
   padding: 8px 16px;
+	
+	@media (min-width: 769px) {
+		max-height: 60px;
+  }
 `;
 
 export const TextRow = styled.div`
@@ -31,5 +49,5 @@ export const TextRow = styled.div`
 `;
 
 export const InfoText = styled.h3`
-  font-size: 18px;
+  font-weight: 600;
 `;

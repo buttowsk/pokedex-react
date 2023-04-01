@@ -1,156 +1,142 @@
 import styled from "styled-components";
-import { IoIosArrowBack } from "react-icons/io";
-import { BsHeart } from "react-icons/bs";
+import { CgClose } from "react-icons/cg";
 
 export const Modal = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
   width: 100%;
-  height: 100vh;
-  background-color: ${({ theme }) => theme.backgroundColor};
-  color: ${({ theme }) => theme.color};
+  height: 100%;
   position: fixed;
   top: 0;
   left: 0;
+  ${({bg}) => bg && `background-color: ${bg}`};
+  color: ${({theme}) => theme.color};
   z-index: 999;
-  text-transform: capitalize;
-`;
 
-
-
-export const BackButton = styled(IoIosArrowBack)`
-  position: absolute;
-  top: 20px;
-  left: 30px;
-  font-size: 24px;
-  color: #fff;
-  cursor: pointer;
-  z-index: 999;
-`;
-
-export const PokeContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-height: 450px;
-  border-radius: 10px;
-`;
-
-export const PokeImage = styled.img`
-  width: 200px;
-  height: 200px;
-  margin-top: 20px;
-  position: relative;
-  bottom: -20px;
-  z-index: 999;
-  filter: drop-shadow(0 0 12px rgba(87, 197, 182, 0.5));
-  transform: scaleX(-1);
-
-  @media (min-width: 768px) {
-    width: 340px;
-    height: 340px;
+  @media (min-width: 769px) {
+    flex-direction: row;
   }
 `;
 
-export const PokeNameContainer = styled.div`
+export const FirstColumn = styled.div`
   display: flex;
   flex-direction: column;
   align-items: start;
-  justify-content: space-between;
-  gap: 10px;
+  justify-content: flex-start;
   width: 100%;
-  max-height: 60px;
-  border-radius: 24px 24px 0 0;
-  position: relative;
+  height: 50%;
+  text-transform: capitalize;
   padding: 20px;
-  margin-top: 30px;
+
+  @media (min-width: 769px) {
+    padding: 36px;
+    height: 100%;
+    width: 50%;
+  }
+
+`;
+
+export const IdText = styled.p`
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-shadow: 0 0 12px rgb(0 0 0 / 25%)
+`;
+
+export const NameText = styled.p`
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  
+  @media (min-width: 769px) {
+    font-size: 3.5rem;
+    text-shadow: 0 0 12px rgb(0 0 0 / 25%);
+  }
+`;
+
+export const PokeImage = styled.img`
+  width: 170px;
+  height: 170px;
+  margin: auto;
+
+  @media (min-width: 769px) {
+    width: 540px;
+    height: 540px;
+  }
 `;
 
 
-export const PokeName = styled.h1`
-  font-size: 30px;
-  margin-top: 10px;
+export const SecondColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: flex-start;
+  width: 90%;
+  height: 50%;
+
+  @media (min-width: 769px) {
+    padding: 36px;
+    margin-top: 12%;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 50%;
+  }
 `;
 
-export const PokeType = styled.h2`
-  font-size: 16px;
-  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.2));
+export const ElementsRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: 70px;
+  gap: 20px;
+  margin-bottom: 20px;
+  text-transform: capitalize;
+
+  @media (max-width: 767px) {
+    display: none;
+  }
+`;
+
+export const TypeText = styled.p`
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  background-color: ${({theme}) => theme.backgroundColor};
   border-radius: 8px;
   padding: 5px 10px;
-  background-color: ${({theme}) => theme.backgroundColor};
-  color: ${({theme}) => theme.color};
-`;
 
-export const PokeId = styled.span`
-  font-size: 26px;
-  position: absolute;
-  top: 65px;
-  right: 40px;
+  @media (max-width: 767px) {
+    display: none;
+  }
 `;
 
 
-export const InfoContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  width: 100%;
-  max-height: 340px;
-  border-top: 1px solid #fff;
-  position: relative;
- 
-`;
-
-export const InfoContainerTopRow = styled.div`
+export const MenuRow = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  border-radius: 2px;
+  border-top: 4px solid rgba(255,255,255,.35);
   width: 100%;
-  height: 100px;
-  border-radius: 10px;
-  position: relative;
-  background-color: transparent;
-  padding: 0 15px;
-  
-  @media (min-width: 768px) {
-    justify-content: space-around;
-  }
-  
-`;
+  height: 50px;
+  padding: 12px 20px;
 
-export const InfoContainerBottomColumn = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  justify-content: space-between;
-  width: 100%;
-  max-height: 400px;
-  border-radius: 10px;
-  position: relative;
-  transition: all 0.5s ease-in-out;
-  
-  ${({page}) => page === 'Base Stats' && `
   @media (min-width: 768px) {
-    flex-direction: row;
-    align-items: start;
-    justify-content: space-between;
-    flex-flow: row wrap;
-    
-    & > * {
-      margin: 14px 0;
-    }
+    border: none;
+    width: 80%;
+    font-size: 1.5rem;
   }
-`}
+  
 
 `;
 
-export const PageTitle = styled.h2`
-  font-size: 20px;
-  ${({page}) => page === 'selected' ? `color: #000;` : `color: #6b6b6b;`}
+export const MenuItem = styled.h2`
+  font-size: 1rem;
+  ${({page}) => page !== 'selected' && `color: #BDCDD6;`}
   margin-top: 10px;
   transition: all 0.5s ease-in-out;
   cursor: pointer;
@@ -160,7 +146,7 @@ export const PageTitle = styled.h2`
     display: block;
     width: 100%;
     height: 2px;
-    background-color: #000;
+    background-color: #fff;
     margin-top: 10px;
     transition: all 0.5s ease-in-out;
     transform: scaleX(0);
@@ -170,8 +156,23 @@ export const PageTitle = styled.h2`
     &:after {
       transform: scaleX(1.2);
     }
-  `}
+  `};
+  
+  @media (min-width: 768px) {
+    font-size: 1.5rem;
+  }
 `;
 
-
-
+export const BackButton = styled(CgClose)`
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 1rem;
+  color: #fff;
+  cursor: pointer;
+  z-index: 999;
+  
+  @media (min-width: 769px) {
+    font-size: 2rem;
+  }
+`;
