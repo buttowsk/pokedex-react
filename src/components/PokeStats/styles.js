@@ -8,7 +8,7 @@ export const Container = styled.div`
   height: 100%;
   text-transform: capitalize;
   padding: 20px;
-  font-size: 1.2rem;
+  font-size: 1rem;
   gap: 8px;
 
   @media (min-width: 769px) {  
@@ -20,6 +20,11 @@ export const Container = styled.div`
     border-left: 4px solid rgba(255,255,255,.35);
     gap: 20px;
   }
+
+    @media (max-width: 1024px) {
+        height: 350px;
+        width: 90%;
+    }
 `;
 
 
@@ -75,5 +80,5 @@ export const ValuesRow = styled.div`
 `;
 
 export const StatusText = styled.h3`
-  width: 120px;
+  width: 150px;
 `;

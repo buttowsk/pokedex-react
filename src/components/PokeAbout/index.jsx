@@ -1,4 +1,5 @@
-import {InfoRow, InfoText, Container, TextRow} from "./styles";
+import {InfoRow, InfoText, Container, TextRow, TypeRow, TypeText} from "./styles";
+import { themes } from '../../globalStyles/styles.js';
 
 export const PokeAbout = ({pokeInfo, pokeSpecies}) => {
 
@@ -23,7 +24,6 @@ export const PokeAbout = ({pokeInfo, pokeSpecies}) => {
       <InfoRow>
         <TextRow>
           <InfoText>
-
             {` ${100 -(pokeSpecies.gender_rate * 10)}% Male`}
           </InfoText>
         </TextRow>
@@ -44,6 +44,16 @@ export const PokeAbout = ({pokeInfo, pokeSpecies}) => {
           {` ${pokeSpecies.generation?.name}`}
         </InfoText>
       </InfoRow>
+      <TypeRow>
+        <TypeText theme={themes[pokeInfo.types[0]?.type?.name]}>
+          {` ${pokeInfo.types[0]?.type?.name}`}
+        </TypeText>
+        {pokeInfo.types[1]?.type?.name && (
+          <TypeText theme={themes[pokeInfo.types[1]?.type?.name]}>
+            {pokeInfo.types[1]?.type?.name}
+          </TypeText>
+        )}
+      </TypeRow>
     </Container>
 
   )

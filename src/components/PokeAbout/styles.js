@@ -4,7 +4,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-	margin-top: 20px;
+	justify-content: flex-start;
   width: 100%;
   height: 100%;
   text-transform: capitalize;
@@ -21,8 +21,14 @@ export const Container = styled.div`
     border-left: 4px solid rgba(255,255,255,.35);
     gap: 30px;
     font-size: 1.5rem;
-    padding: 20px 0;
+    padding: 10px 0;
   }
+
+  @media (max-width: 1024px) {
+    height: 350px;
+    width: 90%;
+  }
+	
 `;
 
 export const InfoRow = styled.div`
@@ -33,9 +39,9 @@ export const InfoRow = styled.div`
   width: 100%;
   max-height: 40px;
   padding: 8px 16px;
-	
-	@media (min-width: 769px) {
-		max-height: 60px;
+
+  @media (min-width: 769px) {
+    max-height: 60px;
   }
 `;
 
@@ -44,10 +50,36 @@ export const TextRow = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 50%;
   height: 100%;
 `;
 
 export const InfoText = styled.h3`
   font-weight: 600;
+`;
+
+
+export const TypeRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-height: 40px;
+  padding: 8px 16px;
+
+  @media (min-width: 769px) {
+    max-height: 60px;
+	  display: none;
+  }
+`;
+export const TypeText = styled.h3`
+	font-weight: 600;
+	background-color: ${({theme}) => theme.backgroundColor};
+	color: ${({theme}) => theme.color};
+	border-radius: 5px;
+	padding: 5px 10px;
+	
+	@media (min-width: 769px) {
+		display: none;
+  }
 `;

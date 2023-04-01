@@ -95,7 +95,7 @@ export const ElementsRow = styled.div`
   margin-bottom: 20px;
   text-transform: capitalize;
 
-  @media (max-width: 767px) {
+  @media (max-width: 768px) {
     display: none;
   }
 `;
@@ -125,7 +125,7 @@ export const MenuRow = styled.div`
   height: 50px;
   padding: 12px 20px;
 
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     border: none;
     width: 80%;
     font-size: 1.5rem;
@@ -158,7 +158,7 @@ export const MenuItem = styled.h2`
     }
   `};
   
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     font-size: 1.5rem;
   }
 `;
