@@ -669,7 +669,7 @@ Error generating stack: `+l.message+`
     margin-top: 12px;
     align-items: center;
     justify-content: center;
-    height: 40%;
+    height: 50%;
     border-left: 4px solid rgba(255,255,255,.35);
     gap: 50px;
     font-size: 1.5rem;
