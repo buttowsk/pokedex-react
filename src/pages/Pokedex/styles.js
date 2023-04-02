@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { IoChevronBack } from "react-icons/io5";
 import { BiMenuAltRight } from "react-icons/bi";
 
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -43,14 +44,35 @@ export const List = styled.ul`
   grid-gap: 10px;
   list-style: none;
   margin: 30px 0 0 0;
-  
-    @media (min-width: 768px) {
-        grid-template-columns: repeat(3, 1fr);
-    }
-  
-    @media (min-width: 1024px) {
-        grid-template-columns: repeat(4, 1fr);
-    }
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+`;
+
+export const Button = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 50px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(43, 72, 101);
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  margin-top: 20px;
+
+  &:hover {
+    background-color: rgb(43, 72, 101, 0.8);
+  }
 `;
 
 

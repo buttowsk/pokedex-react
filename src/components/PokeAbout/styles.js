@@ -6,9 +6,8 @@ export const Container = styled.div`
   align-items: center;
 	justify-content: flex-start;
   width: 100%;
-  height: 100%;
   text-transform: capitalize;
-  gap: 25px;
+  gap: 15px;
   transition: all .3s ease-in-out;
   font-size: 1rem;
 
@@ -24,10 +23,7 @@ export const Container = styled.div`
     padding: 10px 0;
   }
 
-  @media (max-width: 1024px) {
-    height: 350px;
-    width: 90%;
-  }
+ 
 	
 `;
 

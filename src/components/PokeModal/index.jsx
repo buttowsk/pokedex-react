@@ -19,7 +19,7 @@ import {PokeEvolutions} from "../PokeEvolutions/index.jsx";
 import {useGenerateTypeInfo} from "../../hooks/useGenerateTypeInfo/index.js";
 
 export const PokeModal = ({ pokeInfo, isModalOpen, setIsModalOpen, pokeSpecies, color, bgColor }) => {
-    const { id, name, types, sprites, height, weight, abilities } = pokeInfo;
+    const { id, name, types, sprites } = pokeInfo;
     const { typeInfo, isLoading, error } = useGenerateTypeInfo(types);
     const { generation } = pokeSpecies;
     const [isFavorite, setIsFavorite] = useState(false);

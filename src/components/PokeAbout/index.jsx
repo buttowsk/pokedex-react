@@ -24,12 +24,13 @@ export const PokeAbout = ({pokeInfo, pokeSpecies}) => {
       <InfoRow>
         <TextRow>
           <InfoText>
-            {` ${100 -(pokeSpecies.gender_rate * 10)}% Male`}
+            {pokeSpecies.gender_rate !== -1 ? `${(100 - (pokeSpecies.gender_rate * 10))}% Male` : 'Genderless'}
           </InfoText>
         </TextRow>
         <TextRow>
           <InfoText>
-            {`  ${pokeSpecies.gender_rate * 10}% Female`}</InfoText>
+            {pokeSpecies.gender_rate !== -1 ? `${(pokeSpecies.gender_rate * 10)}% Female` : 'Genderless'}
+          </InfoText>
         </TextRow>
       </InfoRow>
       <InfoRow>
