@@ -2,6 +2,7 @@ import {usePokemonEvolutions} from "../../hooks/usePokemonEvolutions/index.js";
 import {EvolutionChain, PokeArrow, PokeContainer, PokeImage, PokeName, Container, Title } from "./styles.js";
 import {useEffect, useState} from "react";
 import axios from "axios";
+import { LoadingComponent } from '../LoadingComponent/index.jsx';
 
 export const PokeEvolutions = ({ pokemonName }) => {
     const { evolutions, isLoading } = usePokemonEvolutions(pokemonName);
@@ -18,8 +19,8 @@ export const PokeEvolutions = ({ pokemonName }) => {
         getPokeInfo();
     }, [evolutions]);
 
-    if (isLoading || !pokeInfo) {
-        return <p>Loading...</p>;
+    if (isLoading || !pokeInfo || !evolutions) {
+        return <LoadingComponent />;
     }
 
     return (
