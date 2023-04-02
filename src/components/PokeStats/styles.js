@@ -30,6 +30,12 @@ export const Container = styled.div`
         font-size: 0.85rem;
         gap: 10px;
     }
+    
+    @media (max-height: 700px) {
+        height: 50%;
+        font-size: 0.85rem;
+        gap: 10px;
+    }
 `;
 
 
