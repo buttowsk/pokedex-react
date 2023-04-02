@@ -68,7 +68,7 @@ export const PokeImage = styled.img`
   height: 60vw;
   margin: auto;
 
-  @media (min-width: 769px) {
+  @media (min-width: 768px) {
     width: 30vw;
     height: 30vw;
   }
