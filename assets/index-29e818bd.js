@@ -575,7 +575,7 @@ Error generating stack: `+l.message+`
 		gap: 10px;
   }
 	
-	@media (max-height: 600px) {
+	@media (max-height: 700px) {
 		height: 50%;
 		font-size: 0.85rem;
 		gap: 10px;
@@ -656,6 +656,12 @@ Error generating stack: `+l.message+`
         font-size: 0.85rem;
         gap: 10px;
     }
+    
+    @media (max-height: 700px) {
+        height: 50%;
+        font-size: 0.85rem;
+        gap: 10px;
+    }
 `,In=F.div`
   width: 180px;
   height: 6px;
@@ -732,6 +738,12 @@ Error generating stack: `+l.message+`
     font-size: 0.65rem;
     gap: 10px;
   }
+  @media (max-height: 700px) {
+    height: 50%;
+    font-size: 0.65rem;
+    gap: 20px;
+  }
+	
 
 `,Ss=F.div`
   display: flex;
