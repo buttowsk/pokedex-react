@@ -8,8 +8,8 @@ export const Container = styled.div`
   height: 100%;
   text-transform: capitalize;
   padding: 20px;
-  font-size: 1rem;
-  gap: 8px;
+  font-size: 1.3rem;
+  gap: 18px;
 
   @media (min-width: 769px) {  
     width: 80%;
@@ -24,6 +24,11 @@ export const Container = styled.div`
     @media (max-width: 1024px) {
         height: 350px;
         width: 90%;
+    }
+    
+    @media (max-width: 320px) {
+        font-size: 0.85rem;
+        gap: 10px;
     }
 `;
 

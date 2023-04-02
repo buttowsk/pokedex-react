@@ -7,9 +7,11 @@ export const Container = styled.div`
 	justify-content: flex-start;
   width: 100%;
   text-transform: capitalize;
-  gap: 15px;
+  gap: 25px;
   transition: all .3s ease-in-out;
-  font-size: 1rem;
+  font-size: 1.3rem;
+	padding: 10px 0;
+	
 
   @media (min-width: 769px) {
     width: 80%;
@@ -21,6 +23,17 @@ export const Container = styled.div`
     gap: 30px;
     font-size: 1.5rem;
     padding: 10px 0;
+  }
+	
+	@media (max-width: 320px) {
+		font-size: 0.85rem;	
+		gap: 10px;
+  }
+	
+	@media (max-height: 600px) {
+		height: 50%;
+		font-size: 0.85rem;
+		gap: 10px;
   }
 
  

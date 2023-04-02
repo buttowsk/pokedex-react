@@ -26,15 +26,18 @@ export const FirstColumn = styled.div`
   align-items: start;
   justify-content: flex-start;
   width: 100%;
-  height: 50%;
+  max-height: 50%;
   text-transform: capitalize;
   padding: 20px;
 
   @media (min-width: 769px) {
     padding: 36px;
     height: 100%;
+    max-height: 100%;
     width: 50%;
   }
+  
+  
 
 `;
 
@@ -46,7 +49,7 @@ export const IdText = styled.p`
 `;
 
 export const NameText = styled.p`
-  font-size: 2.5rem;
+  font-size: 1.75rem;
   font-weight: 600;
   margin-bottom: 10px;
   
@@ -54,17 +57,27 @@ export const NameText = styled.p`
     font-size: 3.5rem;
     text-shadow: 0 0 12px rgb(0 0 0 / 25%);
   }
+  
+  @media (max-height: 600px) {
+    font-size: 1rem;
+  }
 `;
 
 export const PokeImage = styled.img`
-  width: 170px;
-  height: 170px;
+  width: 60vw;
+  height: 60vw;
   margin: auto;
 
   @media (min-width: 769px) {
-    width: 540px;
-    height: 540px;
+    width: 30vw;
+    height: 30vw;
   }
+  
+  @media (max-height: 600px) {
+    width: 100px;
+    height: 100px;
+  }
+  
 `;
 
 
@@ -74,7 +87,7 @@ export const SecondColumn = styled.div`
   align-items: start;
   justify-content: flex-start;
   width: 90%;
-  height: 50%;
+  max-height: 50%;
 
   @media (min-width: 769px) {
     padding: 36px;
@@ -82,6 +95,7 @@ export const SecondColumn = styled.div`
     align-items: center;
     justify-content: center;
     height: 100%;
+    max-height: 100%;
     width: 50%;
   }
 `;

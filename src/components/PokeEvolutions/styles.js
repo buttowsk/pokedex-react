@@ -29,6 +29,11 @@ export const Container = styled.div`
 		height: 900px;
   }
 
+  @media (max-width: 320px) {
+    font-size: 0.65rem;
+    gap: 10px;
+  }
+
 `;
 
 export const EvolutionChain = styled.div`
@@ -49,7 +54,6 @@ export const EvolutionChain = styled.div`
 `;
 
 export const Title = styled.h2`
-  font-size: 1.2rem;
   margin: 0 0 10px 0;
   padding: 8px 0;
 `;
@@ -80,7 +84,6 @@ export const PokeImage = styled.img`
 `;
 
 export const PokeName = styled.h1`
-  font-size: 1.2rem;
   margin-top: 10px;
 `;
 
