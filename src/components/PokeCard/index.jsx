@@ -1,5 +1,4 @@
 import {PokeImage, PokeType, PokeName, PokeCardContainer, PokeTypeContainer} from './styles'
-import { usePokemonInfo } from "../../hooks/usePokemonInfo/index.js";
 import { ThemeProvider } from "styled-components";
 import { themes } from "../../globalStyles/styles.js";
 import { useState } from "react";

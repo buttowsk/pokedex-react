@@ -7,25 +7,11 @@ import { Items } from '../pages/Items';
 import { Locations } from '../pages/Locations';
 import {useAllPokemons} from "../hooks/useAllPokemons/index.js";
 import {LoadingComponent} from "../components/LoadingComponent/index.jsx";
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+
 function App() {
-    const {pokemons, loading} = useAllPokemons('https://pokeapi.co/api/v2/pokemon?limit=81&offset=0');
-    const [pokeList, setPokeList] = useState([]);
+    const {pokeList, loading} = useAllPokemons();
 
-    useEffect(() => {
-        const getPokeInfo = async () => {
-            const pokeInfo = await Promise.all(pokemons.map(async (pokemon) => {
-                const { data } = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`);
-                return data;
-            }));
-            setPokeList(pokeInfo);
-        }
-        getPokeInfo();
-    }, [pokemons]);
-
-
-    if (loading || !pokemons || !pokeList) {
+    if (loading || !pokeList ) {
         return <LoadingComponent />;
     }
 

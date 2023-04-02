@@ -1,31 +1,35 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
 
-export const useAllPokemons = (url) => {
-    const [pokemons, setPokemons] = useState([]);
+export const useAllPokemons = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
+    const [pokeList, setPokeList] = useState([]);
 
     useEffect(() => {
-        try {
-            setLoading(true);
-            axios.get(url)
-                .then((response) => {
-                    const { data } = response;
-                    const { results } = data;
-                    setPokemons(results);
-                    setLoading(false);
-                })
-                .catch((e) => {
-                    console.log(e)
-                    setError(true);
-                })
-        } catch (error) {
-            setError(true);
-        } finally {
-            setLoading(false);
-        }
-    },[url]);
+        const fetchPokemons = async () => {
+            try {
+                setLoading(true);
+                const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=700&offset=0');
+                const { data } = response;
+                const { results } = data;
+                const pokeInfo = await Promise.all(
+                  results.map(async (pokemon) => {
+                      const { data } = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`);
+                      return data;
+                  })
+                );
+                setPokeList(pokeInfo);
+            } catch (error) {
+                console.log(error);
+                setError(true);
+            } finally {
+                setLoading(false);
+            }
+        };
 
-    return { pokemons, loading, error };
-}
+        fetchPokemons();
+    }, []);
+
+    return { loading, error, pokeList };
+};

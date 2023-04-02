@@ -25,12 +25,9 @@ export const PokeModal = ({ pokeInfo, isModalOpen, setIsModalOpen, pokeSpecies, 
     const [isFavorite, setIsFavorite] = useState(false);
     const [selectedPage, setSelectedPage] = useState('about');
 
-
-
     const handlePageTitleClick = (page) => {
         setSelectedPage(page);
     }
-
 
     useEffect(() => {
         const body = document.querySelector('body');
