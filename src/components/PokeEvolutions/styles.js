@@ -31,7 +31,7 @@ export const Container = styled.div`
   }
 
   @media (max-width: 320px) {
-    font-size: 0.65rem;
+    font-size: 0.55rem;
     gap: 10px;
   }
   @media (max-height: 700px) {

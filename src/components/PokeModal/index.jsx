@@ -16,13 +16,9 @@ import {themes} from "../../globalStyles/styles.js";
 import {PokeAbout} from "../PokeAbout/index.jsx";
 import {PokeStats} from "../PokeStats/index.jsx";
 import {PokeEvolutions} from "../PokeEvolutions/index.jsx";
-import {useGenerateTypeInfo} from "../../hooks/useGenerateTypeInfo/index.js";
 
-export const PokeModal = ({ pokeInfo, isModalOpen, setIsModalOpen, pokeSpecies, color, bgColor }) => {
+export const PokeModal = ({ pokeInfo, isModalOpen, setIsModalOpen, pokeSpecies, color, bgColor, pokeList }) => {
     const { id, name, types, sprites } = pokeInfo;
-    const { typeInfo, isLoading, error } = useGenerateTypeInfo(types);
-    const { generation } = pokeSpecies;
-    const [isFavorite, setIsFavorite] = useState(false);
     const [selectedPage, setSelectedPage] = useState('about');
 
     const handlePageTitleClick = (page) => {
@@ -67,8 +63,8 @@ export const PokeModal = ({ pokeInfo, isModalOpen, setIsModalOpen, pokeSpecies, 
                             <MenuItem page={selectedPage === 'evolutions' ? 'selected' : ''} onClick={() => handlePageTitleClick('evolutions')}>Evolutions</MenuItem>
                         </MenuRow>
                         {selectedPage === 'about' && <PokeAbout pokeInfo={pokeInfo} pokeSpecies={pokeSpecies} />}
-                        {selectedPage === 'stats' && <PokeStats pokeInfo={pokeInfo} typeInfo={typeInfo} />}
-                        {selectedPage === 'evolutions' && <PokeEvolutions pokemonName={name} />}
+                        {selectedPage === 'stats' && <PokeStats pokeInfo={pokeInfo} />}
+                        {selectedPage === 'evolutions' && <PokeEvolutions pokemonName={name} pokeList={pokeList} />}
                     </SecondColumn>
                 </Modal>
             </ThemeProvider>

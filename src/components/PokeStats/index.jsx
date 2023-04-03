@@ -1,8 +1,8 @@
 import {Container, NumberText, StatusBar, StatusRow, StatusText} from "./styles.js";
 import {LoadingComponent} from "../LoadingComponent/index.jsx";
 
-export const PokeStats = ({ pokeInfo, typeInfo,  }) => {
-  if (!pokeInfo || !typeInfo ) {
+export const PokeStats = ({ pokeInfo }) => {
+  if (!pokeInfo ) {
     return <LoadingComponent/>
   }
 

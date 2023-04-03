@@ -8,7 +8,7 @@ import {PokeModal} from "../PokeModal/index.jsx";
 import {useGetBgColor} from "../../hooks/useGetBgColor/index.js";
 import {getColor} from "../../hooks/getColor/index.js";
 
-export const PokeCard = ({pokemon}) => {
+export const PokeCard = ({pokemon, pokeList}) => {
     const { pokeSpecies } = usePokemonSpecies(pokemon?.species?.url);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const bgColor = useGetBgColor(pokemon.sprites?.other['official-artwork']?.front_default);
@@ -28,7 +28,7 @@ export const PokeCard = ({pokemon}) => {
 
     return (
       <ThemeProvider theme={theme}>
-          { isModalOpen && <PokeModal pokeInfo={pokemon} pokeSpecies={pokeSpecies} setIsModalOpen={setIsModalOpen} isModalOpen={isModalOpen} bgColor={bgColor} color={color} /> }
+          { isModalOpen && <PokeModal pokeInfo={pokemon} pokeSpecies={pokeSpecies} setIsModalOpen={setIsModalOpen} isModalOpen={isModalOpen} bgColor={bgColor} color={color} pokeList={pokeList} /> }
           <PokeCardContainer onClick={handleOpenModal}>
               <>
                   <PokeImage src={pokemon.sprites?.other['official-artwork']?.front_default} />

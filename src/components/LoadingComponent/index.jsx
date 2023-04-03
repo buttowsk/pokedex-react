@@ -1,12 +1,14 @@
-import { Ring, Loading, Container } from './styles.js'
+import { Ring, Loading, Container, LoadingContainer } from './styles.js';
 
 export const LoadingComponent = () => {
-    return (
-        <Container>
-            <Ring></Ring>
-            <Ring></Ring>
-            <Ring></Ring>
-            <Loading>Loading...</Loading>
-        </Container>
-    )
+  return (
+    <Container>
+      <LoadingContainer>
+        <Ring></Ring>
+        <Ring></Ring>
+        <Ring></Ring>
+        <Loading>Loading...</Loading>
+      </LoadingContainer>
+    </Container>
+  )
 }
