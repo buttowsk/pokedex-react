@@ -65,7 +65,8 @@ export const List = styled.ul`
   margin: 30px 0;
 `;
 
-export const ListItem = styled.li`
+export const ListItem = styled(Link)`
+  text-decoration: none;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -76,19 +77,23 @@ export const ListItem = styled.li`
   border-radius: 12px;
   font-size: 20px;
   color: #fff;
-  ${({ buttonName }) => buttonName === 'pokedex' && `
+  ${({ buttonname }) => buttonname === 'pokedex' && `
     background-color: rgb(241, 55, 55);
     `}
-  ${({ buttonName }) => buttonName === 'moves' && `
+  ${({ buttonname }) => buttonname === 'moves' && `
     background-color: rgb(240, 156, 39);
     `}
-  ${({ buttonName }) => buttonName === 'items' && `
+  ${({ buttonname }) => buttonname === 'items' && `
     background-color: rgb(124, 84, 140);
     `}
-  ${({ buttonName }) => buttonName === 'locations' && `
+  ${({ buttonname }) => buttonname === 'locations' && `
     background-color: rgb(90, 169, 247);
     `}
 
+  &:hover {
+    scale: 1.01;
+    opacity: 0.9;
+  }
 `;
 
 export const Button = styled(Link)`
