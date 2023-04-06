@@ -48,6 +48,9 @@ export const PokePage = ({ pokeList }) => {
 
 	const theme = themes[poke.types[0]];
 
+	if ( !bgColor || !color ) {
+		return <LoadingComponent />
+	}
 	return (
 		<ThemeProvider theme={theme}>
 			<Container bg={bgColor} textColor={color}>
