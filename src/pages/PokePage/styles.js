@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { CgClose } from "react-icons/cg";
 
-export const Modal = styled.div`
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -36,9 +36,6 @@ export const FirstColumn = styled.div`
     max-height: 100%;
     width: 50%;
   }
-  
-  
-
 `;
 
 export const IdText = styled.p`
@@ -67,6 +64,7 @@ export const PokeImage = styled.img`
   width: 60vw;
   height: 60vw;
   margin: auto;
+  transform: scaleX(-1);
 
   @media (min-width: 768px) {
     width: 30vw;
