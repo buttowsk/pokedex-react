@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {HiOutlineArrowSmRight} from "react-icons/hi";
+import { Link } from 'react-router-dom';
 
 
 export const Container = styled.div`
@@ -66,12 +67,14 @@ export const Title = styled.h2`
 `;
 
 
-export const PokeContainer = styled.div`
+export const PokeContainer = styled(Link)`
+	text-decoration: none;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
+	color: ${({theme}) => theme.color};
 
   @media (min-width: 769px) {
     height: 100%;

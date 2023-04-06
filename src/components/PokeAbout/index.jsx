@@ -1,10 +1,11 @@
 import {InfoRow, InfoText, Container, TextRow, TypeRow, TypeText} from "./styles";
 import { themes } from '../../globalStyles/styles.js';
+import { LoadingComponent } from '../LoadingComponent/index.jsx';
 
-export const PokeAbout = ({pokeInfo, pokeSpecies}) => {
+export const PokeAbout = ({ poke }) => {
 
-  if (pokeInfo === null || pokeSpecies === null) {
-    return (<div>Loading...</div>)
+  if (!poke) {
+    return <LoadingComponent />
   }
 
   return (
@@ -12,46 +13,41 @@ export const PokeAbout = ({pokeInfo, pokeSpecies}) => {
       <InfoRow>
         <TextRow>
           <InfoText>Height:
-            {(pokeInfo.height / 10) >= 1 ? ` ${pokeInfo.height / 10}m` : ` ${pokeInfo.height}cm` }
+            {(poke.height / 10) >= 1 ? ` ${poke.height / 10}m` : ` ${poke.height}cm` }
           </InfoText>
         </TextRow>
         <TextRow>
           <InfoText>Weight:
-            { (pokeInfo.weight / 10) >= 1 ? ` ${pokeInfo.weight / 10}kg` : ` ${pokeInfo.weight/10}g` }
+            { (poke.weight / 10) >= 1 ? ` ${poke.weight / 10}kg` : ` ${poke.weight/10}g` }
           </InfoText>
         </TextRow>
       </InfoRow>
       <InfoRow>
         <TextRow>
           <InfoText>
-            {pokeSpecies.gender_rate !== -1 ? `${(100 - (pokeSpecies.gender_rate * 10))}% Male` : 'Genderless'}
-          </InfoText>
-        </TextRow>
-        <TextRow>
-          <InfoText>
-            {pokeSpecies.gender_rate !== -1 ? `${(pokeSpecies.gender_rate * 10)}% Female` : 'Genderless'}
+            {poke.genderRate}
           </InfoText>
         </TextRow>
       </InfoRow>
       <InfoRow>
         <InfoText>
           Abilities:
-          {` ${pokeInfo.abilities[0]?.ability?.name}`}, {`${pokeInfo.abilities[1]?.ability?.name}`}
+          {` ${poke.abilities[0]}`}, {`${poke.abilities[1]}`}
         </InfoText>
       </InfoRow>
       <InfoRow>
         <InfoText>
           Generation:
-          {` ${pokeSpecies.generation?.name}`}
+          {` ${poke.generation}`}
         </InfoText>
       </InfoRow>
       <TypeRow>
-        <TypeText theme={themes[pokeInfo.types[0]?.type?.name]}>
-          {` ${pokeInfo.types[0]?.type?.name}`}
+        <TypeText theme={themes[poke.types[0]]}>
+          {` ${poke.types[0]}`}
         </TypeText>
-        {pokeInfo.types[1]?.type?.name && (
-          <TypeText theme={themes[pokeInfo.types[1]?.type?.name]}>
-            {pokeInfo.types[1]?.type?.name}
+        {poke.types[1] && (
+          <TypeText theme={themes[poke.types[1]]}>
+            {poke.types[1]}
           </TypeText>
         )}
       </TypeRow>

@@ -1,6 +1,8 @@
 import styled from "styled-components";
+import { Link } from 'react-router-dom';
 
-export const PokeCardContainer = styled.li`
+export const PokeCardContainer = styled(Link)`
+	text-decoration: none;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,7 +18,7 @@ export const PokeCardContainer = styled.li`
   background-color: ${({theme}) => theme.backgroundColor};
   cursor: pointer;
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
   }
 
   @media (max-width: 768px) {
@@ -39,13 +41,13 @@ export const PokeImage = styled.img`
 `;
 
 export const PokeName = styled.h2`
-  font-size: 24px;
+  font-size: 1.2rem;
   margin-bottom: 10px;
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 `;
 
 export const PokeType = styled.p`
-  font-size: 16px;
+  font-size: 1rem;
   filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.2));
   border-radius: 8px;
   padding: 5px 10px;
