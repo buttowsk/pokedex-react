@@ -13,7 +13,7 @@ export const Container = styled.div`
   text-transform: capitalize;
   gap: 45px;
   padding: 10px 0 ;
-	font-size: 0.65rem;
+	font-size: 0.75rem;
 
   @media (min-width: 769px) {
     width: 80%;
@@ -23,7 +23,7 @@ export const Container = styled.div`
     height: 50%;
     border-left: 4px solid rgba(255,255,255,.35);
     gap: 50px;
-    font-size: 1rem;
+    font-size: 1.4rem;
     padding: 20px 0;
   }
 	
@@ -61,7 +61,7 @@ export const EvolutionChain = styled.div`
   }
 `;
 
-export const Title = styled.h2`
+export const Title = styled.p`
   margin: 0 0 10px 0;
   padding: 8px 0;
 `;
@@ -93,7 +93,7 @@ export const PokeImage = styled.img`
   }
 `;
 
-export const PokeName = styled.h1`
+export const PokeName = styled.p`
   margin-top: 10px;
 `;
 

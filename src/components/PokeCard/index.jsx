@@ -3,7 +3,7 @@ import { ThemeProvider } from "styled-components";
 import { themes } from "../../globalStyles/styles.js";
 import {LoadingComponent} from "../LoadingComponent/index.jsx";
 
-export const PokeCard = ({ pokemon }) => {
+export const PokeCard = ({ pokemon, onClick }) => {
   if (!pokemon) {
     return <LoadingComponent />
   }
@@ -12,7 +12,7 @@ export const PokeCard = ({ pokemon }) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <PokeCardContainer to={`/pokedex/${pokemon.name}`} preventScrollReset={true}>
+      <PokeCardContainer to={`/pokedex/${pokemon.name}`} preventScrollReset={true} onClick={onClick}>
         <>
           <PokeImage src={pokemon.image} />
           <PokeName>{pokemon.name}</PokeName>

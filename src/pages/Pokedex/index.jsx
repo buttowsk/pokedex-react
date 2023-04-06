@@ -2,7 +2,6 @@ import {Title, List, Container,Content, TopRow, BackIcon, MenuIcon } from './sty
 import { PokeCard } from '../../components/PokeCard/index.jsx'
 import { LoadingComponent } from '../../components/LoadingComponent/index.jsx';
 import { useEffect, useState } from 'react';
-import { useAllPokemons } from '../../hooks/useAllPokemons/index.js';
 
 export const Pokedex = ({ pokeList }) => {
   const [visiblePokeList, setVisiblePokeList] = useState([]);
@@ -10,6 +9,11 @@ export const Pokedex = ({ pokeList }) => {
   const [isLoadingMore, setIsLoadingMore] = useState(false);
 
   useEffect(() => {
+    const savedScrollTop = localStorage.getItem("scrollPosition");
+    if (savedScrollTop) {
+      document.documentElement.scrollTop = savedScrollTop;
+    }
+
     setVisiblePokeList(pokeList.slice(0, loadedPokemons));
   }, [pokeList, loadedPokemons]);
 
@@ -17,13 +21,13 @@ export const Pokedex = ({ pokeList }) => {
     const windowHeight = window.innerHeight;
     const documentHeight = document.documentElement.scrollHeight;
     const scrollTop = document.documentElement.scrollTop;
+    const scrollBottom = documentHeight - (scrollTop + windowHeight);
 
-    if (scrollTop + windowHeight >= documentHeight) {
+    if (scrollBottom < 0.2 * windowHeight) {
       setIsLoadingMore(true);
       setLoadedPokemons((prev) => prev + 20);
     }
   };
-
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -38,7 +42,17 @@ export const Pokedex = ({ pokeList }) => {
       setVisiblePokeList(pokeList.slice(0, loadedPokemons));
       setIsLoadingMore(false);
     }
+
+    const savedScrollTop = localStorage.getItem("scrollPosition");
+    if (savedScrollTop) {
+      document.documentElement.scrollTop = savedScrollTop;
+      localStorage.removeItem("scrollPosition");
+    }
   }, [pokeList, loadedPokemons, isLoadingMore]);
+
+  const handleCardClick = () => {
+    localStorage.setItem("scrollPosition", document.documentElement.scrollTop);
+  };
 
   return (
     <Container>
@@ -50,7 +64,7 @@ export const Pokedex = ({ pokeList }) => {
         <Title>Pokedex</Title>
         <List>
           {visiblePokeList.map((pokemon) => (
-            <PokeCard key={pokemon.id} pokemon={pokemon} pokeList={pokeList} />
+            <PokeCard key={pokemon.id} pokemon={pokemon} pokeList={pokeList} onClick={() => handleCardClick()} />
           ))}
           {isLoadingMore && <LoadingComponent />}
         </List>

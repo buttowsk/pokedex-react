@@ -20,7 +20,7 @@ function App() {
     }
   }, [isLoading, pokeList]);
 
-  if (isLoading || !isPokeListLoaded) {
+  if (isLoading || !isPokeListLoaded || !pokeList || pokeList.length === 0) {
     return <LoadingComponent/>
   }
   return (
