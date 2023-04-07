@@ -17,7 +17,6 @@ export const Container = styled.div`
     justify-content: center;
     align-items: center;
     height: 40%;
-    border-left: 4px solid rgba(255,255,255,.35);
     gap: 20px;
   }
 

@@ -133,7 +133,6 @@ export const MenuRow = styled.div`
   align-items: center;
   justify-content: space-between;
   border-radius: 2px;
-  border-top: 4px solid rgba(255,255,255,.35);
   width: 100%;
   height: 50px;
   padding: 12px 20px;

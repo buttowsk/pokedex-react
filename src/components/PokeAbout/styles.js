@@ -19,7 +19,6 @@ export const Container = styled.div`
     align-items: center;
     justify-content: flex-start;
     height: 40%;
-    border-left: 4px solid rgba(255,255,255,.35);
     gap: 30px;
     font-size: 1.5rem;
     padding: 10px 0;

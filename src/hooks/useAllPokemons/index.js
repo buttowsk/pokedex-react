@@ -12,7 +12,7 @@ export const useAllPokemons = () => {
         const fetchPokemons = async () => {
             try {
                 setLoading(true);
-                const response = await pokeApi.get('/pokemon?limit=200&offset=0');
+                const response = await pokeApi.get('/pokemon?limit=900&offset=0');
                 const { data } = response;
                 const { results } = data;
                 const pokemonPromises = results.map(async (result) => {
@@ -73,6 +73,7 @@ export const useAllPokemons = () => {
         };
         fetchPokemons();
     }, []);
+
 
     useEffect(() => {
         localStorage.setItem('pokeList', JSON.stringify(pokeList));

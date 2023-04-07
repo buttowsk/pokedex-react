@@ -2,11 +2,13 @@ import {Title, List, Container,Content, TopRow, BackIcon, MenuIcon } from './sty
 import { PokeCard } from '../../components/PokeCard/index.jsx'
 import { LoadingComponent } from '../../components/LoadingComponent/index.jsx';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const Pokedex = ({ pokeList }) => {
   const [visiblePokeList, setVisiblePokeList] = useState([]);
   const [loadedPokemons, setLoadedPokemons] = useState(20);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const savedScrollTop = localStorage.getItem("scrollPosition");
@@ -23,7 +25,7 @@ export const Pokedex = ({ pokeList }) => {
     const scrollTop = document.documentElement.scrollTop;
     const scrollBottom = documentHeight - (scrollTop + windowHeight);
 
-    if (scrollBottom < 0.2 * windowHeight) {
+    if (scrollBottom < 0.4 * windowHeight) {
       setIsLoadingMore(true);
       setLoadedPokemons((prev) => prev + 20);
     }
@@ -54,10 +56,12 @@ export const Pokedex = ({ pokeList }) => {
     localStorage.setItem("scrollPosition", document.documentElement.scrollTop);
   };
 
+
+
   return (
     <Container>
       <TopRow>
-        <BackIcon />
+        <BackIcon onClick={() => navigate(-1)} />
         <MenuIcon />
       </TopRow>
       <Content>

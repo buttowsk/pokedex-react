@@ -91,7 +91,6 @@ export const ListItem = styled(Link)`
     `}
 
   &:hover {
-    scale: 1.01;
     opacity: 0.9;
   }
 `;

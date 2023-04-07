@@ -13,7 +13,7 @@ export const Container = styled.div`
   text-transform: capitalize;
   gap: 45px;
   padding: 10px 0 ;
-	font-size: 0.75rem;
+	font-size: 1.2rem;
 
   @media (min-width: 769px) {
     width: 80%;
@@ -21,7 +21,6 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
     height: 50%;
-    border-left: 4px solid rgba(255,255,255,.35);
     gap: 50px;
     font-size: 1.4rem;
     padding: 20px 0;
@@ -32,12 +31,12 @@ export const Container = styled.div`
   }
 
   @media (max-width: 320px) {
-    font-size: 0.55rem;
+    font-size: 1rem;
     gap: 10px;
   }
   @media (max-height: 700px) {
     height: 50%;
-    font-size: 0.65rem;
+    font-size: 1rem;
     gap: 20px;
   }
 	
