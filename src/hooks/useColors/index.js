@@ -25,20 +25,24 @@ export const useColors = () => {
 		}, [imageUrl]);
 
 		const formattedColor = bgColor ? `rgb(${bgColor.join(', ')})` : '';
-
 		return formattedColor;
 	}
 
-	const getTextColor = (r, g, b) => {
-		// Calcula a luminosidade relativa da cor
-		const luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-		// Verifica se a luminosidade é menor que 0,5 (cor escura)
-		if (luminance < 0.5) {
-			return "#ECF2FF"
+	const getTextColor = (background) => {
+		const [r, g, b] = background.replace(/[^\d,]/g, '').split(',');
+
+		const normalizedR = r / 255;
+		const normalizedG = g / 255;
+		const normalizedB = b / 255;
+
+		const luminance = 0.2126 * normalizedR + 0.7152 * normalizedG + 0.0722 * normalizedB;
+
+		if (luminance < 0.8) {
+			return "#ECF2FF";
 		} else {
-			return "#2E3840"
+			return "#262A56";
 		}
-	}
+	};
 
 	return { useGetBgColor, getTextColor };
 }
