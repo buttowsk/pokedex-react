@@ -14,6 +14,7 @@ export const Container = styled.div`
   gap: 45px;
   padding: 10px 0 ;
 	font-size: 1.2rem;
+	color: ${({textColor}) => textColor};
 
   @media (min-width: 769px) {
     width: 80%;
@@ -73,7 +74,7 @@ export const PokeContainer = styled(Link)`
   align-items: center;
   justify-content: center;
   width: 100%;
-	color: ${({theme}) => theme.color};
+  color: inherit;
 
   @media (min-width: 769px) {
     height: 100%;

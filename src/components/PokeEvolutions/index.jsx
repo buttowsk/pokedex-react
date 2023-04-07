@@ -1,13 +1,13 @@
 import {EvolutionChain, PokeArrow, PokeContainer, PokeImage, PokeName, Container, Title } from "./styles.js";
 import { LoadingComponent } from '../LoadingComponent/index.jsx';
-export const PokeEvolutions = ({ poke }) => {
+export const PokeEvolutions = ({ poke, textColor }) => {
 
   if (!poke) {
     return <LoadingComponent />;
   }
-  console.log(poke)
+
   return (
-    <Container>
+    <Container textColor={textColor}>
       {poke.evolutionChain[1] ? (
         <EvolutionChain>
           <PokeContainer to={`/pokedex/${poke.evolutionChain[0].name}`}>

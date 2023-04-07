@@ -59,7 +59,7 @@ export const Input = styled.input`
 export const List = styled.ul`
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-gap: 20px;
   list-style: none;
   margin: 30px 0;
@@ -80,14 +80,8 @@ export const ListItem = styled(Link)`
   ${({ buttonname }) => buttonname === 'pokedex' && `
     background-color: rgb(241, 55, 55);
     `}
-  ${({ buttonname }) => buttonname === 'moves' && `
-    background-color: rgb(240, 156, 39);
-    `}
   ${({ buttonname }) => buttonname === 'items' && `
     background-color: rgb(124, 84, 140);
-    `}
-  ${({ buttonname }) => buttonname === 'locations' && `
-    background-color: rgb(90, 169, 247);
     `}
 
   &:hover {

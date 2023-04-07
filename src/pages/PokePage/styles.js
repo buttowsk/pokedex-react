@@ -11,7 +11,7 @@ export const Container = styled.div`
   top: 0;
   left: 0;
   ${({bg}) => bg && `background-color: ${bg}`};
-  color: ${({theme}) => theme.color};
+  color: ${({textColor}) => textColor};
   z-index: 999;
 
   @media (min-width: 769px) {
@@ -42,7 +42,6 @@ export const IdText = styled.p`
   font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 10px;
-  text-shadow: 0 0 12px rgb(0 0 0 / 25%)
 `;
 
 export const NameText = styled.p`
@@ -120,6 +119,7 @@ export const TypeText = styled.p`
   background-color: ${({theme}) => theme.backgroundColor};
   border-radius: 8px;
   padding: 5px 10px;
+  color: ${({theme}) => theme.color};
 
   @media (max-width: 767px) {
     display: none;
@@ -180,7 +180,6 @@ export const BackButton = styled(CgClose)`
   top: 20px;
   right: 20px;
   font-size: 1rem;
-  color: #fff;
   cursor: pointer;
   z-index: 999;
   

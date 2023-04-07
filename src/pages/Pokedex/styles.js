@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { IoChevronBack } from "react-icons/io5";
 import { BiMenuAltRight } from "react-icons/bi";
 
-
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -27,7 +26,6 @@ export const TopRow = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  margin: 10px 0;
   padding: 10px;
 `;
 
