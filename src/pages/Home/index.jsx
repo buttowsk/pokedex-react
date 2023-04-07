@@ -32,17 +32,9 @@ export const Home = ({ pokeList }) => {
                       Pokedex
                       <Pokeball />
                   </ListItem>
-                  <ListItem to={'/moves'} buttonname={'moves'}>
-                      Moves
-                      <Flash />
-                  </ListItem>
                   <ListItem to={'/items'} buttonname={'items'}>
                       Items
                       <Pokecog />
-                  </ListItem>
-                  <ListItem to={'/locations'} buttonname={'locations'}>
-                      Locations
-                      <Map />
                   </ListItem>
               </List>
           </Content>
