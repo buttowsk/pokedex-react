@@ -45,7 +45,7 @@ export const Ben = styled.div`
 	animation:t1 20s linear infinite;
 }
 @keyframes t {
-	0%,8% { content:"Hey Dev";}
+	0%,8% { content:"Hey You";}
 	8.1%,25%{ content:"It's loading...";}
 	25.1%,37.5%{ content:"Yes, still loading...";}
 	37.6%,50%{ content:"Guys, why is it too slow?";}
