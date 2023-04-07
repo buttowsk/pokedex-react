@@ -22,9 +22,10 @@ import { useColors } from '../../hooks/useColors/index.js';
 
 export const PokePage = ({ pokeList }) => {
 	const { pokemon } = useParams();
+	const pokeArray = Object.values(pokeList);
 	const navigate = useNavigate();
 	const { useGetBgColor, getTextColor } = useColors();
-	const poke = pokeList.find(poke => poke.name === pokemon);
+	const poke = pokeArray.find(poke => poke.name === pokemon);
 	const [selectedPage, setSelectedPage] = useState('about');
 	const bgColor = useGetBgColor(poke.image);
 	const color = getTextColor(bgColor);
@@ -42,13 +43,10 @@ export const PokePage = ({ pokeList }) => {
 		}
 	}, [poke, navigate]);
 
-	if (!poke) {
-		return <LoadingComponent />
-	}
 
 	const theme = themes[poke.types[0]];
 
-	if ( !bgColor || !color ) {
+	if ( !bgColor || !color || !poke ) {
 		return <LoadingComponent />
 	}
 	return (
@@ -72,7 +70,7 @@ export const PokePage = ({ pokeList }) => {
 					</MenuRow>
 					{selectedPage === 'about' && <PokeAbout poke={poke} />}
 					{selectedPage === 'stats' && <PokeStats poke={poke} />}
-					{selectedPage === 'evolutions' && <PokeEvolutions poke={poke} />}
+					{selectedPage === 'evolutions' && <PokeEvolutions poke={poke} textColor={color} />}
 				</SecondColumn>
 			</Container>
 		</ThemeProvider>
