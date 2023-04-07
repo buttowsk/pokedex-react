@@ -61,7 +61,7 @@ export const Pokedex = ({ pokeList }) => {
   return (
     <Container>
       <TopRow>
-        <BackIcon onClick={() => navigate(-1)} />
+        <BackIcon onClick={() => navigate('/')} />
         <MenuIcon />
       </TopRow>
       <Content>
