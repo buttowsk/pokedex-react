@@ -15,7 +15,7 @@ export const useAllPokemons = () => {
     const fetchPokemons = useCallback(async (page) => {
         try {
             setLoading(true);
-            const response = await pokeApi.get(`/pokemon?limit=400&offset=${(page - 1) * 20}`);
+            const response = await pokeApi.get(`/pokemon?limit=60&offset=${(page - 1) * 20}`);
             const { data } = response;
             const { results } = data;
             const pokemonPromises = results.map(async (result) => {

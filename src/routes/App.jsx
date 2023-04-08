@@ -5,21 +5,16 @@ import { Items } from '../pages/Items';
 import { PokePage } from '../pages/PokePage';
 import { useAllPokemons } from '../hooks/useAllPokemons/index.js';
 import { LoadingComponent } from '../components/LoadingComponent/index.jsx';
-import { useEffect, useState } from 'react';
 import { useAllItems } from '../hooks/useAllItems/index.js';
-import { BenLoading } from '../components/BenLoading/index.jsx';
 
 
 function App() {
   const { items, hasMoreItems, setItemsPage, itemsLoading } = useAllItems();
   const { isLoading, pokeList, hasMorePoke, setPokePage } = useAllPokemons();
 
-
   if (isLoading || !pokeList || pokeList.length === 0 || !items) {
-    return <BenLoading/>
+    return <LoadingComponent/>
   }
-
-
 
   return (
     <Routes>
