@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link } from 'react-router-dom';
 
 export const PokeCardContainer = styled(Link)`
-	text-decoration: none;
+  text-decoration: none;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,6 +10,7 @@ export const PokeCardContainer = styled(Link)`
   width: 100%;
   height: 100%;
   border-radius: 16px;
+  position: relative;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   transition: all 0.2s ease-in-out;
@@ -64,13 +65,14 @@ export const PokeTypeContainer = styled.div`
   justify-content: center;
   width: 100%;
   background-color: transparent;
+`;
 
-  @media (max-width: 768px) {
-    flex-direction: column;
-  }
-
-  @media (max-width: 480px) {
-    flex-direction: column;
-  }
-
+export const PokeNumber = styled.span`
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 15px;
+    left: 15px;
 `;

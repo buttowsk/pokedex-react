@@ -24,7 +24,7 @@ export const Content = styled.div`
 export const List = styled.ul`
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-gap: 10px;
   list-style: none;
   margin: 30px 0 0 0;

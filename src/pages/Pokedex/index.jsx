@@ -13,7 +13,7 @@ export const Pokedex = ({ pokeList, setPage, loading, hasMore }) => {
     const documentHeight = document.documentElement.scrollHeight;
     const scrollTop = document.documentElement.scrollTop;
     const scrollBottom = documentHeight - (scrollTop + windowHeight);
-    if (scrollBottom <= 0.8 * windowHeight) {
+    if (scrollBottom <= 0.6 * windowHeight) {
       if (!loading && hasMore) {
         setPage((prevPage) => prevPage + 1);
       }

@@ -38,7 +38,7 @@ export const Title = styled.h1`
 export const List = styled.ul`
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 10px;
   list-style: none;
   margin: 30px 0 0 0;

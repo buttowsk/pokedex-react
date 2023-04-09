@@ -13,7 +13,7 @@ export const Items = ({ items, setPage, hasMore, loading }) => {
     const documentHeight = document.documentElement.scrollHeight;
     const scrollTop = document.documentElement.scrollTop;
     const scrollBottom = documentHeight - (scrollTop + windowHeight);
-    if (scrollBottom < 0.3 * windowHeight) {
+    if (scrollBottom < 0.5 * windowHeight) {
       if (!loading && hasMore) {
         setPage((prevPage) => prevPage + 1);
       }
