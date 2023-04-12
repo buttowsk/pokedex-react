@@ -20,14 +20,23 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { LoadingComponent } from '../../components/LoadingComponent/index.jsx';
 import { useColors } from '../../hooks/useColors/index.js';
 
-export const PokePage = ({ pokeList }) => {
+export const PokePage = ({ pokeList, pokeSearch }) => {
 	const { pokemon } = useParams();
 	const pokeArray = Object.values(pokeList);
 	const navigate = useNavigate();
 	const { useGetBgColor, getTextColor } = useColors();
-	const poke = pokeArray.find(poke => poke.name === pokemon);
 	const [selectedPage, setSelectedPage] = useState('about');
-	const bgColor = useGetBgColor(poke.image);
+	const [poke, setPoke] = useState(JSON.parse(localStorage.getItem('poke')));
+
+	useEffect(() => {
+		if (pokeArray.find(poke => poke.name === pokemon)) {
+			setPoke(pokeArray.find(poke => poke.name === pokemon));
+		} else {
+			pokeSearch(pokemon).then(poke => setPoke(poke));
+		}
+	}, [pokeArray, pokemon, pokeSearch]);
+
+	const bgColor = useGetBgColor(poke._image);
 	const color = getTextColor(bgColor);
 	const handlePageTitleClick = (page) => {
 		setSelectedPage(page);
@@ -44,7 +53,7 @@ export const PokePage = ({ pokeList }) => {
 	}, [poke, navigate]);
 
 
-	const theme = themes[poke.types[0]];
+	const theme = themes[poke._types[0]];
 
 	if ( !bgColor || !color || !poke ) {
 		return <LoadingComponent />
@@ -54,13 +63,13 @@ export const PokePage = ({ pokeList }) => {
 			<Container bg={bgColor} textColor={color}>
 				<BackButton onClick={() => navigate('/pokedex')} />
 				<FirstColumn>
-					<IdText>#{poke.id}</IdText>
-					<NameText>{poke.name}</NameText>
+					<IdText>#{poke._id}</IdText>
+					<NameText>{poke._name}</NameText>
 					<ElementsRow>
-						<TypeText theme={themes[poke.types[0]]}>{poke.types[0]}</TypeText>
-						{poke.types[1] && <TypeText theme={themes[poke.types[1]]}>{poke.types[1]}</TypeText>}
+						<TypeText theme={themes[poke._types[0]]}>{poke._types[0]}</TypeText>
+						{poke._types[1] && <TypeText theme={themes[poke._types[1]]}>{poke._types[1]}</TypeText>}
 					</ElementsRow>
-					<PokeImage src={poke.image} />
+					<PokeImage src={poke._image} />
 				</FirstColumn>
 				<SecondColumn selectedPage={selectedPage}>
 					<MenuRow>

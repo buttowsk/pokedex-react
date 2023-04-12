@@ -30,19 +30,19 @@ export const Items = ({ items, setPage, hasMore, loading }) => {
   }
 
   return (
-    <Container>
-      <TopRow>
-        <BackIcon onClick={() => navigate(-1)} />
-        <Title>Items</Title>
-        <MenuIcon />
-      </TopRow>
-      <Content>
-        <List>
-          {itemsArray.map((item, index) => (
-            <ItemCard key={index} item={item} />
-          ))}
-        </List>
-      </Content>
-    </Container>
+      <Container>
+        <TopRow>
+          <BackIcon onClick={() => navigate(-1)} />
+          <Title>Items</Title>
+          <MenuIcon />
+        </TopRow>
+        <Content>
+          <List>
+            {itemsArray.map((item, index) => (
+                <ItemCard key={index} item={item} />
+            ))}
+          </List>
+        </Content>
+      </Container>
   );
 }

@@ -6,9 +6,9 @@ import { LoadingComponent } from "../LoadingComponent/index.jsx";
 export const PokeCard = ({ pokemon, onClick }) => {
   const handlePokeNumber = (number) => {
     if (number < 10) {
-      return `#00${number}`;
+      return `00${number}`;
     } else if (number < 100) {
-      return `#0${number}`;
+      return `0${number}`;
     } else {
       return number;
     }

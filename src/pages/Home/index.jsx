@@ -20,24 +20,24 @@ export const Home = ({ pokeList }) => {
     }
 
     return (
-      <Container>
-          <Content>
-              <Title>O que está procurando?</Title>
-              <SearchBar>
-                  <Search />
-                  <Input type="text" placeholder="Search Pokemon" />
-              </SearchBar>
-              <List>
-                  <ListItem to={'/pokedex'} buttonname={'pokedex'}>
-                      Pokedex
-                      <Pokeball />
-                  </ListItem>
-                  <ListItem to={'/items'} buttonname={'items'}>
-                      Items
-                      <Pokecog />
-                  </ListItem>
-              </List>
-          </Content>
-      </Container>
+        <Container>
+            <Content>
+                <Title>O que está procurando?</Title>
+                <SearchBar>
+                    <Search />
+                    <Input type="text" placeholder="Search Pokemon" />
+                </SearchBar>
+                <List>
+                    <ListItem to={'/pokedex'} buttonname={'pokedex'}>
+                        Pokedex
+                        <Pokeball />
+                    </ListItem>
+                    <ListItem to={'/items'} buttonname={'items'}>
+                        Items
+                        <Pokecog />
+                    </ListItem>
+                </List>
+            </Content>
+        </Container>
     );
 }
