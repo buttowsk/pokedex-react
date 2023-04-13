@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { ItemCard } from '../../components/ItemCard/index.jsx';
 import { LoadingComponent } from '../../components/LoadingComponent/index.jsx';
+import { ScrollBackComponent } from '../../components/ScrollBackComponent/index.jsx';
 
 export const Items = ({ items, setPage, hasMore, loading }) => {
   const navigate = useNavigate();
@@ -37,6 +38,7 @@ export const Items = ({ items, setPage, hasMore, loading }) => {
           <MenuIcon />
         </TopRow>
         <Content>
+          <ScrollBackComponent />
           <List>
             {itemsArray.map((item, index) => (
                 <ItemCard key={index} item={item} />

@@ -39,9 +39,9 @@ export const useAllPokemons = () => {
                     const { data: speciesData } = await pokeApi.get(`/pokemon-species/${id}`);
                     const {data} = await pokeApi.get(`/pokemon/${speciesData.id}`);
                     const evolutions = new Evolution(
-                        species.name,
-                        data.sprites.other['official-artwork'].front_default,
-                        evolutionDetails[0],
+                      species.name,
+                      data.sprites.other['official-artwork'].front_default,
+                      evolutionDetails[0],
                     )
                     evolutionsList.push(evolutions);
                     currentChainItem = currentChainItem?.evolves_to?.[0];
@@ -50,23 +50,22 @@ export const useAllPokemons = () => {
                 const moves = pokemonData.moves.map(({ move }) => move.name);
                 const stats = pokemonData.stats.map(({ base_stat, stat }) => ({ name: stat.name, value: base_stat }));
                 const types = pokemonData.types.map(({ type }) => type.name);
-                const genderRate = [speciesData.gender_rate === -1 ? ('Genderless') : (`${100 - (speciesData.gender_rate * 10)}% Male`), (`${10 * speciesData.gender_rate}% Female`)];
-                const generation = speciesData.generation.name;
+                const genderRate = speciesData.gender_rate === -1 ? { genderless: true } : { male: `${(100 - (speciesData.gender_rate * 10))}%`, female: `${10 * speciesData.gender_rate}%` };                const generation = speciesData.generation.name;
                 const hatchSteps = 255 * ((speciesData.hatch_counter + 1) / 256);
                 const pokemon = new Pokemon(
-                    pokemonData.name,
-                    types,
-                    pokemonData.sprites.other['official-artwork'].front_default,
-                    pokemonData.id,
-                    evolutionsList,
-                    genderRate,
-                    hatchSteps,
-                    abilities,
-                    pokemonData.height,
-                    pokemonData.weight,
-                    moves,
-                    stats,
-                    generation,
+                  pokemonData.name,
+                  types,
+                  pokemonData.sprites.other['official-artwork'].front_default,
+                  pokemonData.id,
+                  evolutionsList,
+                  genderRate,
+                  hatchSteps,
+                  abilities,
+                  pokemonData.height,
+                  pokemonData.weight,
+                  moves,
+                  stats,
+                  generation,
                 );
                 return [id, pokemon];
             });
@@ -89,8 +88,10 @@ export const useAllPokemons = () => {
 
 
     useEffect(() => {
-        localStorage.setItem('pokeList', JSON.stringify(pokeList));
-    }, []);
+        if (pokeList.length > 0) {
+            localStorage.setItem('pokeList', JSON.stringify(pokeList));
+        }
+    }, [pokeList]);
 
     const getPokemonByName = useCallback(async (name) => {
         try {
@@ -114,9 +115,9 @@ export const useAllPokemons = () => {
                 const { data: speciesData } = await pokeApi.get(`/pokemon-species/${id}`);
                 const {data} = await pokeApi.get(`/pokemon/${speciesData.id}`);
                 const evolutions = new Evolution(
-                    species.name,
-                    data.sprites.other['official-artwork'].front_default,
-                    evolutionDetails[0],
+                  species.name,
+                  data.sprites.other['official-artwork'].front_default,
+                  evolutionDetails[0],
                 )
                 evolutionsList.push(evolutions);
                 currentChainItem = currentChainItem?.evolves_to?.[0];
@@ -125,25 +126,24 @@ export const useAllPokemons = () => {
             const moves = data.moves.map(({ move }) => move.name);
             const stats = data.stats.map(({ base_stat, stat }) => ({ name: stat.name, value: base_stat }));
             const types = data.types.map(({ type }) => type.name);
-            const genderRate = speciesData.gender_rate === -1 ? 'Genderless' : `${(100 - (speciesData.gender_rate * 10))}% Male, ${10 * speciesData.gender_rate}% Female`;
+            const genderRate = speciesData.gender_rate === -1 ? { genderless: true } : { male: `${(100 - (speciesData.gender_rate * 10))}%`, female: `${10 * speciesData.gender_rate}%` };
             const generation = speciesData.generation.name;
             const hatchSteps = 255 * ((speciesData.hatch_counter + 1) / 256);
-            const pokemon = new Pokemon(
-                data.name,
-                types,
-                data.sprites.other['official-artwork'].front_default,
-                data.id,
-                evolutionsList,
-                genderRate,
-                hatchSteps,
-                abilities,
-                data.height,
-                data.weight,
-                moves,
-                stats,
-                generation,
+            return new Pokemon(
+              data.name,
+              types,
+              data.sprites.other['official-artwork'].front_default,
+              data.id,
+              evolutionsList,
+              genderRate,
+              hatchSteps,
+              abilities,
+              data.height,
+              data.weight,
+              moves,
+              stats,
+              generation,
             );
-            return pokemon;
         } catch (error) {
             console.log(error);
             return null;

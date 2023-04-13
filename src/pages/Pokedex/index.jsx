@@ -3,6 +3,7 @@ import { PokeCard } from '../../components/PokeCard/index.jsx'
 import {useEffect, useRef} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LoadingComponent } from '../../components/LoadingComponent/index.jsx';
+import { ScrollBackComponent } from '../../components/ScrollBackComponent/index.jsx';
 
 export const Pokedex = ({ pokeList, setPage, loading, hasMore }) => {
     const navigate = useNavigate();
@@ -51,6 +52,7 @@ export const Pokedex = ({ pokeList, setPage, loading, hasMore }) => {
                 <MenuIcon />
             </TopRow>
             <Content>
+                <ScrollBackComponent />
                 <List>
                     {pokeArray.map((pokemon) => (
                         <PokeCard key={pokemon.id} pokemon={pokemon} onClick={() => handleCardClick()} />

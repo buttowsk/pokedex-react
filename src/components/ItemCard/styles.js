@@ -11,6 +11,11 @@ export const ItemCardContainer = styled.div`
   color: ${({ color }) => color};
   border-radius: 12px;
   position: relative;
+	transition: all 0.3s ease-in-out;
+	
+	&:hover {
+		transform: scale(1.03);
+  }
 `;
 
 export const ItemImage = styled.img`

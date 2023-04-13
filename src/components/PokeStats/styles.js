@@ -16,7 +16,8 @@ export const Container = styled.div`
     margin-top: 12px;
     justify-content: center;
     align-items: center;
-    height: 40%;
+    max-height: 40%;
+    padding: 1.25rem 0;
     gap: 20px;
   }
 

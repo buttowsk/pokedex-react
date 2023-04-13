@@ -15,7 +15,6 @@ export const Container = styled.div`
 
   @media (min-width: 769px) {
     width: 90%;
-    margin-top: 12px;
     align-items: center;
     justify-content: flex-start;
     height: 40%;

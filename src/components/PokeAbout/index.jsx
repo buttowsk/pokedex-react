@@ -7,6 +7,8 @@ export const PokeAbout = ({ poke }) => {
     return <LoadingComponent />
   }
 
+  console.log(poke.genderRate)
+
   return (
     <Container>
       <InfoRow>
@@ -22,16 +24,26 @@ export const PokeAbout = ({ poke }) => {
         </TextRow>
       </InfoRow>
       <InfoRow>
-        <TextRow>
-          <InfoText>
-            {poke.genderRate[0]}
-          </InfoText>
-        </TextRow>
-        <TextRow>
-          <InfoText>
-            {poke.genderRate[1]}
-          </InfoText>
-        </TextRow>
+        {poke.genderRate.genderless ? (
+          <TextRow>
+            <InfoText>
+              Genderless
+            </InfoText>
+          </TextRow>
+        ) : (
+          <>
+            <TextRow>
+              <InfoText>
+                {poke.genderRate.male} Male
+              </InfoText>
+            </TextRow>
+            <TextRow>
+              <InfoText>
+                {poke.genderRate.female} Female
+              </InfoText>
+            </TextRow>
+          </>
+        )}
       </InfoRow>
       <InfoRow>
         <InfoText>
