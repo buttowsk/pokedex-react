@@ -1,4 +1,4 @@
 # pokedex-react
 
 
-## Uma pokewiki feita usando react e consumindo PokeApi
+## Uma pokewiki feita usando react e consumindo a PokeApi
