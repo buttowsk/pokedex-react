@@ -16,7 +16,7 @@ export const PokeEvolutions = ({ poke, textColor }) => {
             <PokeImage src={poke.evolutionChain[0]?.image} />
             <PokeName>{poke.evolutionChain[0]?.name}</PokeName>
           </PokeContainer>
-          <PokeContainer>
+          <PokeContainer pokearrow={true}>
             <PokeArrow />
             {poke.evolutionChain[1]?.evolutionInfo.min_level && <Title>{`Level ${poke.evolutionChain[1]?.evolutionInfo.min_level}`}</Title>}
           </PokeContainer>
@@ -39,7 +39,7 @@ export const PokeEvolutions = ({ poke, textColor }) => {
             <PokeImage src={poke.evolutionChain[1]?.image} />
             <PokeName>{poke.evolutionChain[1]?.name}</PokeName>
           </PokeContainer>
-          <PokeContainer>
+          <PokeContainer pokearrow={true}>
             <PokeArrow />
             {poke.evolutionChain[1]?.evolutionInfo.min_level && <Title>{`Level ${poke.evolutionChain[2]?.evolutionInfo.min_level}`}</Title>}
           </PokeContainer>

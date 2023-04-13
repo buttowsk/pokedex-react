@@ -66,6 +66,7 @@ export const PokeContainer = styled.div`
   justify-content: center;
   width: 100%;
   color: inherit;
+	${({pokearrow}) => !pokearrow && `cursor: pointer`};
 
   @media (min-width: 769px) {
     height: 100%;
