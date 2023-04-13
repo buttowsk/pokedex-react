@@ -147,12 +147,11 @@ export const MenuRow = styled.div`
 
 export const MenuItem = styled.h2`
   font-size: 1.235rem;
-  ${({page}) => page !== 'selected' && `color: #BDCDD6;`}
-  
+  ${({page}) => page !== 'selected' && `color: #6D5D6E;`}
   transition: all 0.5s ease-in-out;
   cursor: pointer;
 
-  &:after {
+  &::after {
     content: "";
     display: block;
     width: 100%;
@@ -164,7 +163,7 @@ export const MenuItem = styled.h2`
   }
 
   ${({page}) => page === 'selected' && `
-    &:after {
+    &::after {
       transform: scaleX(1.2);
     }
   `};
