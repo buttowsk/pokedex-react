@@ -1,4 +1,4 @@
 # pokedex-react
 
 
-## Projeto Pokedex com React
+## Uma pokewiki feita usando react e consumindo PokeApi
