@@ -88,12 +88,10 @@ export const SecondColumn = styled.div`
 
   @media (min-width: 769px) {
     padding: 36px;
-    margin-top: 12%;
     align-items: center;
     justify-content: center;
-    height: 100%;
     max-height: 100%;
-    width: 50%;
+    max-width: 55%;
   }
 `;
 
@@ -134,22 +132,23 @@ export const MenuRow = styled.div`
   justify-content: space-between;
   border-radius: 2px;
   width: 100%;
-  height: 50px;
-  padding: 12px 20px;
+  padding: 1.756rem 1.5rem;
 
   @media (min-width: 769px) {
     border: none;
     width: 80%;
     font-size: 1.5rem;
+    gap: 1.5rem;
+    padding: 1.756rem 0;
   }
   
 
 `;
 
 export const MenuItem = styled.h2`
-  font-size: 1rem;
+  font-size: 1.235rem;
   ${({page}) => page !== 'selected' && `color: #BDCDD6;`}
-  margin-top: 10px;
+  
   transition: all 0.5s ease-in-out;
   cursor: pointer;
 

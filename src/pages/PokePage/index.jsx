@@ -26,17 +26,22 @@ export const PokePage = ({ pokeList, pokeSearch }) => {
 	const navigate = useNavigate();
 	const { useGetBgColor, getTextColor } = useColors();
 	const [selectedPage, setSelectedPage] = useState('about');
-	const [poke, setPoke] = useState(JSON.parse(localStorage.getItem('poke')));
+	const [poke, setPoke] = useState({});
 
 	useEffect(() => {
-		if (pokeArray.find(poke => poke.name === pokemon)) {
-			setPoke(pokeArray.find(poke => poke.name === pokemon));
-		} else {
-			pokeSearch(pokemon).then(poke => setPoke(poke));
+		async function getPokeData() {
+			let newPoke;
+			if (pokeArray.find(poke => poke.name === pokemon)) {
+				newPoke = pokeArray.find(poke => poke.name === pokemon);
+			} else {
+				newPoke = await pokeSearch(pokemon);
+			}
+			setPoke(newPoke);
 		}
+		getPokeData();
 	}, [pokeArray, pokemon, pokeSearch]);
 
-	const bgColor = useGetBgColor(poke._image);
+	const bgColor = useGetBgColor(poke.image);
 	const color = getTextColor(bgColor);
 	const handlePageTitleClick = (page) => {
 		setSelectedPage(page);
@@ -46,30 +51,26 @@ export const PokePage = ({ pokeList, pokeSearch }) => {
 		localStorage.setItem('poke', JSON.stringify(poke));
 	}, [poke]);
 
-	useEffect(() => {
-		if (!poke) {
-			navigate('/pokedex');
-		}
-	}, [poke, navigate]);
 
-
-	const theme = themes[poke._types[0]];
 
 	if ( !bgColor || !color || !poke ) {
 		return <LoadingComponent />
 	}
+
+	const theme = themes[poke.types[0]];
+
 	return (
 		<ThemeProvider theme={theme}>
 			<Container bg={bgColor} textColor={color}>
 				<BackButton onClick={() => navigate('/pokedex')} />
 				<FirstColumn>
-					<IdText>#{poke._id}</IdText>
-					<NameText>{poke._name}</NameText>
+					<IdText>#{poke.id}</IdText>
+					<NameText>{poke.name}</NameText>
 					<ElementsRow>
-						<TypeText theme={themes[poke._types[0]]}>{poke._types[0]}</TypeText>
-						{poke._types[1] && <TypeText theme={themes[poke._types[1]]}>{poke._types[1]}</TypeText>}
+						<TypeText theme={themes[poke.types[0]]}>{poke.types[0]}</TypeText>
+						{poke.types[1] && <TypeText theme={themes[poke.types[1]]}>{poke.types[1]}</TypeText>}
 					</ElementsRow>
-					<PokeImage src={poke._image} />
+					<PokeImage src={poke.image} />
 				</FirstColumn>
 				<SecondColumn selectedPage={selectedPage}>
 					<MenuRow>

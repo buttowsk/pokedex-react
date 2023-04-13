@@ -9,31 +9,24 @@ export const Container = styled.div`
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  max-height: 400px;
+  max-height: 500px;
   text-transform: capitalize;
-  gap: 45px;
-  padding: 10px 0 ;
-	font-size: 1.2rem;
+  gap: 6rem;
 	color: ${({textColor}) => textColor};
 
-  @media (min-width: 769px) {
-    width: 80%;
+  @media (min-width: 768px) {
+    width: 100%;
     margin-top: 12px;
     align-items: center;
     justify-content: center;
-    height: 50%;
-    gap: 50px;
-    font-size: 1.4rem;
-    padding: 20px 0;
-  }
-	
-	@media (max-width: 1024px) {
-		height: 900px;
+    gap: 5rem;
+    font-size: 1.567rem;
+    padding: 1.25rem 0;
   }
 
   @media (max-width: 320px) {
     font-size: 1rem;
-    gap: 10px;
+    gap: 1rem;
   }
   @media (max-height: 700px) {
     height: 50%;
@@ -49,7 +42,6 @@ export const EvolutionChain = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-	margin-top: 20px;
   width: 100%;
   height: 90px;
   position: relative;
@@ -67,8 +59,7 @@ export const Title = styled.p`
 `;
 
 
-export const PokeContainer = styled(Link)`
-	text-decoration: none;
+export const PokeContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -50,7 +50,7 @@ export const useAllPokemons = () => {
                 const moves = pokemonData.moves.map(({ move }) => move.name);
                 const stats = pokemonData.stats.map(({ base_stat, stat }) => ({ name: stat.name, value: base_stat }));
                 const types = pokemonData.types.map(({ type }) => type.name);
-                const genderRate = speciesData.gender_rate === -1 ? 'Genderless' : `${(100 - (speciesData.gender_rate * 10))}% Male, ${10 * speciesData.gender_rate}% Female`;
+                const genderRate = [speciesData.gender_rate === -1 ? ('Genderless') : (`${100 - (speciesData.gender_rate * 10)}% Male`), (`${10 * speciesData.gender_rate}% Female`)];
                 const generation = speciesData.generation.name;
                 const hatchSteps = 255 * ((speciesData.hatch_counter + 1) / 256);
                 const pokemon = new Pokemon(
@@ -90,7 +90,7 @@ export const useAllPokemons = () => {
 
     useEffect(() => {
         localStorage.setItem('pokeList', JSON.stringify(pokeList));
-    }, [pokeList]);
+    }, []);
 
     const getPokemonByName = useCallback(async (name) => {
         try {

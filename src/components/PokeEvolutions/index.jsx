@@ -1,6 +1,8 @@
 import {EvolutionChain, PokeArrow, PokeContainer, PokeImage, PokeName, Container, Title } from "./styles.js";
 import { LoadingComponent } from '../LoadingComponent/index.jsx';
+import { useNavigate } from 'react-router-dom';
 export const PokeEvolutions = ({ poke, textColor }) => {
+  const navigate = useNavigate();
 
   if (!poke) {
     return <LoadingComponent />;
@@ -10,7 +12,7 @@ export const PokeEvolutions = ({ poke, textColor }) => {
     <Container textColor={textColor}>
       {poke.evolutionChain[1] ? (
         <EvolutionChain>
-          <PokeContainer to={`/pokedex/${poke.evolutionChain[0].name}`}>
+          <PokeContainer onClick={() => navigate(`/pokedex/${poke.evolutionChain[0].name}`)}>
             <PokeImage src={poke.evolutionChain[0]?.image} />
             <PokeName>{poke.evolutionChain[0]?.name}</PokeName>
           </PokeContainer>
@@ -18,7 +20,7 @@ export const PokeEvolutions = ({ poke, textColor }) => {
             <PokeArrow />
             {poke.evolutionChain[1]?.evolutionInfo.min_level && <Title>{`Level ${poke.evolutionChain[1]?.evolutionInfo.min_level}`}</Title>}
           </PokeContainer>
-          <PokeContainer to={`/pokedex/${poke.evolutionChain[1].name}`}>
+          <PokeContainer onClick={() => navigate(`/pokedex/${poke.evolutionChain[1].name}`)}>
             <PokeImage src={poke.evolutionChain[1]?.image} />
             <PokeName>{poke.evolutionChain[1]?.name}</PokeName>
           </PokeContainer>
@@ -33,7 +35,7 @@ export const PokeEvolutions = ({ poke, textColor }) => {
       )}
       {poke.evolutionChain[2] && (
         <EvolutionChain>
-          <PokeContainer to={`/pokedex/${poke.evolutionChain[1].name}`}>
+          <PokeContainer onClick={() => navigate(`/pokedex/${poke.evolutionChain[1].name}`)}>
             <PokeImage src={poke.evolutionChain[1]?.image} />
             <PokeName>{poke.evolutionChain[1]?.name}</PokeName>
           </PokeContainer>
@@ -41,7 +43,7 @@ export const PokeEvolutions = ({ poke, textColor }) => {
             <PokeArrow />
             {poke.evolutionChain[1]?.evolutionInfo.min_level && <Title>{`Level ${poke.evolutionChain[2]?.evolutionInfo.min_level}`}</Title>}
           </PokeContainer>
-          <PokeContainer to={`/pokedex/${poke.evolutionChain[2].name}`}>
+          <PokeContainer onClick={() => navigate(`/pokedex/${poke.evolutionChain[2].name}`)}>
             <PokeImage src={poke.evolutionChain[2]?.image} />
             <PokeName>{poke.evolutionChain[2]?.name}</PokeName>
           </PokeContainer>

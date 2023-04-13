@@ -26,7 +26,7 @@ export const Container = styled.div`
     }
     
     @media (max-width: 320px) {
-        font-size: 0.85rem;
+        font-size: 0.95rem;
         gap: 10px;
     }
     
@@ -39,7 +39,7 @@ export const Container = styled.div`
 
 
 export const StatusBar = styled.div`
-  width: 180px;
+  width: 100%;
   height: 6px;
   background-color: #fcfcfc;
   border-radius: 3px;
@@ -55,11 +55,6 @@ export const StatusBar = styled.div`
     height: 6px;
     ${({percentual}) => percentual < 50 ? 'background-color: #ff0000;' : 'background-color: #23dd7a;'}
     border-radius: 3px;
-  }
-
-
-  @media (min-width: 1024px) {
-    width: 340px;
   }
 
 `;

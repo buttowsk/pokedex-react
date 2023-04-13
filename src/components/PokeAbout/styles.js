@@ -14,14 +14,14 @@ export const Container = styled.div`
 	
 
   @media (min-width: 769px) {
-    width: 80%;
+    width: 90%;
     margin-top: 12px;
     align-items: center;
     justify-content: flex-start;
     height: 40%;
     gap: 30px;
     font-size: 1.5rem;
-    padding: 10px 0;
+    padding: 1rem 1.756rem;
   }
 	
 	@media (max-width: 320px) {

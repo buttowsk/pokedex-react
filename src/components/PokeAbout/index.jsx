@@ -12,41 +12,46 @@ export const PokeAbout = ({ poke }) => {
       <InfoRow>
         <TextRow>
           <InfoText>Height:
-            {(poke._height / 10) >= 1 ? ` ${poke._height / 10}m` : ` ${poke._height}cm` }
+            {(poke.height / 10) >= 1 ? ` ${poke.height / 10}m` : ` ${poke.height}cm` }
           </InfoText>
         </TextRow>
         <TextRow>
           <InfoText>Weight:
-            { (poke._weight / 10) >= 1 ? ` ${poke._weight / 10}kg` : ` ${poke._weight/10}g` }
+            { (poke.weight / 10) >= 1 ? ` ${poke.weight / 10}kg` : ` ${poke.weight/10}g` }
           </InfoText>
         </TextRow>
       </InfoRow>
       <InfoRow>
         <TextRow>
           <InfoText>
-            {poke._genderRate}
+            {poke.genderRate[0]}
+          </InfoText>
+        </TextRow>
+        <TextRow>
+          <InfoText>
+            {poke.genderRate[1]}
           </InfoText>
         </TextRow>
       </InfoRow>
       <InfoRow>
         <InfoText>
           Abilities:
-          {` ${poke._abilities[0]}`}, {`${poke._abilities[1]}`}
+          {` ${poke.abilities[0]}`}, {`${poke.abilities[1]}`}
         </InfoText>
       </InfoRow>
       <InfoRow>
         <InfoText>
           Generation:
-          {` ${poke._generation}`}
+          {` ${poke.generation}`}
         </InfoText>
       </InfoRow>
       <TypeRow>
-        <TypeText theme={themes[poke._types[0]]}>
-          {` ${poke._types[0]}`}
+        <TypeText theme={themes[poke.types[0]]}>
+          {` ${poke.types[0]}`}
         </TypeText>
-        {poke._types[1] && (
-          <TypeText theme={themes[poke._types[1]]}>
-            {poke._types[1]}
+        {poke.types[1] && (
+          <TypeText theme={themes[poke.types[1]]}>
+            {poke.types[1]}
           </TypeText>
         )}
       </TypeRow>
