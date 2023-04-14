@@ -69,10 +69,10 @@ export const TypeRow = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  gap: 2rem;
   width: 100%;
   max-height: 40px;
-  padding: 8px 16px;
+  padding: 0.5rem 1rem;
 
   @media (min-width: 769px) {
     max-height: 60px;

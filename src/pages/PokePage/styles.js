@@ -61,7 +61,7 @@ export const NameText = styled.p`
 
 export const PokeImage = styled.img`
   width: 60vw;
-  height: 60vw;
+  max-height: 60vw;
   margin: auto;
   transform: scaleX(-1);
 
@@ -72,7 +72,7 @@ export const PokeImage = styled.img`
   
   @media (max-height: 600px) {
     width: 100px;
-    height: 100px;
+    max-height: 100px;
   }
   
 `;
@@ -83,6 +83,7 @@ export const SecondColumn = styled.div`
   flex-direction: column;
   align-items: start;
   justify-content: flex-start;
+  padding: 0 0 1rem 0;
   width: 90%;
   max-height: 50%;
 
@@ -132,17 +133,15 @@ export const MenuRow = styled.div`
   justify-content: space-between;
   border-radius: 2px;
   width: 100%;
-  padding: 1.756rem 1.5rem;
+  padding: 1.2rem;
 
   @media (min-width: 769px) {
     border: none;
     width: 80%;
     font-size: 1.5rem;
     gap: 1.5rem;
-    padding: 1.756rem 0;
+    padding: 1.2rem;
   }
-  
-
 `;
 
 export const MenuItem = styled.h2`
