@@ -45,6 +45,8 @@ export const Pokedex = ({ pokeList, setPage, loading, hasMore }) => {
         localStorage.setItem('scrollPosition', document.documentElement.scrollTop);
     };
 
+    /*
+
     useEffect(() => {
         const { field, order: sortOrder } = order;
         const asc = sortOrder === 'asc' ? 1 : -1;
@@ -61,7 +63,7 @@ export const Pokedex = ({ pokeList, setPage, loading, hasMore }) => {
         });
 
         setPokeArray(sortedArray);
-    }, [order]);
+    }, [order]); */
 
     if (loading || !pokeList) {
         return <LoadingComponent />;
@@ -74,10 +76,6 @@ export const Pokedex = ({ pokeList, setPage, loading, hasMore }) => {
                 <BackIcon onClick={() => navigate('/')} />
                 <Title>Pokedex</Title>
                 <MenuIcon />
-                <button onClick={() => setOrder({ field: 'name', order: 'asc' })}>Ordenar por nome (Z-A)</button>
-                <button onClick={() => setOrder({ field: 'name', order: 'desc' })}>Ordenar por nome (A-Z)</button>
-                <button onClick={() => setOrder({ field: 'id', order: 'asc' })}>Ordenar por id (A-Z)</button>
-                <button onClick={() => setOrder({ field: 'id', order: 'desc' })}>Ordenar por id (Z-A)</button>
             </TopRow>
             <Content>
                 <ScrollBackComponent />
@@ -86,7 +84,7 @@ export const Pokedex = ({ pokeList, setPage, loading, hasMore }) => {
                         <PokeCard key={pokemon.id} pokemon={pokemon} onClick={handleCardClick} />
                     ))}
                 </List>
-                {loading && <LoadingComponent />}
+                {!loading && <LoadingComponent />}
                 {!loading && hasMore && <div ref={loaderRef}></div>}
             </Content>
         </Container>
