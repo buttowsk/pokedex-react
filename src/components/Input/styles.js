@@ -5,7 +5,7 @@ export const InputBox = styled.div`
   width: 100%;
   position: relative;
   background-color: transparent;
-  border-bottom: 2px solid springgreen;;
+  border-bottom: 2px solid #fff;
 `;
 
 export const InputText = styled.input`
@@ -14,7 +14,7 @@ export const InputText = styled.input`
   font-weight: 600;
   height: 100%;
   background-color: transparent;
-  color: springgreen;
+  color: #fff;
   outline: none;
   padding: 8px;
   width: 100%;
@@ -23,8 +23,8 @@ export const InputText = styled.input`
 
 export const InputLabel = styled.label`
   font-style: normal;
-  color: springgreen;
-  font-size: 22px;
+  color: #fff;
+  font-size: 1.3rem;
   font-weight: 600;
   left: 8px;
   pointer-events: none;

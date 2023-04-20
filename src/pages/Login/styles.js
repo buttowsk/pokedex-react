@@ -15,8 +15,8 @@ export const FormContainer = styled.div`
   justify-content: space-between;
   position: relative;
   width: 60%;
-  padding: 5rem 0;
-  background-color: #fff;
+  padding: 3rem 0 5rem 0;
+  background-color: #023C40;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 
@@ -28,7 +28,23 @@ export const FormContainer = styled.div`
     right: 0;
     width: 50%;
     height: 100%;
-    background-color: #000;
+    background: ${ ({ bgImage }) => `url(${ bgImage }) center / contain no-repeat` };
+    ${ ({ formState }) => formState === 'login' ? 'transform: translateX(-100%);' +
+            'border-radius: 10px 0 0 10px;'
+            : 'transform: translateX(0);' + 'border-radius: 0 10px 10px 0;' };
+    transition: .5s;
+    z-index: 1;
+  }
+
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: ${ ({ bgColor }) => bgColor };
     ${ ({ formState }) => formState === 'login' ? 'transform: translateX(-100%);' +
             'border-radius: 10px 0 0 10px;'
             : 'transform: translateX(0);' + 'border-radius: 0 10px 10px 0;' };
@@ -62,36 +78,40 @@ export const Title = styled.h1`
   font-style: normal;
   font-weight: 600;
   font-size: 2rem;
-  color: #000;
+  color: #fff;
   margin-bottom: 1rem;
 `;
 
 export const Button = styled.button`
-  width: 100%;
-  height: 3rem;
-  background-color: #000;
-  color: springgreen;
+  width: 70%;
+  padding: .7rem 2rem;
+  background-color: #FE4E00;
+  color: #fff;
   font-style: normal;
   font-weight: 600;
   font-size: 1rem;
   border: none;
-  border-radius: 5px;
+  border-radius: 18px;
   margin-top: 1rem;
   cursor: pointer;
 `;
 
 export const LoginButton = styled.button`
-  background-color: transparent;
+  background-color: #fff;
+  padding: .5rem 5rem;
+  border-radius: 1rem;
   border: none;
-  font-size: 1.7rem;
-  color: springgreen;
+  font-size: 1rem;
+  color: #000;
   cursor: pointer;
 `;
 
 export const SignUpButton = styled.button`
-  background-color: transparent;
-  border: none;
-  font-size: 1.7rem;
-  color: springgreen;
-  cursor: pointer;
+    background-color: #fff;
+    padding: .5rem 5rem;
+    border-radius: 1rem;
+    border: none;
+    font-size: 1rem;
+    color: #000;
+    cursor: pointer;
 `;
