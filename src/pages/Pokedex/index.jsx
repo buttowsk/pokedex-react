@@ -84,8 +84,7 @@ export const Pokedex = ({ pokeList, setPage, loading, hasMore }) => {
                         <PokeCard key={pokemon.id} pokemon={pokemon} onClick={handleCardClick} />
                     ))}
                 </List>
-                {!loading && <LoadingComponent />}
-                {!loading && hasMore && <div ref={loaderRef}></div>}
+                {!loading && <div ref={loaderRef}></div>}
             </Content>
         </Container>
     );

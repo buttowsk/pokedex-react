@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { CgClose } from "react-icons/cg";
+import {CgClose} from "react-icons/cg";
+import {BsHeartFill} from "react-icons/bs";
 
 export const Container = styled.div`
   display: flex;
@@ -48,12 +49,12 @@ export const NameText = styled.p`
   font-size: 1.75rem;
   font-weight: 600;
   margin-bottom: 10px;
-  
+
   @media (min-width: 769px) {
     font-size: 3.5rem;
     text-shadow: 0 0 12px rgb(0 0 0 / 25%);
   }
-  
+
   @media (max-height: 600px) {
     font-size: 1rem;
   }
@@ -69,12 +70,12 @@ export const PokeImage = styled.img`
     width: 30vw;
     height: 30vw;
   }
-  
+
   @media (max-height: 600px) {
     width: 100px;
     max-height: 100px;
   }
-  
+
 `;
 
 
@@ -166,7 +167,7 @@ export const MenuItem = styled.h2`
       transform: scaleX(1.2);
     }
   `};
-  
+
   @media (min-width: 769px) {
     font-size: 1.5rem;
   }
@@ -179,8 +180,17 @@ export const BackButton = styled(CgClose)`
   font-size: 1rem;
   cursor: pointer;
   z-index: 999;
-  
+
   @media (min-width: 769px) {
     font-size: 2rem;
   }
 `;
+
+export const FavoriteButton = styled(BsHeartFill)`
+  position: absolute;
+  top: 50px;
+  right: 20px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 999;
+`

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const InputBox = styled.div`
   max-height: 3rem;
-  width: 100%;
+  width: 80%;
   position: relative;
   background-color: transparent;
   border-bottom: 2px solid #fff;

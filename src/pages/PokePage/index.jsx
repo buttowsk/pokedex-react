@@ -8,7 +8,7 @@ import {
 	FirstColumn,
 	SecondColumn,
 	BackButton,
-	ElementsRow, TypeText,
+	ElementsRow, TypeText, FavoriteButton,
 } from './styles.js';
 import { useEffect, useState } from 'react';
 import { ThemeProvider } from "styled-components";
@@ -48,9 +48,8 @@ export const PokePage = ({ pokeList, pokeSearch }) => {
 	}
 
 	useEffect(() => {
-		localStorage.setItem('poke', JSON.stringify(poke));
+		sessionStorage.setItem('poke', JSON.stringify(poke));
 	}, [poke]);
-
 
 
 	if ( !bgColor || !color || !poke ) {
@@ -64,6 +63,7 @@ export const PokePage = ({ pokeList, pokeSearch }) => {
 			<Container bg={bgColor} textColor={color}>
 				<BackButton onClick={() => navigate('/pokedex')} />
 				<FirstColumn>
+					<FavoriteButton />
 					<IdText>#{poke.id}</IdText>
 					<NameText>{poke.name}</NameText>
 					<ElementsRow>

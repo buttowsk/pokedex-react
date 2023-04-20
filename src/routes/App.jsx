@@ -7,6 +7,7 @@ import { useAllPokemons } from '../hooks/useAllPokemons/index.js';
 import { LoadingComponent } from '../components/LoadingComponent/index.jsx';
 import { useAllItems } from '../hooks/useAllItems/index.js';
 import { Login } from '../pages/Login';
+import PrivateRoutes from "./PrivateRoutes.jsx";
 
 
 function App() {
@@ -20,10 +21,12 @@ function App() {
     return (
         <Routes>
             <Route path="/login" element={<Login />} />
-            <Route path="/" element={<Home pokeList={pokeList}/>} />
-            <Route path="/pokedex" element={<Pokedex pokeList={pokeList} hasMore={hasMorePoke} setPage={setPokePage} loading={isLoading} />} />
-            <Route path="/items" element={<Items items={items} hasMore={hasMoreItems} setPage={setItemsPage} loading={itemsLoading} />} />
-            <Route path="/pokedex/:pokemon" element={<PokePage pokeList={pokeList} pokeSearch={getPokemonByName}/>} />
+            <Route element={<PrivateRoutes />}>
+                <Route path="/" element={<Home pokeList={pokeList}/>} />
+                <Route path="/pokedex" element={<Pokedex pokeList={pokeList} hasMore={hasMorePoke} setPage={setPokePage} loading={isLoading} />} />
+                <Route path="/items" element={<Items items={items} hasMore={hasMoreItems} setPage={setItemsPage} loading={itemsLoading} />} />
+                <Route path="/pokedex/:pokemon" element={<PokePage pokeList={pokeList} pokeSearch={getPokemonByName}/>} />
+            </Route>
         </Routes>
     )
 }
