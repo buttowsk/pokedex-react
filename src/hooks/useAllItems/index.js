@@ -46,7 +46,7 @@ export const useAllItems = () => {
 	}, [getAllItems, itemsPage]);
 
 	useEffect(() => {
-		localStorage.setItem('items', JSON.stringify(items));
+		sessionStorage.setItem('items', JSON.stringify(items));
 	}, [items]);
 
 	return { items, itemsLoading, error, hasMoreItems, setItemsPage };
