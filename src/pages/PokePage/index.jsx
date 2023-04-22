@@ -19,6 +19,7 @@ import { PokeEvolutions } from '../../components/PokeEvolutions/index.jsx';
 import { useParams, useNavigate } from 'react-router-dom';
 import { LoadingComponent } from '../../components/LoadingComponent/index.jsx';
 import { useColors } from '../../hooks/useColors/index.js';
+import { dbApi } from '../../services/dbApi.js';
 
 export const PokePage = ({ pokeList, pokeSearch }) => {
   const { pokemon } = useParams();
@@ -27,6 +28,7 @@ export const PokePage = ({ pokeList, pokeSearch }) => {
   const { useGetBgColor, getTextColor } = useColors();
   const [selectedPage, setSelectedPage] = useState('about');
   const [poke, setPoke] = useState({});
+  const [isFavorite, setIsFavorite] = useState('false');
 
   useEffect(() => {
     async function getPokeData() {
@@ -40,7 +42,7 @@ export const PokePage = ({ pokeList, pokeSearch }) => {
     }
 
     getPokeData();
-  }, [pokeArray, pokemon, pokeSearch]);
+  }, [pokemon]);
 
   const bgColor = useGetBgColor(poke.image);
   const color = getTextColor(bgColor);
@@ -51,6 +53,58 @@ export const PokePage = ({ pokeList, pokeSearch }) => {
   useEffect(() => {
     sessionStorage.setItem('poke', JSON.stringify(poke));
   }, [poke]);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const pokemon = JSON.parse(sessionStorage.getItem('poke'));
+    if (token) {
+      const checkFavorite = async () => {
+        const { data } = await dbApi.get('/get-user-id');
+        if (data && pokemon && pokemon.id) {
+          const response = await dbApi.get(`/users/${data.user_id}/favorites/${pokemon.id}`);
+          if (response.status === 200 && response.data.favorite.pokemon_name === pokemon.name) {
+            setIsFavorite('true');
+            console.log(response)
+          }
+        }
+      };
+      checkFavorite();
+    }
+  },[pokemon, poke]);
+
+  const AddFavorite = async () => {
+    const { data } = await dbApi.get('/get-user-id');
+
+    if (data) {
+      const response = await dbApi.post(`/users/${data.user_id}/favorites`, {
+        "pokemon_name": `${poke.name}`,
+        "pokemon_id": `${poke.id}`,
+      });
+      if (response.status === 200) {
+        setIsFavorite('true');
+      }
+    }
+  }
+
+  const RemoveFavorite = async () => {
+    const { data } = await dbApi.get('/get-user-id');
+    const token = localStorage.getItem('token');
+
+    if (data) {
+      const response = await dbApi.delete(`/users/${data.user_id}/favorites/${poke.id}`);
+      if (response.status === 200) {
+        setIsFavorite('false');
+      }
+    }
+  }
+
+  const handleFavoriteClick = () => {
+    if (isFavorite === 'true') {
+      RemoveFavorite();
+    } else {
+      AddFavorite();
+    }
+  }
 
 
   if (!bgColor || !color || !poke) {
@@ -64,9 +118,8 @@ export const PokePage = ({ pokeList, pokeSearch }) => {
       <Container bg={ bgColor } textColor={ color }>
         <BackButton onClick={ () => navigate('/pokedex') }/>
         <FirstColumn>
-          <FavoriteButton/>
           <IdText>#{ poke.id }</IdText>
-          <NameText>{ poke.name }</NameText>
+          <NameText>{ poke.name } <FavoriteButton onClick={handleFavoriteClick} favorite={isFavorite}/></NameText>
           <ElementsRow>
             <TypeText theme={ themes[poke.types[0]] }>{ poke.types[0] }</TypeText>
             { poke.types[1] && <TypeText theme={ themes[poke.types[1]] }>{ poke.types[1] }</TypeText> }

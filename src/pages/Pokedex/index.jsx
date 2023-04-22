@@ -48,7 +48,6 @@ export const Pokedex = ({ pokeList, setPage, loading, hasMore }) => {
     return <LoadingComponent/>;
   }
 
-  console.log(pokeArray);
   return (
     <Container>
       <TopRow>

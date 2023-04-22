@@ -13,6 +13,7 @@ function PrivateRoutes({ element, ...rest }) {
         .then((response) => {
           if (response.status === 200) {
             setIsAuthorized(true);
+            dbApi.defaults.headers.common['Authorization'] = `Bearer ${ token }`;
           } else {
             setIsAuthorized(false);
           }

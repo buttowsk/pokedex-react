@@ -7,8 +7,6 @@ export const PokeAbout = ({ poke }) => {
     return <LoadingComponent/>;
   }
 
-  console.log(poke.genderRate);
-
   return (
     <Container>
       <InfoRow>
