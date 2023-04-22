@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
@@ -11,7 +11,7 @@ export const Container = styled.div`
   font-size: 1.3rem;
   gap: 18px;
 
-  @media (min-width: 769px) {  
+  @media (min-width: 769px) {
     width: 80%;
     margin-top: 12px;
     justify-content: center;
@@ -21,21 +21,21 @@ export const Container = styled.div`
     gap: 20px;
   }
 
-    @media (max-width: 1024px) {
-        height: 350px;
-        width: 90%;
-    }
-    
-    @media (max-width: 320px) {
-        font-size: 0.95rem;
-        gap: 10px;
-    }
-    
-    @media (max-height: 700px) {
-        height: 50%;
-        font-size: 0.85rem;
-        gap: 10px;
-    }
+  @media (max-width: 1024px) {
+    height: 350px;
+    width: 90%;
+  }
+
+  @media (max-width: 320px) {
+    font-size: 0.95rem;
+    gap: 10px;
+  }
+
+  @media (max-height: 700px) {
+    height: 50%;
+    font-size: 0.85rem;
+    gap: 10px;
+  }
 `;
 
 
@@ -51,10 +51,10 @@ export const StatusBar = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    width: ${({percentual}) => percentual}%;
+    width: ${ ({ percentual }) => percentual }%;
     max-width: 120%;
     height: 6px;
-    ${({percentual}) => percentual < 50 ? 'background-color: #ff0000;' : 'background-color: #23dd7a;'}
+    ${ ({ percentual }) => percentual < 50 ? 'background-color: #ff0000;' : 'background-color: #23dd7a;' }
     border-radius: 3px;
   }
 

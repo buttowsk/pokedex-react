@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import {CgClose} from "react-icons/cg";
-import {BsHeartFill} from "react-icons/bs";
+import styled from 'styled-components';
+import { CgClose } from 'react-icons/cg';
+import { BsHeartFill } from 'react-icons/bs';
 
 export const Container = styled.div`
   display: flex;
@@ -11,8 +11,8 @@ export const Container = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  ${({bg}) => bg && `background-color: ${bg}`};
-  color: ${({textColor}) => textColor};
+  ${ ({ bg }) => bg && `background-color: ${ bg }` };
+  color: ${ ({ textColor }) => textColor };
   z-index: 999;
 
   @media (min-width: 769px) {
@@ -116,10 +116,10 @@ export const TypeText = styled.p`
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 10px;
-  background-color: ${({theme}) => theme.backgroundColor};
+  background-color: ${ ({ theme }) => theme.backgroundColor };
   border-radius: 8px;
   padding: 5px 10px;
-  color: ${({theme}) => theme.color};
+  color: ${ ({ theme }) => theme.color };
 
   @media (max-width: 767px) {
     display: none;
@@ -147,7 +147,7 @@ export const MenuRow = styled.div`
 
 export const MenuItem = styled.h2`
   font-size: 1.235rem;
-  ${({page}) => page !== 'selected' && `color: #6D5D6E;`}
+  ${ ({ page }) => page !== 'selected' && `color: #6D5D6E;` }
   transition: all 0.5s ease-in-out;
   cursor: pointer;
 
@@ -162,11 +162,11 @@ export const MenuItem = styled.h2`
     transform: scaleX(0);
   }
 
-  ${({page}) => page === 'selected' && `
+  ${ ({ page }) => page === 'selected' && `
     &::after {
       transform: scaleX(1.2);
     }
-  `};
+  ` };
 
   @media (min-width: 769px) {
     font-size: 1.5rem;
@@ -193,4 +193,4 @@ export const FavoriteButton = styled(BsHeartFill)`
   font-size: 1.5rem;
   cursor: pointer;
   z-index: 999;
-`
+`;

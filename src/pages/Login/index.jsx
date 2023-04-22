@@ -9,21 +9,21 @@ import {
   LoginButton,
 } from './styles.js';
 import { Input } from '../../components/Input/index.jsx';
-import { loginSchema } from '../../validations/Login/index.js';
-import { SignUpSchema } from '../../validations/SignUp/index.js';
+import { loginSchema } from '../../schemas/Login/index.js';
+import { SignUpSchema } from '../../schemas/SignUp/index.js';
 import { useFormik } from 'formik';
-import { useMemo, useState} from 'react';
+import { useMemo, useState } from 'react';
 import { useColors } from '../../hooks/useColors/index.js';
 import { LoadingComponent } from '../../components/LoadingComponent/index.jsx';
-import { dbApi } from "../../services/dbApi.js";
-import {useNavigate} from "react-router-dom";
+import { dbApi } from '../../services/dbApi.js';
+import { useNavigate } from 'react-router-dom';
 
 
 export const Login = () => {
   const { useGetBgColor } = useColors();
-  const [formState, setFormState] = useState('login');
+  const [formState, setFormState] = useState('signup');
   const randomNumber = useMemo(() => Math.floor(Math.random() * 800) + 1, []);
-  const randomBg = useMemo(() => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${randomNumber}.png`, [randomNumber]);
+  const randomBg = useMemo(() => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${ randomNumber }.png`, [randomNumber]);
   const bgColor = useGetBgColor(randomBg);
   const navigate = useNavigate();
 
@@ -36,15 +36,17 @@ export const Login = () => {
     onSubmit: (values, { resetForm }) => {
       const { email, password } = values;
       dbApi.post('/login', { email, password })
-          .then((response) => {
-            localStorage.setItem('token', response.data.token);
-            navigate('/pokedex');
-          })
-          .catch((error) => {
-            // Exibe uma mensagem de erro para o usuário
-            alert('Email ou senha inválidos');
-            console.log(error);
-          });
+        .then((response) => {
+          if (response.status === 200) {
+            localStorage.setItem('token', response.data.access_token);
+            navigate('/');
+          }
+        })
+        .catch((error) => {
+          // Exibe uma mensagem de erro para o usuário
+          alert('Email ou senha inválidos');
+          console.log(error);
+        });
       resetForm();
     },
   });
@@ -62,16 +64,16 @@ export const Login = () => {
       if (password !== confirmPassword) {
         return alert('Senhas não conferem');
       }
-      dbApi.post('/users', {name, email, password})
+      dbApi.post('/register', { name, email, password })
         .then((response) => {
-            console.log(response);
-            if (response.status === 201) {
-                alert('Usuário cadastrado com sucesso!');
-                handleFormState();
-            }
+          console.log(response);
+          if (response.status === 201) {
+            alert('Usuário cadastrado com sucesso!');
+            handleFormState();
+          }
         })
         .catch((error) => {
-            console.log(error);
+          console.log(error);
         });
       resetForm();
     },
@@ -79,15 +81,15 @@ export const Login = () => {
 
 
   const handleFormState = () => {
-    formState === 'login' ? setFormState('signup') : setFormState('login');
+    formState === 'signup' ? setFormState('login') : setFormState('signup');
     SignUpFormik.resetForm();
     loginFormik.resetForm();
-  }
+  };
 
   const InputMemo = useMemo(() => Input, []);
 
   if (!bgColor) {
-    return <LoadingComponent/>
+    return <LoadingComponent/>;
   }
 
   return (
@@ -99,6 +101,7 @@ export const Login = () => {
             onBlur={ loginFormik.handleBlur }
             onChange={ loginFormik.handleChange }
             value={ loginFormik.values.email }
+            type={ 'email' }
             name="email"
             label="Email"
             error={ loginFormik.touched.email && loginFormik.errors.email }
@@ -107,6 +110,7 @@ export const Login = () => {
             onBlur={ loginFormik.handleBlur }
             onChange={ loginFormik.handleChange }
             value={ loginFormik.values.password }
+            type={ 'password' }
             name="password"
             label="Senha"
             error={ loginFormik.touched.password && loginFormik.errors.password }
@@ -120,6 +124,7 @@ export const Login = () => {
             onBlur={ SignUpFormik.handleBlur }
             onChange={ SignUpFormik.handleChange }
             value={ SignUpFormik.values.name }
+            type={ 'text' }
             name="name"
             label="Nome"
             error={ SignUpFormik.touched.name && SignUpFormik.errors.name }
@@ -128,6 +133,7 @@ export const Login = () => {
             onBlur={ SignUpFormik.handleBlur }
             onChange={ SignUpFormik.handleChange }
             value={ SignUpFormik.values.email }
+            type={ 'email' }
             name="email"
             label="Email"
             error={ SignUpFormik.touched.email && SignUpFormik.errors.email }
@@ -136,6 +142,7 @@ export const Login = () => {
             onBlur={ SignUpFormik.handleBlur }
             onChange={ SignUpFormik.handleChange }
             value={ SignUpFormik.values.password }
+            type={ 'password' }
             name="password"
             label="Senha"
             error={ SignUpFormik.touched.password && SignUpFormik.errors.password }
@@ -144,6 +151,7 @@ export const Login = () => {
             onBlur={ SignUpFormik.handleBlur }
             onChange={ SignUpFormik.handleChange }
             value={ SignUpFormik.values.confirmPassword }
+            type={ 'password' }
             name="confirmPassword"
             label="Confirme a senha"
             error={ SignUpFormik.touched.confirmPassword && SignUpFormik.errors.confirmPassword }

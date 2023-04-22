@@ -1,8 +1,8 @@
 import { Ring, Loading, Container, LoadingContainer } from './styles.js';
 
-export const LoadingComponent = () => {
+export const LoadingComponent = ({ scrollLoading }) => {
   return (
-    <Container>
+    <Container scrollLoading={ scrollLoading }>
       <LoadingContainer>
         <Ring></Ring>
         <Ring></Ring>
@@ -10,5 +10,5 @@ export const LoadingComponent = () => {
         <Loading>Loading...</Loading>
       </LoadingContainer>
     </Container>
-  )
-}
+  );
+};

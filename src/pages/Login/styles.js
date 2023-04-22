@@ -107,11 +107,11 @@ export const LoginButton = styled.button`
 `;
 
 export const SignUpButton = styled.button`
-    background-color: #fff;
-    padding: .5rem 5rem;
-    border-radius: 1rem;
-    border: none;
-    font-size: 1rem;
-    color: #000;
-    cursor: pointer;
+  background-color: #fff;
+  padding: .5rem 5rem;
+  border-radius: 1rem;
+  border: none;
+  font-size: 1rem;
+  color: #000;
+  cursor: pointer;
 `;

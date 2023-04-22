@@ -28,7 +28,7 @@ export const List = styled.ul`
   grid-gap: 10px;
   list-style: none;
   margin: 30px 0 0 0;
-	padding: 0 10px;
+  padding: 0 10px;
 
   @media (min-width: 768px) {
     grid-template-columns: repeat(3, 1fr);

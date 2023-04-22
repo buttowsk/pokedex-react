@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { IoChevronBack } from "react-icons/io5";
-import { BiMenuAltRight } from "react-icons/bi";
+import styled from 'styled-components';
+import { IoChevronBack } from 'react-icons/io5';
+import { BiMenuAltRight } from 'react-icons/bi';
 
 export const Container = styled.div`
   display: flex;
@@ -45,25 +45,11 @@ export const List = styled.ul`
 
 `;
 
-export const Button = styled.button`
+export const DivLoadMore = styled.div`
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 50px;
-  border: none;
-  border-radius: 5px;
-  background-color: rgb(43, 72, 101);
-  color: #fff;
-  font-size: 1.2rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  margin-top: 20px;
-
-  &:hover {
-    background-color: rgb(43, 72, 101, 0.8);
-  }
 `;
 
 

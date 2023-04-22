@@ -1,7 +1,5 @@
-import styled from "styled-components";
-import {HiOutlineArrowSmRight} from "react-icons/hi";
-import { Link } from 'react-router-dom';
-
+import styled from 'styled-components';
+import { HiOutlineArrowSmRight } from 'react-icons/hi';
 
 export const Container = styled.div`
   display: flex;
@@ -12,7 +10,7 @@ export const Container = styled.div`
   max-height: 500px;
   text-transform: capitalize;
   gap: 6rem;
-	color: ${({textColor}) => textColor};
+  color: ${ ({ textColor }) => textColor };
 
   @media (min-width: 768px) {
     width: 100%;
@@ -33,7 +31,7 @@ export const Container = styled.div`
     font-size: 1rem;
     gap: 20px;
   }
-	
+
 
 `;
 
@@ -66,7 +64,7 @@ export const PokeContainer = styled.div`
   justify-content: center;
   width: 100%;
   color: inherit;
-	${({pokearrow}) => !pokearrow && `cursor: pointer`};
+  ${ ({ pokearrow }) => !pokearrow && `cursor: pointer` };
 
   @media (min-width: 769px) {
     height: 100%;

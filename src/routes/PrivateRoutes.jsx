@@ -1,9 +1,38 @@
-import { Outlet, Navigate } from "react-router-dom";
+import { Outlet, Navigate } from 'react-router-dom';
+import { dbApi } from '../services/dbApi.js';
+import { useEffect, useState } from 'react';
+import { LoadingComponent } from '../components/LoadingComponent/index.jsx';
 
 function PrivateRoutes({ element, ...rest }) {
-    const isAuthenticated = localStorage.getItem('token') !== null;
+  const [isAuthorized, setIsAuthorized] = useState(null);
 
-    return isAuthenticated ? <Outlet /> : <Navigate to="/login" />;
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      dbApi.get('/check-token', { headers: { Authorization: `Bearer ${ token }` } })
+        .then((response) => {
+          if (response.status === 200) {
+            setIsAuthorized(true);
+          } else {
+            setIsAuthorized(false);
+          }
+        })
+        .catch((error) => {
+          setIsAuthorized(false);
+          console.log(error);
+        });
+    } else {
+      setIsAuthorized(false);
+    }
+  }, []);
+
+  if (isAuthorized === null) {
+    return <LoadingComponent/>;
+  } else if (isAuthorized) {
+    return <Outlet/>;
+  } else {
+    return <Navigate to="/login"/>;
+  }
 }
 
 export default PrivateRoutes;

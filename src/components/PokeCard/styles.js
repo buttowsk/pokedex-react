@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const PokeCardContainer = styled(Link)`
@@ -16,8 +16,9 @@ export const PokeCardContainer = styled(Link)`
   transition: all 0.2s ease-in-out;
   color: #fff;
   text-transform: capitalize;
-  background-color: ${({theme}) => theme.backgroundColor};
+  background-color: ${ ({ theme }) => theme.backgroundColor };
   cursor: pointer;
+
   &:hover {
     transform: scale(1.03);
   }
@@ -52,8 +53,8 @@ export const PokeType = styled.p`
   filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.2));
   border-radius: 8px;
   padding: 5px 10px;
-  background-color: ${({theme}) => theme.backgroundColor};
-  color: ${({theme}) => theme.color};
+  background-color: ${ ({ theme }) => theme.backgroundColor };
+  color: ${ ({ theme }) => theme.color };
 `;
 
 
@@ -68,11 +69,11 @@ export const PokeTypeContainer = styled.div`
 `;
 
 export const PokeNumber = styled.span`
-    font-size: 1rem;
-    font-weight: 600;
-    color: #fff;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    position: absolute;
-    top: 15px;
-    left: 15px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 15px;
+  left: 15px;
 `;

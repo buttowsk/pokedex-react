@@ -27,24 +27,24 @@ export const Items = ({ items, setPage, hasMore, loading }) => {
   }, [handleScroll]);
 
   if (!itemsArray.length) {
-    return <LoadingComponent />;
+    return <LoadingComponent/>;
   }
 
   return (
-      <Container>
-        <TopRow>
-          <BackIcon onClick={() => navigate(-1)} />
-          <Title>Items</Title>
-          <MenuIcon />
-        </TopRow>
-        <Content>
-          <ScrollBackComponent />
-          <List>
-            {itemsArray.map((item, index) => (
-                <ItemCard key={index} item={item} />
-            ))}
-          </List>
-        </Content>
-      </Container>
+    <Container>
+      <TopRow>
+        <BackIcon onClick={ () => navigate(-1) }/>
+        <Title>Items</Title>
+        <MenuIcon/>
+      </TopRow>
+      <Content>
+        <ScrollBackComponent/>
+        <List>
+          { itemsArray.map((item, index) => (
+            <ItemCard key={ index } item={ item }/>
+          )) }
+        </List>
+      </Content>
+    </Container>
   );
-}
+};

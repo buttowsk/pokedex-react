@@ -7,14 +7,14 @@ export const ItemCardContainer = styled.div`
   align-items: center;
   width: 100%;
   max-height: 450px;
-  background-color: ${({ bg }) => bg};
-  color: ${({ color }) => color};
+  background-color: ${ ({ bg }) => bg };
+  color: ${ ({ color }) => color };
   border-radius: 12px;
   position: relative;
-	transition: all 0.3s ease-in-out;
-	
-	&:hover {
-		transform: scale(1.03);
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.03);
   }
 `;
 
