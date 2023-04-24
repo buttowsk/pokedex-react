@@ -190,13 +190,13 @@ export const FavoriteButton = styled(BsHeartFill)`
   font-size: 2rem;
   cursor: pointer;
   z-index: 999;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.2s ease-in-out;
   ${ ({ favorite }) => favorite === 'true' && `color: #FF0000` };
-  
+
   @media (min-width: 769px) {
     font-size: 2.35rem;
   }
-  
+
   &:hover {
     transform: scale(1.1);
   }

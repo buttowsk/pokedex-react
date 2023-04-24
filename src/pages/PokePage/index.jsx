@@ -28,7 +28,7 @@ export const PokePage = ({ pokeList, pokeSearch }) => {
   const { useGetBgColor, getTextColor } = useColors();
   const [selectedPage, setSelectedPage] = useState('about');
   const [poke, setPoke] = useState({});
-  const [isFavorite, setIsFavorite] = useState('false');
+  const [isFavorite, setIsFavorite] = useState(null);
 
   useEffect(() => {
     async function getPokeData() {
@@ -61,42 +61,44 @@ export const PokePage = ({ pokeList, pokeSearch }) => {
       const checkFavorite = async () => {
         const { data } = await dbApi.get('/get-user-id');
         if (data && pokemon && pokemon.id) {
-          const response = await dbApi.get(`/users/${data.user_id}/favorites/${pokemon.id}`);
-          if (response.status === 200 && response.data.favorite.pokemon_name === pokemon.name) {
+          const response = await dbApi.get(`/users/${ data.user_id }/favorites/pokemon/${ pokemon.id }`);
+          if (response.status === 200 && response.data.favorite_pokemon.pokemon_name === pokemon.name) {
             setIsFavorite('true');
-            console.log(response)
+            console.log(response);
+          } else {
+            setIsFavorite('false');
           }
         }
       };
       checkFavorite();
     }
-  },[pokemon, poke]);
+  }, [pokemon, poke]);
 
   const AddFavorite = async () => {
     const { data } = await dbApi.get('/get-user-id');
 
     if (data) {
-      const response = await dbApi.post(`/users/${data.user_id}/favorites`, {
-        "pokemon_name": `${poke.name}`,
-        "pokemon_id": `${poke.id}`,
+      const response = await dbApi.post(`/users/${ data.user_id }/favorites/pokemon`, {
+        'pokemon_name': `${ poke.name }`,
+        'pokemon_id': `${ poke.id }`,
       });
       if (response.status === 200) {
         setIsFavorite('true');
       }
     }
-  }
+  };
 
   const RemoveFavorite = async () => {
     const { data } = await dbApi.get('/get-user-id');
     const token = localStorage.getItem('token');
 
     if (data) {
-      const response = await dbApi.delete(`/users/${data.user_id}/favorites/${poke.id}`);
+      const response = await dbApi.delete(`/users/${ data.user_id }/favorites/pokemon/${ poke.id }`);
       if (response.status === 200) {
         setIsFavorite('false');
       }
     }
-  }
+  };
 
   const handleFavoriteClick = () => {
     if (isFavorite === 'true') {
@@ -104,10 +106,10 @@ export const PokePage = ({ pokeList, pokeSearch }) => {
     } else {
       AddFavorite();
     }
-  }
+  };
 
 
-  if (!bgColor || !color || !poke) {
+  if (!bgColor || !color || !poke || isFavorite === null) {
     return <LoadingComponent/>;
   }
 
@@ -119,7 +121,7 @@ export const PokePage = ({ pokeList, pokeSearch }) => {
         <BackButton onClick={ () => navigate('/pokedex') }/>
         <FirstColumn>
           <IdText>#{ poke.id }</IdText>
-          <NameText>{ poke.name } <FavoriteButton onClick={handleFavoriteClick} favorite={isFavorite}/></NameText>
+          <NameText>{ poke.name } <FavoriteButton onClick={ handleFavoriteClick } favorite={ isFavorite }/></NameText>
           <ElementsRow>
             <TypeText theme={ themes[poke.types[0]] }>{ poke.types[0] }</TypeText>
             { poke.types[1] && <TypeText theme={ themes[poke.types[1]] }>{ poke.types[1] }</TypeText> }
