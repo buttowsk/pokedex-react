@@ -48,14 +48,25 @@ export const TopRow = styled.div`
 `;
 
 
-export const BackIcon = styled(IoChevronBack)`
-  width: 30px;
-  height: 30px;
+export const Username = styled.p`
+  font-size: 1rem;
   color: rgb(43, 72, 101);
-  cursor: pointer;
+  font-weight: 600;
+  text-transform: capitalize;
+  
+  @media (max-width: 425px) {
+    display: none;
+  }
 `;
 
-export const MenuIcon = styled(BiMenuAltRight)`
+export const MenuContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  padding: 0 .7rem;
+`;
+
+export const BackIcon = styled(IoChevronBack)`
   width: 30px;
   height: 30px;
   color: rgb(43, 72, 101);

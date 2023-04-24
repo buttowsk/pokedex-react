@@ -31,8 +31,12 @@ export const TopRow = styled.div`
 
 
 export const Title = styled.h1`
-  font-size: 38px;
+  font-size: 2rem;
   color: rgb(43, 72, 101);
+  
+  @media (max-width: 768px) {
+    font-size: 1.6rem;
+  }
 `;
 
 export const List = styled.ul`
@@ -53,6 +57,25 @@ export const DivLoadMore = styled.div`
 `;
 
 
+export const Username = styled.p`
+  font-size: 1rem;
+  color: rgb(43, 72, 101);
+  font-weight: 600;
+  text-transform: capitalize;
+  
+  @media (max-width: 425px) {
+    display: none;
+  }
+`;
+
+export const MenuContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  padding: 0 .7rem;
+`;
+
+
 // icons //
 export const BackIcon = styled(IoChevronBack)`
   width: 30px;
@@ -61,9 +84,3 @@ export const BackIcon = styled(IoChevronBack)`
   cursor: pointer;
 `;
 
-export const MenuIcon = styled(BiMenuAltRight)`
-  width: 30px;
-  height: 30px;
-  color: rgb(43, 72, 101);
-  cursor: pointer;
-`;

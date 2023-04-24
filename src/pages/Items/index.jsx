@@ -1,9 +1,10 @@
-import { TopRow, Content, Container, BackIcon, MenuIcon, Title, List } from './styles.js';
+import { TopRow, Content, Container, BackIcon, MenuContainer, Username, Title, List } from './styles.js';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { ItemCard } from '../../components/ItemCard/index.jsx';
 import { LoadingComponent } from '../../components/LoadingComponent/index.jsx';
 import { ScrollBackComponent } from '../../components/ScrollBackComponent/index.jsx';
+import { Menu } from '../../components/Menu/index.jsx';
 
 export const Items = ({ items, setPage, hasMore, loading }) => {
   const navigate = useNavigate();
@@ -35,7 +36,10 @@ export const Items = ({ items, setPage, hasMore, loading }) => {
       <TopRow>
         <BackIcon onClick={ () => navigate(-1) }/>
         <Title>Items</Title>
-        <MenuIcon/>
+        <MenuContainer>
+          <Username>{ localStorage.getItem('name') }</Username>
+          <Menu username={ localStorage.getItem('name') }/>
+        </MenuContainer>
       </TopRow>
       <Content>
         <ScrollBackComponent/>
