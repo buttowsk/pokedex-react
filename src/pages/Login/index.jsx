@@ -53,18 +53,16 @@ export const Login = () => {
 
   const SignUpFormik = useFormik({
     initialValues: {
-      name: '',
+      fullname: '',
+      username: '',
       email: '',
       password: '',
       confirmPassword: '',
     },
     validationSchema: SignUpSchema,
     onSubmit: (values, { resetForm }) => {
-      const { name, email, password, confirmPassword } = values;
-      if (password !== confirmPassword) {
-        return alert('Senhas não conferem');
-      }
-      dbApi.post('/register', { name, email, password })
+      const { fullname, username, email, password, confirmPassword } = values;
+      dbApi.post('/register', { username, fullname, email, password })
         .then((response) => {
           console.log(response);
           if (response.status === 201) {
@@ -123,11 +121,20 @@ export const Login = () => {
           <InputMemo
             onBlur={ SignUpFormik.handleBlur }
             onChange={ SignUpFormik.handleChange }
-            value={ SignUpFormik.values.name }
+            value={ SignUpFormik.values.fullname }
             type={ 'text' }
-            name="name"
-            label="Nome"
-            error={ SignUpFormik.touched.name && SignUpFormik.errors.name }
+            name="fullname"
+            label="Nome completo"
+            error={ SignUpFormik.touched.fullname && SignUpFormik.errors.fullname }
+          />
+          <InputMemo
+            onBlur={ SignUpFormik.handleBlur }
+            onChange={ SignUpFormik.handleChange }
+            value={ SignUpFormik.values.username }
+            type={ 'text' }
+            name="username"
+            label="Username"
+            error={ SignUpFormik.touched.username && SignUpFormik.errors.username }
           />
           <InputMemo
             onBlur={ SignUpFormik.handleBlur }
