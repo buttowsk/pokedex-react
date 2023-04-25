@@ -16,7 +16,7 @@ export const Home = ({ pokeList }) => {
   const nameFromLS = localStorage.getItem('name');
   useEffect(() => {
     setName(nameFromLS);
-  }, [nameFromLS]);
+  }, [pokeList, nameFromLS]);
 
   if (!pokeList || !name) {
     return <LoadingComponent/>;
