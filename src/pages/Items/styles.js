@@ -31,11 +31,7 @@ export const List = styled.ul`
   padding: 0 10px;
 
   @media (min-width: 768px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  @media (min-width: 1024px) {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
 `;
 
