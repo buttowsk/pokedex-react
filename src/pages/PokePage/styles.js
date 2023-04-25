@@ -62,13 +62,11 @@ export const NameText = styled.p`
 
 export const PokeImage = styled.img`
   width: 60vw;
-  max-height: 60vw;
   margin: auto;
   transform: scaleX(-1);
 
   @media (min-width: 768px) {
     width: 30vw;
-    height: 30vw;
   }
 
   @media (max-height: 600px) {
@@ -78,6 +76,24 @@ export const PokeImage = styled.img`
 
 `;
 
+export const ShinyButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: .7rem 1.5rem;
+  border-radius: 8px;
+  border: 1px solid ${ ({ theme }) => theme.color };
+  background-color: #f3ca40;
+  color: ${ ({ theme }) => theme.color };
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
 
 export const SecondColumn = styled.div`
   display: flex;
@@ -187,7 +203,7 @@ export const BackButton = styled(CgClose)`
 `;
 
 export const FavoriteButton = styled(BsHeartFill)`
-  font-size: 2rem;
+  font-size: 1.7rem;
   cursor: pointer;
   z-index: 999;
   transition: all 0.2s ease-in-out;

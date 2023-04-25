@@ -17,7 +17,7 @@ export const useColors = () => {
     });
   };
 
-  const useGetBgColor = (imageUrl) => {
+  const getBgColor = (imageUrl) => {
     useEffect(() => {
       getDominantColor(imageUrl)
         .then((color) => setBgColor(color))
@@ -43,5 +43,5 @@ export const useColors = () => {
     }
   };
 
-  return { useGetBgColor, getTextColor };
+  return { getBgColor, getTextColor };
 };

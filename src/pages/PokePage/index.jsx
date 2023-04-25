@@ -8,7 +8,7 @@ import {
   FirstColumn,
   SecondColumn,
   BackButton,
-  ElementsRow, TypeText, FavoriteButton,
+  ElementsRow, TypeText, FavoriteButton, ShinyButton,
 } from './styles.js';
 import { useEffect, useState, useContext } from 'react';
 import { ThemeProvider } from 'styled-components';
@@ -26,10 +26,13 @@ export const PokePage = ({ pokeList, pokeSearch }) => {
   const { pokemon } = useParams();
   const pokeArray = Object.values(pokeList);
   const navigate = useNavigate();
-  const { useGetBgColor, getTextColor } = useColors();
+  const { getBgColor, getTextColor } = useColors();
   const [selectedPage, setSelectedPage] = useState('about');
   const [poke, setPoke] = useState({});
   const [favorite, setFavorite] = useState(null);
+  const [shiny, setShiny] = useState(false);
+  const bgColor = getBgColor(shiny ? poke.shinyImage : poke.image);
+  const color = getTextColor(bgColor);
 
   useEffect(() => {
     async function getPokeData() {
@@ -45,8 +48,6 @@ export const PokePage = ({ pokeList, pokeSearch }) => {
     getPokeData();
   }, [pokemon]);
 
-  const bgColor = useGetBgColor(poke.image);
-  const color = getTextColor(bgColor);
   const handlePageTitleClick = (page) => {
     setSelectedPage(page);
   };
@@ -76,6 +77,10 @@ export const PokePage = ({ pokeList, pokeSearch }) => {
     console.log(favorites);
   }, [favorites]);
 
+  const handleShinyClick = () => {
+    setShiny(!shiny);
+  };
+
   if (!bgColor || !color || !poke || favorite === null) {
     return <LoadingComponent/>;
   }
@@ -93,7 +98,8 @@ export const PokePage = ({ pokeList, pokeSearch }) => {
             <TypeText theme={ themes[poke.types[0]] }>{ poke.types[0] }</TypeText>
             { poke.types[1] && <TypeText theme={ themes[poke.types[1]] }>{ poke.types[1] }</TypeText> }
           </ElementsRow>
-          <PokeImage src={ poke.image }/>
+          <PokeImage src={ shiny ? poke.shinyImage : poke.image }/>
+          <ShinyButton onClick={ handleShinyClick }>{ shiny ? 'Default' : 'Shiny' }</ShinyButton>
         </FirstColumn>
         <SecondColumn selectedPage={ selectedPage }>
           <MenuRow>

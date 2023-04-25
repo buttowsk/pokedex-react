@@ -1,5 +1,5 @@
 export class Pokemon {
-  constructor(name, types, image, id, evolutionChain, genderRate, hatchSteps, abilities, height, weight, moves, stats, generation) {
+  constructor(name, types, image, id, evolutionChain, genderRate, hatchSteps, abilities, height, weight, moves, stats, generation, shinyimage) {
     this.evolutionChain = evolutionChain;
     this.name = name;
     this.types = types;
@@ -13,6 +13,7 @@ export class Pokemon {
     this.moves = moves;
     this.stats = stats;
     this.generation = generation;
+    this.shinyImage = shinyimage;
   }
 
   show() {

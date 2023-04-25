@@ -70,6 +70,7 @@ export const useAllPokemons = () => {
           moves,
           stats,
           generation,
+          pokemonData.sprites.other['official-artwork'].front_shiny,
         );
         return [id, pokemon];
       });
@@ -148,6 +149,7 @@ export const useAllPokemons = () => {
         moves,
         stats,
         generation,
+        data.sprites.other['official-artwork'].front_shiny,
       );
     } catch (error) {
       console.log(error);
