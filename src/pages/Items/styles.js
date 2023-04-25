@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { IoChevronBack } from 'react-icons/io5';
-import { BiMenuAltRight } from 'react-icons/bi';
 
 export const Container = styled.div`
   display: flex;

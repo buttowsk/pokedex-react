@@ -10,6 +10,7 @@ export const Items = ({ items, setPage, hasMore, loading }) => {
   const navigate = useNavigate();
   const itemsArray = Object.values(items);
 
+
   const handleScroll = () => {
     const windowHeight = window.innerHeight;
     const documentHeight = document.documentElement.scrollHeight;
@@ -26,6 +27,7 @@ export const Items = ({ items, setPage, hasMore, loading }) => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [handleScroll]);
+
 
   if (!itemsArray.length) {
     return <LoadingComponent/>;

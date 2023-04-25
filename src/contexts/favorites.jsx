@@ -11,7 +11,7 @@ export const FavoritesProvider = ({ children }) => {
   const [userId, setUserId] = useState(null);
 
   useEffect(() => {
-    dbApi.get('/get-user-id', {headers: { Authorization: `Bearer ${ localStorage.getItem('token') }` }})
+    dbApi.get('/get-user-id', { headers: { Authorization: `Bearer ${ localStorage.getItem('token') }` } })
       .then(({ data }) => {
         const { user_id } = data;
         console.log(user_id);
@@ -27,18 +27,17 @@ export const FavoritesProvider = ({ children }) => {
       const { favorite_pokemons } = data;
 
       const typesArray = (types) => {
-        let array = types.replace(/'/g, '"')
-        return JSON.parse(array)
-      }
+        let array = types.replace(/'/g, '"');
+        return JSON.parse(array);
+      };
 
       const favoritePokemons = favorite_pokemons.map((pokemon) =>
         new Pokemon(
-        pokemon.name,
-        typesArray(pokemon.types),
-        pokemon.image,
-        pokemon.id,
-
-      ));
+          pokemon.name,
+          typesArray(pokemon.types),
+          pokemon.image,
+          pokemon.pokemon_id,
+        ));
       setFavoritePokemons(favoritePokemons);
     } catch (err) {
       console.log(err);
@@ -53,10 +52,11 @@ export const FavoritesProvider = ({ children }) => {
       const favoriteItems = favorite_items.map((item) => new Item(
         item.name,
         item.image,
-        item.id,
-        item.category,
-        item.effect,
+        item.item_id,
+        item.description,
         item.cost,
+        item.held_by_pokemon,
+        item.category,
       ));
       setFavoriteItems(favoriteItems);
     } catch (err) {
@@ -68,7 +68,7 @@ export const FavoritesProvider = ({ children }) => {
   useEffect(() => {
     if (userId) {
       getPokemons().then(r => console.log('consolelog do useEffect', r));
-      getItems().then(r => console.log('consolelog do useEffect',r));
+      getItems().then(r => console.log('consolelog do useEffect', r));
     }
   }, [userId]);
 
@@ -88,7 +88,15 @@ export const FavoritesProvider = ({ children }) => {
       }).then(r => console.log(r));
     } else if (favorite instanceof Item) {
       setFavoriteItems((prevFavorites) => [...prevFavorites, favorite]);
-      dbApi.post(`/users/${ userId }/favorites/item`, { item: favorite }).then(r => console.log(r));
+      dbApi.post(`/users/${ userId }/favorites/item`, {
+        name: favorite.name,
+        item_id: favorite.id,
+        description: favorite.description,
+        cost: favorite.cost,
+        image: favorite.image,
+        held_by_pokemon: favorite.held_by_pokemon,
+        category: favorite.category,
+      }).then(r => console.log(r));
     }
   };
 
@@ -106,7 +114,7 @@ export const FavoritesProvider = ({ children }) => {
     if (favorite instanceof Pokemon) {
       return favoritePokemons.some((fav) => fav.name === favorite.name);
     } else if (favorite instanceof Item) {
-      return favoriteItems.some((fav) => fav.id === favorite.id);
+      return favoriteItems.some((fav) => fav.name === favorite.name);
     }
   };
 

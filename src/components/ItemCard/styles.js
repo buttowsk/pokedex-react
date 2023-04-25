@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { BsHeartFill } from 'react-icons/bs';
 
 export const ItemCardContainer = styled.div`
   padding: 10px;
@@ -76,3 +77,23 @@ export const PokemonImage = styled.img`
   width: 90px;
   height: 90px;
 `;
+
+
+export const FavoriteButton = styled(BsHeartFill)`
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  z-index: 999;
+  transition: all 0.2s ease-in-out;
+  ${ ({ favorite }) => favorite === 'true' && `color: #FF0000` };
+
+  @media (min-width: 769px) {
+    font-size: 1.756rem;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+  }
+`

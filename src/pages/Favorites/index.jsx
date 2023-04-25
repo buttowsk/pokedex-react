@@ -1,8 +1,8 @@
 import { FavoritesContext } from '../../contexts/favorites.jsx';
 import { useContext } from 'react';
-import { PokeCard } from '../../components/PokeCard/index.jsx';
-import { ItemCard } from '../../components/ItemCard/index.jsx';
-import { Container, List, Title, Content, TopRow } from './styles.js';
+import { Container, Title, Content, TopRow } from './styles.js';
+import { Pokedex } from '../Pokedex/index.jsx';
+import { Items } from '../Items/index.jsx';
 
 export const Favorites = () => {
   const { favorites } = useContext(FavoritesContext);
@@ -14,14 +14,10 @@ export const Favorites = () => {
         <Title>Favorites</Title>
       </TopRow>
       <Content>
-        <List>
-          { favorites['items'].map((favorite) => {
-            return <ItemCard key={ favorite.id } item={ favorite }/>;
-          }) }
-          { favorites['pokemons'].map((favorite) => {
-            return <PokeCard key={ favorite.id } pokemon={ favorite }/>;
-          }) }
-        </List>
+        <Title>Pokedex</Title>
+        <Pokedex pokeList={ favorites.pokemons }/>
+        <Title>Items</Title>
+        <Items items={ favorites.items }/>
       </Content>
     </Container>
   );
