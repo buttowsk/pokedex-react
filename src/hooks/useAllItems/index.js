@@ -1,5 +1,5 @@
 import { pokeApi } from '../../services/pokeApi.js';
-import { useState, useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Item } from '../../models/Item/index.js';
 
 export const useAllItems = () => {
@@ -50,5 +50,25 @@ export const useAllItems = () => {
     sessionStorage.setItem('items', JSON.stringify(items));
   }, [items]);
 
-  return { items, itemsLoading, error, hasMoreItems, setItemsPage };
+  const getItemById = useCallback(async (id) => {
+    try {
+      const response = await pokeApi.get(`/item/${ id }`);
+      const { data } = response;
+      return new Item(
+        data.name,
+        data.sprites.default,
+        data.id,
+        data.effect_entries[0].effect,
+        data.cost,
+        data.pokemon,
+        data.name,
+        data.category.name,
+      );
+    } catch (err) {
+      setError(err);
+      return null;
+    }
+  }, []);
+
+  return { items, itemsLoading, error, hasMoreItems, setItemsPage, getItemById };
 };
