@@ -6,7 +6,6 @@ import {
 } from './styles';
 import { PokeCard } from '../../components/PokeCard/index.jsx';
 import { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { LoadingComponent } from '../../components/LoadingComponent/index.jsx';
 import { ScrollBackComponent } from '../../components/ScrollBackComponent/index.jsx';
 import { Header } from '../../components/Header/index.jsx';

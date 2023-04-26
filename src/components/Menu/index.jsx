@@ -3,6 +3,11 @@ import { useState } from 'react';
 import { dbApi } from '../../services/dbApi.js';
 import { useNavigate } from 'react-router-dom';
 import { FiLogOut } from 'react-icons/fi';
+import { AiOutlineUser } from 'react-icons/ai';
+import { BsHeartFill } from 'react-icons/bs';
+import { HiHome } from 'react-icons/hi';
+import { TbPokeball } from 'react-icons/tb';
+import { GiPokecog } from 'react-icons/gi';
 
 
 export const Menu = ({ username }) => {
@@ -31,11 +36,12 @@ export const Menu = ({ username }) => {
     <Container>
       <MenuIcon onClick={ toggleDropdown }/>
       <DropdownContent isOpen={ isOpen }>
-        <DropdownText>{ username }</DropdownText>
-        <DropdownLink to={ '/favorites' }>Favorites</DropdownLink>
-        <DropdownLink to={ '/home' }>Home</DropdownLink>
-        <DropdownLink to={ '/pokedex' }>Pokedex</DropdownLink>
-        <LogoutButton type={ 'button' } onClick={ handleLogout }><FiLogOut/></LogoutButton>
+        <DropdownText><AiOutlineUser/>{ username }</DropdownText>
+        <DropdownLink to={ '/favorites' }><BsHeartFill/> Favorites</DropdownLink>
+        <DropdownLink to={ '/home' }><HiHome/> Home</DropdownLink>
+        <DropdownLink to={ '/pokedex' }><TbPokeball/> Pokedex</DropdownLink>
+        <DropdownLink to={ '/items' }><GiPokecog/> Items</DropdownLink>
+        <LogoutButton type={ 'button' } onClick={ handleLogout }><FiLogOut/> Logout</LogoutButton>
       </DropdownContent>
     </Container>
   );

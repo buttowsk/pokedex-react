@@ -90,7 +90,7 @@ export const PokePage = ({ pokeList, pokeSearch }) => {
   return (
     <ThemeProvider theme={ theme }>
       <Container bg={ bgColor } textColor={ color }>
-        <BackButton onClick={ () => navigate('/pokedex') }/>
+        <BackButton onClick={ () => navigate(-1) }/>
         <FirstColumn>
           <IdText>#{ poke.id }</IdText>
           <NameText>{ poke.name } <FavoriteButton onClick={ handleFavoriteClick } favorite={ favorite }/></NameText>

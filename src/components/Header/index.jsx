@@ -1,10 +1,11 @@
-import { Container, DropdownContent, MenuContainer, BackIcon, NavText, Username } from './styles.js';
+import { Container, DropdownContent, MenuContainer, BackIcon, NavText, DropdownText } from './styles.js';
 import { Menu } from '../Menu/index.jsx';
 import { dbApi } from '../../services/dbApi.js';
 import { useNavigate } from 'react-router-dom';
 import { FiLogOut } from 'react-icons/fi';
 import { useEffect, useRef, useState } from 'react';
 import { HiCog } from 'react-icons/hi';
+import { AiOutlineUser } from 'react-icons/ai';
 
 export const Header = ({ currentPage }) => {
   const username = localStorage.getItem('name');
@@ -55,8 +56,8 @@ export const Header = ({ currentPage }) => {
         <NavText onClick={ () => navigate('/') }>Home</NavText>
         <NavText onClick={ toggleDropdown }>{ <HiCog/> }</NavText>
         <DropdownContent isOpen={ isOpen } ref={ dropdownRef }>
-          <Username>{ username }</Username>
-          <NavText onClick={ handleLogout }>Logout <FiLogOut/></NavText>
+          <DropdownText><AiOutlineUser/>{ username }</DropdownText>
+          <DropdownText onClick={ handleLogout }><FiLogOut/>Logout</DropdownText>
         </DropdownContent>
         <Menu username={ username }/>
       </MenuContainer>

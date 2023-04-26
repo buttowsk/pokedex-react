@@ -1,8 +1,9 @@
 import { FavoritesContext } from '../../contexts/favorites.jsx';
 import { useContext, useEffect, useRef, useState } from 'react';
-import { Container, Title, Content, TopRow, PokemonsList, ItemsList, Arrow, PokemonsContainer } from './styles.js';
+import { Container, Title, Content, PokemonsList, ItemsList, Arrow, PokemonsContainer } from './styles.js';
 import { PokeCard } from '../../components/PokeCard/index.jsx';
 import { ItemCard } from '../../components/ItemCard/index.jsx';
+import { ScrollBackComponent } from '../../components/ScrollBackComponent/index.jsx';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import { Header } from '../../components/Header/index.jsx';
 
@@ -43,15 +44,16 @@ export const Favorites = () => {
 
   const handleArrowClick = (direction) => {
     const container = containerRef.current;
-    const increment = direction === 'right' ? 700 : -700;
+    const increment = direction === 'right' ? 800 : -800;
     container.scrollBy({ left: increment, behavior: 'smooth' });
   };
 
 
   return (
     <Container>
-      <Header currentPage={'favorites'}/>
+      <Header currentPage={ 'favorites' }/>
       <Content>
+        <ScrollBackComponent/>
         <Title>Favorite Pokemons</Title>
         <PokemonsContainer>
           <Arrow direction="left" onClick={ () => handleArrowClick('left') } show={ showLeftArrow }>

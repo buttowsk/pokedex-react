@@ -28,7 +28,7 @@ export const DropdownContent = styled.div`
   border-radius: 5px;
   padding: .7rem;
   right: 2px;
-  width: 500px;
+  width: 200px;
   position: absolute;
   z-index: 1;
 `;
@@ -40,7 +40,9 @@ export const DropdownLink = styled(Link)`
   padding: .75rem 1rem;
   text-decoration: none;
   border-radius: 5px;
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 1.32rem;
 
   &:hover {
     background-color: #ED2B2A;
@@ -48,35 +50,38 @@ export const DropdownLink = styled(Link)`
   }
 `;
 
-export const DropdownText = styled.p`
+export const DropdownText = styled.div`
   color: rgb(43, 72, 101);
   font-size: 1.2rem;
+  display: flex;
+  align-items: center;
   width: 100%;
   padding: .75rem 1rem;
+  gap: 1.32rem;
   text-decoration: none;
   text-transform: capitalize;
   border-radius: 5px;
-  display: none;
 
   &:hover {
     background-color: #ED2B2A;
     color: #fff;
   }
 
-  @media (max-width: 768px) {
-    display: block;
+  @media (min-width: 769px) {
+    display: none;
   }
 
 `;
 
 
-export const LogoutButton = styled.button`
+export const LogoutButton = styled.div`
   color: rgb(43, 72, 101);
   font-size: 1.2rem;
   width: 100%;
-  justify-self: flex-end;
+  display: flex;
+  align-items: center;
   padding: .75rem 1rem;
-  text-decoration: none;
+  gap: 1.32rem;
   text-transform: capitalize;
   border-radius: 5px;
   background-color: transparent;

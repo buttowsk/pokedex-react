@@ -59,6 +59,7 @@ export const NavText = styled.div`
   @media (min-width: 769px) {
     display: flex;
     align-items: center;
+    width: 70%;
     gap: 1.32rem;
     font-size: 1.3rem;
     color: rgb(43, 72, 101);
@@ -66,10 +67,31 @@ export const NavText = styled.div`
     text-transform: capitalize;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
-    ${ ({ page }) => page === 'selected' && `color: #8FE388; font-size: 2rem;` }
+    ${ ({ page }) => page === 'selected' ? `color: #8FE388; font-size: 2rem;` : '&:focus,&:hover {transform: scale(1.1);}' };
+  }
+`;
+
+export const DropdownText = styled.div`
+  display: none;
+
+  @media (min-width: 769px) {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 1.32rem;
+    font-size: 1.3rem;
+    color: rgb(43, 72, 101);
+    font-weight: 600;
+    text-transform: capitalize;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    padding: .75rem 1rem;
+
     &:focus,
     &:hover {
-      transform: scale(1.1);
+      background-color: #ED2B2A;
+      color: #fff;
     }
   }
 `;

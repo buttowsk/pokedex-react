@@ -15,7 +15,6 @@ export const Content = styled.div`
   align-items: start;
   width: 100%;
   height: 100%;
-  gap: 2.5rem;
 
   margin-top: 30px;
 `;
@@ -32,7 +31,7 @@ export const TopRow = styled.div`
 export const Title = styled.h1`
   font-size: 2rem;
   color: rgb(43, 72, 101);
-  padding: 0 10px;
+  padding: 0 1rem;
 
   @media (max-width: 768px) {
     font-size: 1.6rem;
@@ -70,6 +69,7 @@ export const PokemonsContainer = styled.div`
   height: 100%;
   position: relative;
   overflow: hidden;
+  margin: 1.2rem 0;
 `;
 
 
@@ -87,7 +87,7 @@ export const PokemonsList = styled.ul`
   }
   
 
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     overflow-x: hidden;
   }
 `;

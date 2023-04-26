@@ -171,7 +171,7 @@ export const MenuRow = styled.div`
 `;
 
 export const MenuItem = styled.h2`
-  font-size: 1.235rem;
+  font-size: 1.135rem;
   ${ ({ page }) => page !== 'selected' && `color: #6D5D6E;` }
   transition: all 0.5s ease-in-out;
   cursor: pointer;

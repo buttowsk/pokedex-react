@@ -9,19 +9,21 @@ export const FavoritesProvider = ({ children }) => {
   const [favoritePokemons, setFavoritePokemons] = useState([]);
   const [favoriteItems, setFavoriteItems] = useState([]);
   const [userId, setUserId] = useState(null);
+  const [token, setToken] = useState(localStorage.getItem('token'));
 
   useEffect(() => {
-    dbApi.get('/get-user-id', { headers: { Authorization: `Bearer ${ localStorage.getItem('token') }` } })
+    if (!token) return console.log('User not logged in');
+    dbApi.get('/get-user-id', { headers: { Authorization: `Bearer ${ token }` } })
       .then(({ data }) => {
         const { user_id } = data;
         console.log(user_id);
         setUserId(user_id);
       })
       .catch((err) => console.log(err));
-  }, [userId]);
+  }, [token, userId]);
 
   const getPokemons = useCallback(async () => {
-    if (!userId) return console.log('User not logged in');
+    if (!token) return console.log('User not logged in');
     try {
       const { data } = await dbApi.get(`/users/${ userId }/favorites/pokemons`);
       const { favorite_pokemons } = data;
@@ -42,10 +44,10 @@ export const FavoritesProvider = ({ children }) => {
     } catch (err) {
       console.log(err);
     }
-  }, [userId]);
+  }, [token, userId]);
 
   const getItems = useCallback(async () => {
-    if (!userId) return console.log('User not logged in');
+    if (!token) return console.log('User not logged in');
     try {
       const { data } = await dbApi.get(`/users/${ userId }/favorites/items`);
       const { favorite_items } = data;

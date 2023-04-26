@@ -9,7 +9,7 @@ export const Container = styled.div`
   text-transform: capitalize;
   gap: 25px;
   transition: all .3s ease-in-out;
-  font-size: 1.3rem;
+  font-size: 1.135rem;
   padding: 10px 0;
 
 
@@ -23,7 +23,7 @@ export const Container = styled.div`
     padding: 1rem 1.756rem;
   }
 
-  @media (max-width: 320px) {
+  @media (max-width: 360px) {
     font-size: 0.85rem;
     gap: 10px;
   }
@@ -79,7 +79,8 @@ export const TypeRow = styled.div`
     display: none;
   }
 `;
-export const TypeText = styled.h3`
+export const TypeText = styled.p`
+  font-size: 1.135rem;
   font-weight: 600;
   background-color: ${ ({ theme }) => theme.backgroundColor };
   color: ${ ({ theme }) => theme.color };
