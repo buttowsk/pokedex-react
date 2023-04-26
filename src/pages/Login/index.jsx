@@ -20,11 +20,11 @@ import { useNavigate } from 'react-router-dom';
 
 
 export const Login = () => {
-  const { useGetBgColor } = useColors();
+  const { getBgColor } = useColors();
   const [formState, setFormState] = useState('signup');
   const randomNumber = useMemo(() => Math.floor(Math.random() * 800) + 1, []);
   const randomBg = useMemo(() => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${ randomNumber }.png`, [randomNumber]);
-  const bgColor = useGetBgColor(randomBg);
+  const bgColor = getBgColor(randomBg);
   const navigate = useNavigate();
 
   const loginFormik = useFormik({

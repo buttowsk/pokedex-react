@@ -13,8 +13,8 @@ import { FavoritesContext } from '../../contexts/favorites.jsx';
 
 export const ItemCard = ({ item }) => {
   const { favorites, addFavorite, removeFavorite, isFavorite } = useContext(FavoritesContext);
-  const { useGetBgColor, getTextColor } = useColors();
-  const bgColor = useGetBgColor(item.image);
+  const { getBgColor, getTextColor } = useColors();
+  const bgColor = getBgColor(item.image);
   const textColor = getTextColor(bgColor);
   const [favorite, setFavorite] = useState(null);
 
