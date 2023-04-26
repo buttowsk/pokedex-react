@@ -12,6 +12,35 @@ export const GlobalStyle = createGlobalStyle`
   body {
     background-color: #F5EBEB;
   }
+
+  *::-webkit-scrollbar {
+    height: 5px;
+    width: 5px;
+    border-radius: 5px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #ffffff;
+    height: 5px;
+    width: 5px;
+    border-radius: 5px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: #b60b0b;
+    height: 5px;
+    width: 5px;
+    border-radius: 5px;
+  }
+
+  *::-moz-scrollbar {
+    width: 10px;
+    background-color: #f5f5f5;
+  }
+
+  *::-moz-scrollbar-thumb {
+    background-color: #555;
+  }
 `;
 
 export const themes = {
