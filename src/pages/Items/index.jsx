@@ -5,6 +5,7 @@ import { ItemCard } from '../../components/ItemCard/index.jsx';
 import { LoadingComponent } from '../../components/LoadingComponent/index.jsx';
 import { ScrollBackComponent } from '../../components/ScrollBackComponent/index.jsx';
 import { Menu } from '../../components/Menu/index.jsx';
+import { Header } from '../../components/Header/index.jsx';
 
 export const Items = ({ items, setPage, hasMore, loading }) => {
   const navigate = useNavigate();
@@ -35,14 +36,7 @@ export const Items = ({ items, setPage, hasMore, loading }) => {
 
   return (
     <Container>
-      <TopRow>
-        <BackIcon onClick={ () => navigate(-1) }/>
-        <Title>Items</Title>
-        <MenuContainer>
-          <Username>{ localStorage.getItem('name') }</Username>
-          <Menu username={ localStorage.getItem('name') }/>
-        </MenuContainer>
-      </TopRow>
+      <Header currentPage={'items'}/>
       <Content>
         <ScrollBackComponent/>
         <List>

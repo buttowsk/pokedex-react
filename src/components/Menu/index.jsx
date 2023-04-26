@@ -2,6 +2,7 @@ import { MenuIcon, DropdownContent, DropdownLink, Container, DropdownText, Logou
 import { useState } from 'react';
 import { dbApi } from '../../services/dbApi.js';
 import { useNavigate } from 'react-router-dom';
+import { FiLogOut } from 'react-icons/fi';
 
 
 export const Menu = ({ username }) => {
@@ -32,7 +33,9 @@ export const Menu = ({ username }) => {
       <DropdownContent isOpen={ isOpen }>
         <DropdownText>{ username }</DropdownText>
         <DropdownLink to={ '/favorites' }>Favorites</DropdownLink>
-        <LogoutButton type={ 'button' } onClick={ handleLogout }>Logout</LogoutButton>
+        <DropdownLink to={ '/home' }>Home</DropdownLink>
+        <DropdownLink to={ '/pokedex' }>Pokedex</DropdownLink>
+        <LogoutButton type={ 'button' } onClick={ handleLogout }><FiLogOut/></LogoutButton>
       </DropdownContent>
     </Container>
   );

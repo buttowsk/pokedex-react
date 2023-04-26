@@ -6,6 +6,10 @@ export const Container = styled.div`
   position: relative;
   display: inline-block;
   width: 100%;
+
+  @media (min-width: 769px) {
+    display: none;
+  }
 `;
 
 export const MenuIcon = styled(BiMenuAltRight)`
@@ -24,8 +28,7 @@ export const DropdownContent = styled.div`
   border-radius: 5px;
   padding: .7rem;
   right: 2px;
-  width: 200px;
-
+  width: 500px;
   position: absolute;
   z-index: 1;
 `;
@@ -60,7 +63,7 @@ export const DropdownText = styled.p`
     color: #fff;
   }
 
-  @media (max-width: 425px) {
+  @media (max-width: 768px) {
     display: block;
   }
 
@@ -71,8 +74,8 @@ export const LogoutButton = styled.button`
   color: rgb(43, 72, 101);
   font-size: 1.2rem;
   width: 100%;
+  justify-self: flex-end;
   padding: .75rem 1rem;
-  display: block;
   text-decoration: none;
   text-transform: capitalize;
   border-radius: 5px;
@@ -81,6 +84,7 @@ export const LogoutButton = styled.button`
   cursor: pointer;
   text-align: start;
 
+  &:focus,
   &:hover {
     background-color: #ED2B2A;
     color: #fff;

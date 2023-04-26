@@ -1,26 +1,19 @@
 import {
-  Title,
   List,
   Container,
   Content,
-  TopRow,
-  BackIcon,
   DivLoadMore,
-  MenuContainer,
-  Username,
 } from './styles';
 import { PokeCard } from '../../components/PokeCard/index.jsx';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LoadingComponent } from '../../components/LoadingComponent/index.jsx';
 import { ScrollBackComponent } from '../../components/ScrollBackComponent/index.jsx';
-import { Menu } from '../../components/Menu/index.jsx';
+import { Header } from '../../components/Header/index.jsx';
 
 export const Pokedex = ({ pokeList, setPage, loading, hasMore }) => {
-  const navigate = useNavigate();
   const [pokeArray, setPokeArray] = useState(Object.values(pokeList));
   const loaderRef = useRef(null);
-  const username = localStorage.getItem('name');
 
   useEffect(() => {
     const scrollPosition = localStorage.getItem('scrollPosition');
@@ -62,14 +55,7 @@ export const Pokedex = ({ pokeList, setPage, loading, hasMore }) => {
 
   return (
     <Container>
-      <TopRow>
-        <BackIcon onClick={ () => navigate('/') }/>
-        <Title>Pokedex</Title>
-        <MenuContainer>
-          <Username>{ username }</Username>
-          <Menu username={ username }/>
-        </MenuContainer>
-      </TopRow>
+      <Header currentPage={'pokedex'}/>
       <Content>
         <ScrollBackComponent/>
         <List>

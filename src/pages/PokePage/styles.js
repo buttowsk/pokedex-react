@@ -80,18 +80,27 @@ export const ShinyButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: .7rem 1.5rem;
+  padding: .4rem .756rem;
+  align-self: flex-end;
   border-radius: 8px;
   border: 1px solid ${ ({ theme }) => theme.color };
+  outline: none;
   background-color: #f3ca40;
-  color: ${ ({ theme }) => theme.color };
-  font-size: 1rem;
+  color: #fff;
+  font-size: .8rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
-
+  transition: transform 0.2s ease-in-out;
+  
+  &:focus,
   &:hover {
     transform: scale(1.1);
+  }
+  
+  @media (min-width: 769px) {
+    padding: .7rem 1.5rem;
+    font-size: 1rem;
+    align-self: flex-start;
   }
 `;
 
