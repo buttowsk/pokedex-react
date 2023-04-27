@@ -466,7 +466,7 @@ PERFORMANCE OF THIS SOFTWARE.
   right: 2px;
   width: 200px;
   position: absolute;
-  z-index: 1;
+  z-index:999;
 `,Gi=b(rf)`
   color: rgb(43, 72, 101);
   font-size: 1.2rem;
