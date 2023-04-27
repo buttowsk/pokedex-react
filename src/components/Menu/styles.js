@@ -30,7 +30,7 @@ export const DropdownContent = styled.div`
   right: 2px;
   width: 200px;
   position: absolute;
-  z-index: 1;
+  z-index:999;
 `;
 
 export const DropdownLink = styled(Link)`
