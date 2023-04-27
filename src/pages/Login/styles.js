@@ -6,13 +6,12 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #f5f5f5;
 `;
 
 export const FormContainer = styled.div`
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
   position: relative;
   width: 60%;
   padding: 3rem 0 5rem 0;
@@ -51,6 +50,24 @@ export const FormContainer = styled.div`
     transition: .5s;
     z-index: 1;
   }
+
+  @media (max-width: 769px) {
+    content: '';
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 1rem 0 3rem 0;
+
+    &::after {
+      display: none;
+    }
+
+    &::before {
+      display: none;
+    }
+  }
 `;
 
 export const LoginForm = styled.form`
@@ -61,6 +78,21 @@ export const LoginForm = styled.form`
   justify-content: center;
   padding: 0 1rem;
   gap: 3rem;
+
+  @media (max-width: 769px) {
+    padding: 2rem 0;
+    flex: 0;
+    gap: 2rem;
+    display: ${ ({ formState }) => formState === 'signup' ? 'none;' : 'flex;' };
+  }
+`;
+
+export const Title = styled.h1`
+  font-style: normal;
+  font-weight: 600;
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 1rem;
 `;
 
 export const SignUpForm = styled.form`
@@ -72,18 +104,18 @@ export const SignUpForm = styled.form`
   padding: 0 1rem;
   gap: 3rem;
   justify-self: flex-end;
-`;
 
-export const Title = styled.h1`
-  font-style: normal;
-  font-weight: 600;
-  font-size: 2rem;
-  color: #fff;
-  margin-bottom: 1rem;
+  @media (max-width: 769px) {
+    padding: 2rem 0;
+    flex: 0;
+    gap: 2rem;
+    transition: .5s;
+    display: ${ ({ formState }) => formState === 'login' ? 'none' : 'flex' };
+  }
 `;
 
 export const Button = styled.button`
-  width: 70%;
+  width: 75%;
   padding: .7rem 2rem;
   background-color: #FE4E00;
   color: #fff;
@@ -97,21 +129,35 @@ export const Button = styled.button`
 `;
 
 export const LoginButton = styled.button`
-  background-color: #fff;
-  padding: .5rem 5rem;
-  border-radius: 1rem;
+  background-color: transparent;
+  padding: .5rem .2rem;
   border: none;
   font-size: 1rem;
-  color: #000;
+  color: #9bf6f6;
   cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 export const SignUpButton = styled.button`
-  background-color: #fff;
-  padding: .5rem 5rem;
-  border-radius: 1rem;
+  background-color: transparent;
+  padding: .5rem .2rem;
   border: none;
   font-size: 1rem;
-  color: #000;
+  color: #9bf6f6;
   cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+
+export const Text = styled.p`
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #fff;
 `;

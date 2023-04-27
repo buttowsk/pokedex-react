@@ -6,7 +6,7 @@ import {
   SignUpForm,
   Button,
   SignUpButton,
-  LoginButton,
+  LoginButton, Text,
 } from './styles.js';
 import { Input } from '../../components/Input/index.jsx';
 import { loginSchema } from '../../schemas/Login/index.js';
@@ -93,7 +93,7 @@ export const Login = () => {
   return (
     <Container>
       <FormContainer formState={ formState } bgImage={ randomBg } bgColor={ bgColor }>
-        <LoginForm onSubmit={ loginFormik.handleSubmit }>
+        <LoginForm formState={ formState } onSubmit={ loginFormik.handleSubmit }>
           <Title>Login</Title>
           <InputMemo
             onBlur={ loginFormik.handleBlur }
@@ -114,9 +114,12 @@ export const Login = () => {
             error={ loginFormik.touched.password && loginFormik.errors.password }
           />
           <Button type={ 'submit' }>Login</Button>
-          <LoginButton type={ 'reset' } onClick={ handleFormState }>Cadastrar</LoginButton>
+          <Text>
+            Não tem uma conta?
+            <LoginButton type={ 'reset' } onClick={ handleFormState }>Cadastrar</LoginButton>
+          </Text>
         </LoginForm>
-        <SignUpForm onSubmit={ SignUpFormik.handleSubmit }>
+        <SignUpForm formState={ formState } onSubmit={ SignUpFormik.handleSubmit }>
           <Title>Sign Up</Title>
           <InputMemo
             onBlur={ SignUpFormik.handleBlur }
@@ -164,7 +167,10 @@ export const Login = () => {
             error={ SignUpFormik.touched.confirmPassword && SignUpFormik.errors.confirmPassword }
           />
           <Button type={ 'submit' }>Cadastrar</Button>
-          <SignUpButton type={ 'reset' } onClick={ handleFormState }>Fazer login</SignUpButton>
+          <Text>
+            Já tem uma conta?
+            <SignUpButton type={ 'reset' } onClick={ handleFormState }>Fazer login</SignUpButton>
+          </Text>
         </SignUpForm>
       </FormContainer>
     </Container>

@@ -32,6 +32,10 @@ export const InputLabel = styled.label`
   top: 50%;
   transform: translateY(-50%);
   transition: .5s;
+  
+  @media (max-width: 769px) {
+    font-size: 1rem;
+  }
 
   ${ InputText }:focus ~ &,
   ${ InputText }:not(:placeholder-shown):not([value=""]) ~ & {
