@@ -9,21 +9,20 @@ export const FavoritesProvider = ({ children }) => {
   const [favoritePokemons, setFavoritePokemons] = useState([]);
   const [favoriteItems, setFavoriteItems] = useState([]);
   const [userId, setUserId] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem('token'));
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
-    if (!token) return console.log('User not logged in');
-    dbApi.get('/get-user-id', { headers: { Authorization: `Bearer ${ token }` } })
-      .then(({ data }) => {
-        const { user_id } = data;
-        console.log(user_id);
-        setUserId(user_id);
-      })
-      .catch((err) => console.log(err));
-  }, [token, userId]);
+    if (token) {
+      dbApi.get('/get-user-id')
+        .then(({ data }) => {
+          const { user_id } = data;
+          setUserId(user_id);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [token]);
 
-  const getPokemons = useCallback(async () => {
-    if (!token) return console.log('User not logged in');
+  const getPokemons = useCallback(async (userId) => {
     try {
       const { data } = await dbApi.get(`/users/${ userId }/favorites/pokemons`);
       const { favorite_pokemons } = data;
@@ -44,10 +43,9 @@ export const FavoritesProvider = ({ children }) => {
     } catch (err) {
       console.log(err);
     }
-  }, [token, userId]);
+  }, []);
 
-  const getItems = useCallback(async () => {
-    if (!token) return console.log('User not logged in');
+  const getItems = useCallback(async (userId) => {
     try {
       const { data } = await dbApi.get(`/users/${ userId }/favorites/items`);
       const { favorite_items } = data;
@@ -65,14 +63,7 @@ export const FavoritesProvider = ({ children }) => {
       console.log(err);
     }
 
-  }, [userId]);
-
-  useEffect(() => {
-    if (userId) {
-      getPokemons().then(r => console.log('consolelog do useEffect', r));
-      getItems().then(r => console.log('consolelog do useEffect', r));
-    }
-  }, [userId]);
+  }, []);
 
   const favorites = {
     pokemons: favoritePokemons,
@@ -87,7 +78,7 @@ export const FavoritesProvider = ({ children }) => {
         name: favorite.name,
         image: favorite.image,
         types: favorite.types,
-      }).then(r => console.log(r));
+      });
     } else if (favorite instanceof Item) {
       setFavoriteItems((prevFavorites) => [...prevFavorites, favorite]);
       dbApi.post(`/users/${ userId }/favorites/item`, {
@@ -98,17 +89,17 @@ export const FavoritesProvider = ({ children }) => {
         image: favorite.image,
         held_by_pokemon: favorite.held_by_pokemon,
         category: favorite.category,
-      }).then(r => console.log(r));
+      });
     }
   };
 
   const removeFavorite = (favorite) => {
     if (favorite instanceof Pokemon) {
       setFavoritePokemons((prevFavorites) => prevFavorites.filter((fav) => fav.id !== favorite.id));
-      dbApi.delete(`/users/${ userId }/favorites/pokemon/${ favorite.id }`).then(r => console.log(r));
+      dbApi.delete(`/users/${ userId }/favorites/pokemon/${ favorite.id }`);
     } else if (favorite instanceof Item) {
       setFavoriteItems((prevFavorites) => prevFavorites.filter((fav) => fav.id !== favorite.id));
-      dbApi.delete(`/users/${ userId }/favorites/item/${ favorite.id }`).then(r => console.log(r));
+      dbApi.delete(`/users/${ userId }/favorites/item/${ favorite.id }`);
     }
   };
 
@@ -125,8 +116,9 @@ export const FavoritesProvider = ({ children }) => {
     addFavorite,
     removeFavorite,
     isFavorite,
+    getPokemons,
+    getItems,
   };
-
 
   return (
     <FavoritesContext.Provider value={ contextValue }>

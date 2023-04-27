@@ -91,12 +91,12 @@ export const ShinyButton = styled.button`
   font-weight: 600;
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
-  
+
   &:focus,
   &:hover {
     transform: scale(1.1);
   }
-  
+
   @media (min-width: 769px) {
     padding: .7rem 1.5rem;
     font-size: 1rem;
@@ -166,7 +166,7 @@ export const MenuRow = styled.div`
     width: 80%;
     font-size: 1.5rem;
     gap: 1.5rem;
-    padding: 1.2rem;
+    padding: 10px 0;
   }
 `;
 
@@ -224,5 +224,59 @@ export const FavoriteButton = styled(BsHeartFill)`
 
   &:hover {
     transform: scale(1.1);
+  }
+`;
+
+
+export const AddFavoriteSuccess = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  padding: 2rem 2.5rem;
+  border-radius: 8px;
+  background-color: rgba(0, 255, 0, 0.5);
+  backdrop-filter: blur(10px);
+  z-index: 999;
+`;
+
+export const AddFavoriteSuccessText = styled.p`
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+  color: #fff;
+  margin: 0 10px;
+
+  @media (min-width: 769px) {
+    font-size: 1.5rem;
+  }
+`;
+
+
+export const RemoveFavoriteSuccess = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  border-radius: 8px;
+  padding: 2rem 2.5rem;
+  background-color: rgba(255, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  z-index: 999;
+`;
+
+export const RemoveFavoriteSuccessText = styled.p`
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+  color: #fff;
+  margin: 0 10px;
+
+  @media (min-width: 769px) {
+    font-size: 1.5rem;
   }
 `;

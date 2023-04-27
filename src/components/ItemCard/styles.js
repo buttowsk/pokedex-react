@@ -81,13 +81,15 @@ export const PokemonImage = styled.img`
 
 export const FavoriteButton = styled(BsHeartFill)`
   position: absolute;
+  color: #fff;
   top: 10px;
   left: 10px;
   font-size: 1.3rem;
   cursor: pointer;
-  z-index: 999;
+  z-index: 50;
   transition: all 0.2s ease-in-out;
-  ${ ({ favorite }) => favorite === 'true' && `color: #FF0000` };
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.2));
+  ${ ({ favorite }) => favorite === 'true' && `color: #FF0000;` };
 
   @media (min-width: 769px) {
     font-size: 1.756rem;
@@ -97,3 +99,44 @@ export const FavoriteButton = styled(BsHeartFill)`
     transform: scale(1.1);
   }
 `
+
+export const DivAddSucefull = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 70px;
+  background-color: rgb(102, 234, 111);
+  border-radius: 8px;
+  margin: 20px 0;
+  z-index: 999;
+`;
+
+export const TextAddSucefull = styled.p`
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+`;
+
+
+export const DivRemoveSucefull = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 70px;
+  background-color: rgb(215, 50, 50);
+  border-radius: 8px;
+  margin: 20px 0;
+  z-index: 999;
+`;
+
+export const TextRemoveSucefull = styled.p`
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ffffff;
+`;

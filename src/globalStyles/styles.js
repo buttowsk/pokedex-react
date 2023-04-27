@@ -10,7 +10,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background-color: #F5EBEB;
+    background-color: #F6F6F6;
   }
 
   *::-webkit-scrollbar {
@@ -31,15 +31,6 @@ export const GlobalStyle = createGlobalStyle`
     height: 5px;
     width: 5px;
     border-radius: 5px;
-  }
-
-  *::-moz-scrollbar {
-    width: 10px;
-    background-color: #f5f5f5;
-  }
-
-  *::-moz-scrollbar-thumb {
-    background-color: #555;
   }
 `;
 

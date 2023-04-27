@@ -6,13 +6,24 @@ import { ItemCard } from '../../components/ItemCard/index.jsx';
 import { ScrollBackComponent } from '../../components/ScrollBackComponent/index.jsx';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import { Header } from '../../components/Header/index.jsx';
+import { dbApi } from '../../services/dbApi.js';
 
 export const Favorites = () => {
-  const { favorites } = useContext(FavoritesContext);
+  const { getPokemons, getItems, favorites } = useContext(FavoritesContext);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
   const containerRef = useRef(null);
+
+  useEffect(() => {
+    dbApi.get('/get-user-id')
+      .then(({ data }) => {
+        const { user_id } = data;
+        getPokemons(user_id);
+        getItems(user_id);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   useEffect(() => {
     const container = containerRef.current;

@@ -8,7 +8,7 @@ import {
   FirstColumn,
   SecondColumn,
   BackButton,
-  ElementsRow, TypeText, FavoriteButton, ShinyButton,
+  ElementsRow, TypeText, FavoriteButton, ShinyButton, AddFavoriteSuccess, AddFavoriteSuccessText, RemoveFavoriteSuccess, RemoveFavoriteSuccessText,
 } from './styles.js';
 import { useEffect, useState, useContext } from 'react';
 import { ThemeProvider } from 'styled-components';
@@ -33,6 +33,8 @@ export const PokePage = ({ pokeList, pokeSearch }) => {
   const [shiny, setShiny] = useState(false);
   const bgColor = getBgColor(shiny ? poke.shinyImage : poke.image);
   const color = getTextColor(bgColor);
+  const [addFavStatus, setAddFavStatus] = useState(false);
+  const [removeFavStatus, setRemoveFavStatus] = useState(false);
 
   useEffect(() => {
     async function getPokeData() {
@@ -68,8 +70,10 @@ export const PokePage = ({ pokeList, pokeSearch }) => {
   const handleFavoriteClick = () => {
     if (favorite === 'true') {
       removeFavorite(poke);
+      setRemoveFavStatus(true);
     } else {
       addFavorite(poke);
+      setAddFavStatus(true);
     }
   };
 
@@ -114,6 +118,14 @@ export const PokePage = ({ pokeList, pokeSearch }) => {
           { selectedPage === 'stats' && <PokeStats poke={ poke }/> }
           { selectedPage === 'evolutions' && <PokeEvolutions poke={ poke } textColor={ color }/> }
         </SecondColumn>
+        { addFavStatus && setTimeout(() => setAddFavStatus(false), 2000) &&
+          <AddFavoriteSuccess>
+            <AddFavoriteSuccessText>Added to favorites!</AddFavoriteSuccessText>
+          </AddFavoriteSuccess> }
+        { removeFavStatus && setTimeout(() => setRemoveFavStatus(false), 2000) &&
+          <RemoveFavoriteSuccess>
+            <RemoveFavoriteSuccessText>Removed from favorites!</RemoveFavoriteSuccessText>
+          </RemoveFavoriteSuccess> }
       </Container>
     </ThemeProvider>
   );

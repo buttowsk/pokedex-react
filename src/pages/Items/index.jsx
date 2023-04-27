@@ -1,16 +1,13 @@
-import { TopRow, Content, Container, BackIcon, MenuContainer, Username, Title, List } from './styles.js';
-import { useNavigate } from 'react-router-dom';
+import { Content, Container, List } from './styles.js';
 import { useEffect } from 'react';
 import { ItemCard } from '../../components/ItemCard/index.jsx';
 import { LoadingComponent } from '../../components/LoadingComponent/index.jsx';
 import { ScrollBackComponent } from '../../components/ScrollBackComponent/index.jsx';
-import { Menu } from '../../components/Menu/index.jsx';
 import { Header } from '../../components/Header/index.jsx';
 
 export const Items = ({ items, setPage, hasMore, loading }) => {
-  const navigate = useNavigate();
-  const itemsArray = Object.values(items);
 
+  const itemsArray = Object.values(items);
 
   const handleScroll = () => {
     const windowHeight = window.innerHeight;

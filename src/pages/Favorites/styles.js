@@ -15,7 +15,6 @@ export const Content = styled.div`
   align-items: start;
   width: 100%;
   height: 100%;
-
   margin-top: 30px;
 `;
 

@@ -17,6 +17,7 @@ function App() {
   const { pokeList, hasMorePoke, setPokePage, isLoading, getPokemonByName } = useAllPokemons();
 
 
+
   if (isLoading || !pokeList || pokeList.length === 0 || !items) {
     return <LoadingComponent/>;
   }
