@@ -113,7 +113,6 @@ export const SignUpForm = styled.form`
   @media (max-width: 769px) {
     padding: 2rem 0;
     flex: 0;
-    gap: 2rem;
     transition: .5s;
     display: ${ ({ formState }) => formState === 'login' ? 'none' : 'flex' };
   }
