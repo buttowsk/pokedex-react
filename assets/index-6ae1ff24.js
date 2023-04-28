@@ -696,6 +696,7 @@ PERFORMANCE OF THIS SOFTWARE.
   ${({bg:e})=>e&&`background-color: ${e}`};
   color: ${({textColor:e})=>e};
   z-index: 999;
+  overflow: auto;
 
   @media (min-width: 769px) {
     flex-direction: row;
@@ -1308,7 +1309,6 @@ PERFORMANCE OF THIS SOFTWARE.
   @media (max-width: 769px) {
     padding: 2rem 0;
     flex: 0;
-    gap: 2rem;
     transition: .5s;
     display: ${({formState:e})=>e==="login"?"none":"flex"};
   }
