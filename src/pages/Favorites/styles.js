@@ -47,14 +47,17 @@ export const Arrow = styled.div`
   cursor: pointer;
   font-size: 3rem;
   color: #a1a1a1;
+  transition: all .3s ease-in-out;
   z-index: 2;
   ${ ({ direction }) => direction === 'right' ? 'right: 0;' +
           'border-radius: 8px 0 0 8px' : 'left: 0;' +
           'border-radius: 0 8px 8px 0' };
 
   display: ${ ({ show }) => show ? "flex" : "none" };
-
+  
+  &:focus,
   &:hover {
+    transform: scale(1.05);
     color: #ffffff;
   }
 
