@@ -34,14 +34,6 @@ export const List = styled.ul`
   }
 `;
 
-export const TopRow = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding: 10px;
-`;
-
 
 export const Username = styled.p`
   font-size: 1rem;

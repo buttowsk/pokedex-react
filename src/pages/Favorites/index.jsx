@@ -14,6 +14,8 @@ export const Favorites = () => {
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
   const containerRef = useRef(null);
+  const [containerWidth, setContainerWidth] = useState(0);
+  const [contentWidth, setContentWidth] = useState(0);
 
   useEffect(() => {
     dbApi.get('/get-user-id')
@@ -25,6 +27,13 @@ export const Favorites = () => {
       .catch((err) => console.log(err));
   }, []);
 
+
+  useEffect(() => {
+    const container = containerRef.current;
+    setContainerWidth(container.offsetWidth);
+    setContentWidth(container.scrollWidth);
+  }, [favorites]);
+
   useEffect(() => {
     const container = containerRef.current;
     container.addEventListener('scroll', handleScroll);
@@ -32,8 +41,15 @@ export const Favorites = () => {
     return () => {
       container.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [containerWidth, contentWidth]);
 
+  useEffect(() => {
+    if (containerWidth >= contentWidth) {
+      setShowRightArrow(false);
+    } else {
+      setShowRightArrow(true);
+    }
+  }, [containerWidth, contentWidth]);
 
   const handleScroll = () => {
     const container = containerRef.current;
@@ -46,7 +62,7 @@ export const Favorites = () => {
       setShowLeftArrow(true);
     }
 
-    if (position === container.scrollWidth - container.clientWidth) {
+    if (position >= contentWidth - containerWidth) {
       setShowRightArrow(false);
     } else {
       setShowRightArrow(true);
