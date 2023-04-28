@@ -6,7 +6,7 @@ import {
   SignUpForm,
   Button,
   SignUpButton,
-  LoginButton, Text,
+  LoginButton, Text, SuccessMessage, ErrorMessage, ErrorContainer, SuccessContainer,
 } from './styles.js';
 import { Input } from '../../components/Input/index.jsx';
 import { loginSchema } from '../../schemas/Login/index.js';
@@ -23,6 +23,8 @@ export const Login = () => {
   const { getBgColor } = useColors();
   const [formState, setFormState] = useState('signup');
   const [rotate, setRotate] = useState('rotateY(0deg)');
+  const [createAccountSuccess, setCreateAccountSuccess] = useState(false);
+  const [wrongCredentials, setWrongCredentials] = useState(false);
   const randomNumber = useMemo(() => Math.floor(Math.random() * 800) + 1, []);
   const randomBg = useMemo(() => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${ randomNumber }.png`, [randomNumber]);
   const bgColor = getBgColor(randomBg);
@@ -45,7 +47,7 @@ export const Login = () => {
         })
         .catch((error) => {
           // Exibe uma mensagem de erro para o usuário
-          alert('Email ou senha inválidos');
+          setWrongCredentials(true);
           console.log(error);
         });
       resetForm();
@@ -67,7 +69,7 @@ export const Login = () => {
         .then((response) => {
           console.log(response);
           if (response.status === 201) {
-            alert('Usuário cadastrado com sucesso!');
+            setCreateAccountSuccess(true);
             handleFormState();
           }
         })
@@ -82,6 +84,8 @@ export const Login = () => {
   const handleFormState = () => {
     formState === 'signup' ? setFormState('login') : setFormState('signup');
     setRotate(rotate === 'rotateY(0deg)' ? 'rotateY(180deg)' : 'rotateY(0deg)');
+    setCreateAccountSuccess(false);
+    setWrongCredentials(false);
     SignUpFormik.resetForm();
     loginFormik.resetForm();
   };
@@ -95,8 +99,13 @@ export const Login = () => {
   return (
     <Container>
       <FormContainer rotate={ rotate } formState={ formState } bgImage={ randomBg } bgColor={ bgColor }>
-        <LoginForm rotate={rotate} formState={ formState } onSubmit={ loginFormik.handleSubmit }>
+        <LoginForm rotate={ rotate } formState={ formState } onSubmit={ loginFormik.handleSubmit }>
           <Title>Login</Title>
+          { wrongCredentials && (
+            <ErrorContainer>
+              <ErrorMessage>Usuário ou senha incorretos</ErrorMessage>
+            </ErrorContainer>
+          ) }
           <InputMemo
             onBlur={ loginFormik.handleBlur }
             onChange={ loginFormik.handleChange }
@@ -123,6 +132,11 @@ export const Login = () => {
         </LoginForm>
         <SignUpForm formState={ formState } onSubmit={ SignUpFormik.handleSubmit }>
           <Title>Sign Up</Title>
+          { createAccountSuccess && (
+            <SuccessContainer>
+              <SuccessMessage>Conta criada com sucesso!</SuccessMessage>
+            </SuccessContainer>
+          ) }
           <InputMemo
             onBlur={ SignUpFormik.handleBlur }
             onChange={ SignUpFormik.handleChange }
