@@ -22,6 +22,7 @@ import { useNavigate } from 'react-router-dom';
 export const Login = () => {
   const { getBgColor } = useColors();
   const [formState, setFormState] = useState('signup');
+  const [rotate, setRotate] = useState('rotateY(0deg)');
   const randomNumber = useMemo(() => Math.floor(Math.random() * 800) + 1, []);
   const randomBg = useMemo(() => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${ randomNumber }.png`, [randomNumber]);
   const bgColor = getBgColor(randomBg);
@@ -80,6 +81,7 @@ export const Login = () => {
 
   const handleFormState = () => {
     formState === 'signup' ? setFormState('login') : setFormState('signup');
+    setRotate(rotate === 'rotateY(0deg)' ? 'rotateY(180deg)' : 'rotateY(0deg)');
     SignUpFormik.resetForm();
     loginFormik.resetForm();
   };
@@ -92,8 +94,8 @@ export const Login = () => {
 
   return (
     <Container>
-      <FormContainer formState={ formState } bgImage={ randomBg } bgColor={ bgColor }>
-        <LoginForm formState={ formState } onSubmit={ loginFormik.handleSubmit }>
+      <FormContainer rotate={ rotate } formState={ formState } bgImage={ randomBg } bgColor={ bgColor }>
+        <LoginForm rotate={rotate} formState={ formState } onSubmit={ loginFormik.handleSubmit }>
           <Title>Login</Title>
           <InputMemo
             onBlur={ loginFormik.handleBlur }

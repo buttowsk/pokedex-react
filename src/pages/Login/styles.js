@@ -58,7 +58,11 @@ export const FormContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    border-radius: 0;
     padding: 1rem 0 3rem 0;
+    transition: transform .5s;
+    transform: ${ ({ rotate }) => rotate };
+
 
     &::after {
       display: none;
@@ -84,6 +88,7 @@ export const LoginForm = styled.form`
     flex: 0;
     gap: 2rem;
     display: ${ ({ formState }) => formState === 'signup' ? 'none;' : 'flex;' };
+    transform: ${ ({ rotate }) => rotate };
   }
 `;
 
