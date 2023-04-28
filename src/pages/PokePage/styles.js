@@ -14,6 +14,7 @@ export const Container = styled.div`
   ${ ({ bg }) => bg && `background-color: ${ bg }` };
   color: ${ ({ textColor }) => textColor };
   z-index: 999;
+  overflow: auto;
 
   @media (min-width: 769px) {
     flex-direction: row;
