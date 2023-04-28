@@ -18,7 +18,8 @@ export const PokeCardContainer = styled(Link)`
   text-transform: capitalize;
   background-color: ${ ({ theme }) => theme.backgroundColor };
   cursor: pointer;
-
+  
+  &:focus,
   &:hover {
     transform: scale(1.03);
   }

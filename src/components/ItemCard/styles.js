@@ -95,6 +95,7 @@ export const FavoriteButton = styled(BsHeartFill)`
     font-size: 1.756rem;
   }
 
+  &:focus,
   &:hover {
     transform: scale(1.1);
   }
@@ -108,7 +109,8 @@ export const DivAddSucefull = styled.div`
   bottom: 0;
   width: 100%;
   height: 70px;
-  background-color: rgb(102, 234, 111);
+  background-color: rgba(102, 234, 111, 0.8);
+  backdrop-filter: blur(10px);
   border-radius: 8px;
   margin: 20px 0;
   z-index: 999;
@@ -129,7 +131,8 @@ export const DivRemoveSucefull = styled.div`
   bottom: 0;
   width: 100%;
   height: 70px;
-  background-color: rgb(215, 50, 50);
+  background-color: rgba(215, 50, 50, 0.8);
+  backdrop-filter: blur(10px);
   border-radius: 8px;
   margin: 20px 0;
   z-index: 999;
