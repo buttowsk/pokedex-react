@@ -166,3 +166,45 @@ export const Text = styled.p`
   font-size: 1rem;
   color: #fff;
 `;
+
+
+export const SuccessContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem 1.4rem;
+  border-radius: 10px;
+  background-color: #66ea6f;
+`;
+
+export const SuccessMessage = styled.p`
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #fff;
+  filter: brightness(1.2);
+`;
+
+export const ErrorContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem 1.4rem;
+  border-radius: 10px;
+  background-color: #ff4e4e;
+`;
+
+export const ErrorMessage = styled.p`
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #fff;
+  filter: brightness(1.2);
+`;
+
+
+
