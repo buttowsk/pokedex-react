@@ -18,14 +18,6 @@ export const Content = styled.div`
   margin-top: 30px;
 `;
 
-export const TopRow = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding: 10px 0;
-`;
-
 
 export const Title = styled.h1`
   font-size: 2rem;
@@ -97,12 +89,12 @@ export const PokemonsList = styled.ul`
 export const ItemsList = styled.ul`
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 10px;
   list-style: none;
   padding: .756rem;
 
   @media (min-width: 768px) {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   }
 `;
