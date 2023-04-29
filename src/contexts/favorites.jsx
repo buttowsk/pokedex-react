@@ -3,7 +3,14 @@ import { Item } from '../models/Item/index.js';
 import { Pokemon } from '../models/Pokemon/index.js';
 import { dbApi } from '../services/dbApi.js';
 
-export const FavoritesContext = createContext();
+export const FavoritesContext = createContext({
+  favorites: { pokemons: [], items: [] },
+  addFavorite: () => {},
+  removeFavorite: () => {},
+  isFavorite: () => {},
+  getPokemons: () => {},
+  getItems: () => {},
+});
 
 export const FavoritesProvider = ({ children }) => {
   const [favoritePokemons, setFavoritePokemons] = useState([]);
@@ -13,25 +20,28 @@ export const FavoritesProvider = ({ children }) => {
 
   useEffect(() => {
     if (token) {
-      dbApi.get('/get-user-id')
-        .then(({ data }) => {
+      const fetchData = async () => {
+        try {
+          const { data } = await dbApi.get('/get-user-id');
           const { user_id } = data;
           setUserId(user_id);
-        })
-        .catch((err) => console.log(err));
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      fetchData();
     }
-  }, [token]);
+  }, [token, setUserId]);
+
+  const typesArray = (types) => {
+    let array = types.replace(/'/g, '"');
+    return JSON.parse(array);
+  };
 
   const getPokemons = useCallback(async (userId) => {
     try {
       const { data } = await dbApi.get(`/users/${ userId }/favorites/pokemons`);
       const { favorite_pokemons } = data;
-
-      const typesArray = (types) => {
-        let array = types.replace(/'/g, '"');
-        return JSON.parse(array);
-      };
-
       const favoritePokemons = favorite_pokemons.map((pokemon) =>
         new Pokemon(
           pokemon.name,
