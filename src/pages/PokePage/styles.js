@@ -50,6 +50,10 @@ export const NameText = styled.p`
   font-size: 1.75rem;
   font-weight: 600;
   margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  
 
   @media (min-width: 769px) {
     font-size: 3.5rem;
