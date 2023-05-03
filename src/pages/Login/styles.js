@@ -54,10 +54,9 @@ export const FormContainer = styled.div`
   @media (max-width: 769px) {
     content: '';
     width: 100%;
-    height: 100%;
+    height: 100vh;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
     border-radius: 0;
     padding: 1rem 0 3rem 0;
     transition: transform .5s;

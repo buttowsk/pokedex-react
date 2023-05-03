@@ -5,11 +5,16 @@ import { dbApi } from '../services/dbApi.js';
 
 export const FavoritesContext = createContext({
   favorites: { pokemons: [], items: [] },
-  addFavorite: () => {},
-  removeFavorite: () => {},
-  isFavorite: () => {},
-  getPokemons: () => {},
-  getItems: () => {},
+  addFavorite: () => {
+  },
+  removeFavorite: () => {
+  },
+  isFavorite: () => {
+  },
+  getPokemons: () => {
+  },
+  getItems: () => {
+  },
 });
 
 export const FavoritesProvider = ({ children }) => {
@@ -17,6 +22,10 @@ export const FavoritesProvider = ({ children }) => {
   const [favoriteItems, setFavoriteItems] = useState([]);
   const [userId, setUserId] = useState(null);
   const token = localStorage.getItem('token');
+  const heldByPokemon = (item) => {
+    let array = item.held_by_pokemon != null && item.held_by_pokemon.replace(/'/g, '"');
+    return JSON.parse(array);
+  };
 
   useEffect(() => {
     if (token) {
@@ -65,7 +74,7 @@ export const FavoritesProvider = ({ children }) => {
         item.item_id,
         item.description,
         item.cost,
-        item.held_by_pokemon,
+        heldByPokemon(item),
         item.category,
       ));
       setFavoriteItems(favoriteItems);
@@ -97,7 +106,7 @@ export const FavoritesProvider = ({ children }) => {
         description: favorite.description,
         cost: favorite.cost,
         image: favorite.image,
-        held_by_pokemon: favorite.held_by_pokemon,
+        held_by_pokemon: JSON.stringify(favorite.heldByPokemon),
         category: favorite.category,
       });
     }

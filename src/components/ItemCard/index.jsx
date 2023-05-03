@@ -6,11 +6,13 @@ import {
   ItemImage,
   ItemDescriptionContainer,
   ItemPriceContainer, FavoriteButton, DivAddSucefull, TextAddSucefull,
-  DivRemoveSucefull, TextRemoveSucefull,
+  DivRemoveSucefull, TextRemoveSucefull, HeldBy, HeldByContainer, PokemonImage,
 } from './styles.js';
 import { useColors } from '../../hooks/useColors/index.js';
 import { useContext, useEffect, useState } from 'react';
 import { FavoritesContext } from '../../contexts/favorites.jsx';
+import { useNavigate } from 'react-router-dom';
+import { LoadingComponent } from '../LoadingComponent/index.jsx';
 
 export const ItemCard = ({ item }) => {
   const { favorites, addFavorite, removeFavorite, isFavorite } = useContext(FavoritesContext);
@@ -20,6 +22,7 @@ export const ItemCard = ({ item }) => {
   const [favorite, setFavorite] = useState(null);
   const [addFavStatus, setAddFavStatus] = useState(false);
   const [removeFavStatus, setRemoveFavStatus] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isFavorite(item)) {
@@ -39,6 +42,13 @@ export const ItemCard = ({ item }) => {
     }
   };
 
+  const handleHeldByClick = (pokemon) => {
+    navigate(`/pokedex/${ pokemon }`);
+  };
+
+  if (!bgColor) {
+    return <LoadingComponent/>;
+  }
 
   return (
     <>
@@ -52,6 +62,15 @@ export const ItemCard = ({ item }) => {
         <ItemPriceContainer>
           <ItemPrice>$ { item.cost }</ItemPrice>
         </ ItemPriceContainer>
+        { item.heldByPokemon.length > 0 &&
+          <HeldByContainer>
+            <HeldBy>Held by:</HeldBy>
+            { item.heldByPokemon.map((pokemon, index) => (
+              <PokemonImage key={ index } src={ pokemon.image } alt={ pokemon.name }
+                            onClick={ () => handleHeldByClick(pokemon.name) }/>
+            )) }
+          </HeldByContainer>
+        }
       </ItemCardContainer>
       { addFavStatus && setTimeout(() => setAddFavStatus(false), 2000)
         && <DivAddSucefull>

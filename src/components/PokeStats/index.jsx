@@ -1,4 +1,4 @@
-import { Container, NumberText, StatusBar, StatusRow, StatusText } from './styles.js';
+import { Container, NumberText, StatusBar, StatusRow, StatusText, StatusValueDiv } from './styles.js';
 import { LoadingComponent } from '../LoadingComponent/index.jsx';
 
 export const PokeStats = ({ poke }) => {
@@ -9,33 +9,45 @@ export const PokeStats = ({ poke }) => {
   return (
     <Container>
       <StatusRow>
-        <StatusText>HP</StatusText>
-        <NumberText>{ poke.stats[0].value }</NumberText>
+        <StatusValueDiv>
+          <StatusText>HP</StatusText>
+          <NumberText>{ poke.stats[0].value }</NumberText>
+        </StatusValueDiv>
         <StatusBar percentual={ poke.stats[0].value }/>
       </StatusRow>
       <StatusRow>
-        <StatusText>Attack</StatusText>
-        <NumberText>{ poke.stats[1].value }</NumberText>
+        <StatusValueDiv>
+          <StatusText>Attack</StatusText>
+          <NumberText>{ poke.stats[1].value }</NumberText>
+        </StatusValueDiv>
         <StatusBar percentual={ poke.stats[1].value }/>
       </StatusRow>
       <StatusRow>
-        <StatusText>Defense</StatusText>
-        <NumberText>{ poke.stats[2].value }</NumberText>
+        <StatusValueDiv>
+          <StatusText>Defense</StatusText>
+          <NumberText>{ poke.stats[2].value }</NumberText>
+        </StatusValueDiv>
         <StatusBar percentual={ poke.stats[2].value }/>
       </StatusRow>
       <StatusRow>
-        <StatusText>Sp. Atk</StatusText>
-        <NumberText>{ poke.stats[3].value }</NumberText>
+        <StatusValueDiv>
+          <StatusText>Sp. Atk</StatusText>
+          <NumberText>{ poke.stats[3].value }</NumberText>
+        </StatusValueDiv>
         <StatusBar percentual={ poke.stats[3].value }/>
       </StatusRow>
       <StatusRow>
-        <StatusText>Sp. Def</StatusText>
-        <NumberText>{ poke.stats[4].value }</NumberText>
+        <StatusValueDiv>
+          <StatusText>Sp. Def</StatusText>
+          <NumberText>{ poke.stats[4].value }</NumberText>
+        </StatusValueDiv>
         <StatusBar percentual={ poke.stats[4].value }/>
       </StatusRow>
       <StatusRow>
-        <StatusText>Speed</StatusText>
-        <NumberText>{ poke.stats[5].value }</NumberText>
+        <StatusValueDiv>
+          <StatusText>Speed</StatusText>
+          <NumberText>{ poke.stats[5].value }</NumberText>
+        </StatusValueDiv>
         <StatusBar percentual={ poke.stats[5].value }/>
       </StatusRow>
     </Container>

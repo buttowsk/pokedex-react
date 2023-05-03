@@ -64,18 +64,22 @@ export const ItemDescription = styled.p`
 export const HeldByContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 2rem;
   width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 10px;
 `;
 
 export const HeldBy = styled.p`
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 600;
 `;
 
 export const PokemonImage = styled.img`
-  width: 90px;
-  height: 90px;
+  width: 70px;
+  height: 70px;
+  cursor: pointer;
 `;
 
 
