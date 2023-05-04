@@ -1,4 +1,4 @@
-import { createContext, useCallback, useEffect, useState } from 'react';
+import { createContext, useCallback, useState } from 'react';
 import { Item } from '../models/Item/index.js';
 import { Pokemon } from '../models/Pokemon/index.js';
 import { dbApi } from '../services/dbApi.js';
@@ -21,26 +21,10 @@ export const FavoritesProvider = ({ children }) => {
   const [favoritePokemons, setFavoritePokemons] = useState([]);
   const [favoriteItems, setFavoriteItems] = useState([]);
   const [userId, setUserId] = useState(null);
-  const token = localStorage.getItem('token');
   const heldByPokemon = (item) => {
     let array = item.held_by_pokemon != null && item.held_by_pokemon.replace(/'/g, '"');
     return JSON.parse(array);
   };
-
-  useEffect(() => {
-    if (token) {
-      const fetchData = async () => {
-        try {
-          const { data } = await dbApi.get('/get-user-id');
-          const { user_id } = data;
-          setUserId(user_id);
-        } catch (err) {
-          console.log(err);
-        }
-      };
-      fetchData();
-    }
-  }, [token, setUserId]);
 
   const typesArray = (types) => {
     let array = types.replace(/'/g, '"');
@@ -137,6 +121,7 @@ export const FavoritesProvider = ({ children }) => {
     isFavorite,
     getPokemons,
     getItems,
+    setUserId,
   };
 
   return (

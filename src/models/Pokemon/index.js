@@ -1,12 +1,11 @@
 export class Pokemon {
-  constructor(name, types, image, id, evolutionChain, genderRate, hatchSteps, abilities, height, weight, moves, stats, generation, shinyimage) {
+  constructor(name, types, image, id, evolutionChain, genderRate, abilities, height, weight, moves, stats, generation, shinyimage) {
     this.evolutionChain = evolutionChain;
     this.name = name;
     this.types = types;
     this.image = image;
     this.id = id;
     this.genderRate = genderRate;
-    this.hatchSteps = hatchSteps;
     this.abilities = abilities;
     this.height = height;
     this.weight = weight;

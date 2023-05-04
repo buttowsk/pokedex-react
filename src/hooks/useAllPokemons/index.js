@@ -23,11 +23,6 @@ export const useAllPokemons = () => {
         const { data: pokemonData } = await pokeApi.get(`/pokemon/${ id }`);
         const { data: speciesData } = await pokeApi.get(`/pokemon-species/${ pokemonData.id ?? pokemonData.name }`);
         const evolutionChainUrl = speciesData?.evolution_chain?.url;
-        if (!evolutionChainUrl) {
-          // Tratar erro aqui
-          console.log(`Não foi possível encontrar informações de evolução para ${ pokemonData.name }`);
-          return null;
-        }
         const evolutionChainId = evolutionChainUrl?.split('/').slice(-2, -1)[0];
         const { data: evolutionChain } = await pokeApi.get(`/evolution-chain/${ evolutionChainId }`);
         const { chain } = evolutionChain;
@@ -55,7 +50,6 @@ export const useAllPokemons = () => {
           female: `${ 10 * speciesData.gender_rate }%`,
         };
         const generation = speciesData.generation.name;
-        const hatchSteps = 255 * ((speciesData.hatch_counter + 1) / 256);
         const pokemon = new Pokemon(
           pokemonData.name,
           types,
@@ -63,7 +57,6 @@ export const useAllPokemons = () => {
           pokemonData.id,
           evolutionsList,
           genderRate,
-          hatchSteps,
           abilities,
           pokemonData.height,
           pokemonData.weight,
@@ -77,7 +70,7 @@ export const useAllPokemons = () => {
       const pokeList = await Promise.all(pokemonPromises);
       const newPokeList = Object.fromEntries(pokeList);
       setPokeList((prevPokeList) => ({ ...prevPokeList, ...newPokeList }));
-      setTotalPokePages(Math.ceil(data.count / 20));
+      setTotalPokePages(Math.ceil(data.count / 60));
       setHasMorePoke(page < totalPokePages);
     } catch (error) {
       console.log(error);
@@ -102,11 +95,6 @@ export const useAllPokemons = () => {
       const { data } = response;
       const { data: speciesData } = await pokeApi.get(`/pokemon-species/${ data.id ?? data.name }`);
       const evolutionChainUrl = speciesData?.evolution_chain?.url;
-      if (!evolutionChainUrl) {
-        // Tratar erro aqui
-        console.log(`Não foi possível encontrar informações de evolução para ${ data.name }`);
-        return null;
-      }
       const evolutionChainId = evolutionChainUrl?.split('/').slice(-2, -1)[0];
       const { data: evolutionChain } = await pokeApi.get(`/evolution-chain/${ evolutionChainId }`);
       const { chain } = evolutionChain;
@@ -134,7 +122,6 @@ export const useAllPokemons = () => {
         female: `${ 10 * speciesData.gender_rate }%`,
       };
       const generation = speciesData.generation.name;
-      const hatchSteps = 255 * ((speciesData.hatch_counter + 1) / 256);
       return new Pokemon(
         data.name,
         types,
@@ -142,7 +129,6 @@ export const useAllPokemons = () => {
         data.id,
         evolutionsList,
         genderRate,
-        hatchSteps,
         abilities,
         data.height,
         data.weight,

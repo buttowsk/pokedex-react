@@ -8,7 +8,14 @@ import {
   FirstColumn,
   SecondColumn,
   BackButton,
-  ElementsRow, TypeText, FavoriteButton, ShinyButton, AddFavoriteSuccess, AddFavoriteSuccessText, RemoveFavoriteSuccess, RemoveFavoriteSuccessText,
+  ElementsRow,
+  TypeText,
+  FavoriteButton,
+  ShinyButton,
+  AddFavoriteSuccess,
+  AddFavoriteSuccessText,
+  RemoveFavoriteSuccess,
+  RemoveFavoriteSuccessText,
 } from './styles.js';
 import { useEffect, useState, useContext } from 'react';
 import { ThemeProvider } from 'styled-components';
@@ -20,9 +27,11 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { LoadingComponent } from '../../components/LoadingComponent/index.jsx';
 import { useColors } from '../../hooks/useColors/index.js';
 import { FavoritesContext } from '../../contexts/favorites.jsx';
+import { PokemonsContext } from '../../contexts/pokemons.jsx';
 
-export const PokePage = ({ pokeList, pokeSearch }) => {
+export const PokePage = () => {
   const { favorites, addFavorite, removeFavorite, isFavorite } = useContext(FavoritesContext);
+  const { getPokemonByName, pokeList } = useContext(PokemonsContext);
   const { pokemon } = useParams();
   const pokeArray = Object.values(pokeList);
   const navigate = useNavigate();
@@ -42,7 +51,7 @@ export const PokePage = ({ pokeList, pokeSearch }) => {
       if (pokeArray.find(poke => poke.name === pokemon)) {
         newPoke = pokeArray.find(poke => poke.name === pokemon);
       } else {
-        newPoke = await pokeSearch(pokemon);
+        newPoke = await getPokemonByName(pokemon);
       }
       setPoke(newPoke);
     }

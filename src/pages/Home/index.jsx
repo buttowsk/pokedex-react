@@ -11,9 +11,24 @@ import { LoadingComponent } from '../../components/LoadingComponent/index.jsx';
 import { useContext, useEffect } from 'react';
 import { FavoritesContext } from '../../contexts/favorites.jsx';
 import { dbApi } from '../../services/dbApi.js';
+import { PokemonsContext } from '../../contexts/pokemons.jsx';
 
-export const Home = ({ pokeList }) => {
-  const { getPokemons, getItems } = useContext(FavoritesContext);
+export const Home = () => {
+  const { getPokemons, getItems, setUserId } = useContext(FavoritesContext);
+  const { isLoading } = useContext(PokemonsContext);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await dbApi.get('/get-user-id');
+        const { user_id } = data;
+        setUserId(user_id);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+  }, [setUserId]);
 
   useEffect(() => {
     dbApi.get('/get-user-id')
@@ -25,10 +40,9 @@ export const Home = ({ pokeList }) => {
       .catch((err) => console.log(err));
   }, []);
 
-  if (!pokeList) {
+  if (isLoading) {
     return <LoadingComponent/>;
   }
-
 
   return (
     <Container>

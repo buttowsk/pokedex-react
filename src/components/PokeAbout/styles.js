@@ -20,7 +20,7 @@ export const Container = styled.div`
     height: 40%;
     gap: 30px;
     font-size: 1.5rem;
-    padding: 1rem 1.756rem;
+    padding: 1rem;
   }
 
   @media (max-width: 360px) {

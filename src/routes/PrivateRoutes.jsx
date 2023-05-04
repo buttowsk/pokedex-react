@@ -1,7 +1,9 @@
-import { Outlet, Navigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import { dbApi } from '../services/dbApi.js';
 import { useEffect, useState } from 'react';
 import { LoadingComponent } from '../components/LoadingComponent/index.jsx';
+import { PokemonsProvider } from '../contexts/pokemons.jsx';
+import { ItemsProvider } from '../contexts/items.jsx';
 
 function PrivateRoutes({ element, ...rest }) {
   const [isAuthorized, setIsAuthorized] = useState(null);
@@ -33,7 +35,13 @@ function PrivateRoutes({ element, ...rest }) {
   if (isAuthorized === null) {
     return <LoadingComponent/>;
   } else if (isAuthorized) {
-    return <Outlet/>;
+    return (
+      <ItemsProvider>
+        <PokemonsProvider>
+          <Outlet/>
+        </PokemonsProvider>
+      </ItemsProvider>
+    );
   } else {
     return <Navigate to="/login"/>;
   }

@@ -5,12 +5,14 @@ import {
   DivLoadMore,
 } from './styles';
 import { PokeCard } from '../../components/PokeCard/index.jsx';
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { LoadingComponent } from '../../components/LoadingComponent/index.jsx';
 import { ScrollBackComponent } from '../../components/ScrollBackComponent/index.jsx';
 import { Header } from '../../components/Header/index.jsx';
+import { PokemonsContext } from '../../contexts/pokemons.jsx';
 
-export const Pokedex = ({ pokeList, setPage, loading, hasMore }) => {
+export const Pokedex = () => {
+  const { pokeList, hasMorePoke: hasMore, setPokePage: setPage, isLoading: loading } = useContext(PokemonsContext);
   const [pokeArray, setPokeArray] = useState(Object.values(pokeList));
   const loaderRef = useRef(null);
 
