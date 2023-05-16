@@ -10,12 +10,12 @@ import {
 } from './styles.js';
 import { useColors } from '../../hooks/useColors/index.js';
 import { useContext, useEffect, useState } from 'react';
-import { FavoritesContext } from '../../contexts/favorites.jsx';
+import { FavoritesContext } from '../../context/favorites.jsx';
 import { useNavigate } from 'react-router-dom';
 import { LoadingComponent } from '../LoadingComponent/index.jsx';
 
 export const ItemCard = ({ item }) => {
-  const { favorites, addFavorite, removeFavorite, isFavorite } = useContext(FavoritesContext);
+  const { favorites, addFavorite, removeFavorite, isFavorite, userId } = useContext(FavoritesContext);
   const { getBgColor, getTextColor } = useColors();
   const bgColor = getBgColor(item.image);
   const textColor = getTextColor(bgColor);
@@ -34,10 +34,10 @@ export const ItemCard = ({ item }) => {
 
   const handleFavoriteClick = () => {
     if (favorite === 'true') {
-      removeFavorite(item);
+      removeFavorite(item, userId);
       setRemoveFavStatus(true);
     } else {
-      addFavorite(item);
+      addFavorite(item, userId);
       setAddFavStatus(true);
     }
   };

@@ -9,9 +9,9 @@ import {
 } from './styles';
 import { LoadingComponent } from '../../components/LoadingComponent/index.jsx';
 import { useContext, useEffect } from 'react';
-import { FavoritesContext } from '../../contexts/favorites.jsx';
+import { FavoritesContext } from '../../context/favorites.jsx';
 import { dbApi } from '../../services/dbApi.js';
-import { PokemonsContext } from '../../contexts/pokemons.jsx';
+import { PokemonsContext } from '../../context/pokemons.jsx';
 
 export const Home = () => {
   const { getPokemons, getItems, setUserId } = useContext(FavoritesContext);
@@ -22,6 +22,7 @@ export const Home = () => {
       try {
         const { data } = await dbApi.get('/get-user-id');
         const { user_id } = data;
+        console.log(user_id)
         setUserId(user_id);
       } catch (err) {
         console.log(err);

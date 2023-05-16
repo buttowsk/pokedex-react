@@ -1,4 +1,4 @@
-import { FavoritesContext } from '../../contexts/favorites.jsx';
+import { FavoritesContext } from '../../context/favorites.jsx';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { Container, Title, Content, PokemonsList, ItemsList, Arrow, PokemonsContainer } from './styles.js';
 import { PokeCard } from '../../components/PokeCard/index.jsx';
@@ -80,8 +80,11 @@ export const Favorites = () => {
     <Container>
       <Header currentPage={ 'favorites' }/>
       <Content>
+        { favorites.pokemons.length === 0 && favorites.items.length === 0 && (
+          <Title>You don't have any favorite pokemons or items yet</Title>
+        ) }
         <ScrollBackComponent/>
-        <Title>Favorite Pokemons</Title>
+        { favorites.pokemons.length > 0 && <Title>Favorite Pokemons</Title>}
         <PokemonsContainer>
           <Arrow direction="left" onClick={ () => handleArrowClick('left') } show={ showLeftArrow }>
             <IoIosArrowBack/>
@@ -95,7 +98,7 @@ export const Favorites = () => {
             <IoIosArrowForward/>
           </Arrow>
         </PokemonsContainer>
-        <Title>Favorite Items</Title>
+        { favorites.items.length > 0 && <Title>Favorite Items</Title>}
         <ItemsList>
           { favorites.items.map((item, index) => (
             <ItemCard key={ index } item={ item }/>

@@ -1,6 +1,6 @@
 import { PokeImage, PokeType, PokeName, PokeCardContainer, PokeTypeContainer, PokeNumber } from './styles';
 import { ThemeProvider } from 'styled-components';
-import { themes } from '../../globalStyles/styles.js';
+import { themes } from '../../utils/globalStyles/styles.js';
 import { LoadingComponent } from '../LoadingComponent/index.jsx';
 
 export const PokeCard = ({ pokemon, onClick }) => {

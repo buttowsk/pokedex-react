@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { IoChevronBack } from 'react-icons/io5';
+import {IoChevronBack} from 'react-icons/io5';
 
 
 export const Container = styled.div`
@@ -21,6 +21,18 @@ export const Username = styled.p`
   }
 `;
 
+export const CurrentPage = styled.p`
+  font-size: 1.6rem;
+  color: rgb(43, 72, 101);
+  font-weight: 600;
+  text-transform: capitalize;
+
+  @media (min-width: 769px) {
+    display: none;
+  }
+`;
+
+
 export const MenuContainer = styled.div`
   display: flex;
   align-items: center;
@@ -37,7 +49,7 @@ export const BackIcon = styled(IoChevronBack)`
 `;
 
 export const DropdownContent = styled.div`
-  display: ${ ({ isOpen }) => isOpen ? 'flex' : 'none' };
+  display: ${({isOpen}) => isOpen ? 'flex' : 'none'};
   gap: 1.756rem;
   background-color: rgba(166, 208, 221, 0.5);
   backdrop-filter: blur(10px);
@@ -67,7 +79,7 @@ export const NavText = styled.div`
     text-transform: capitalize;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
-    ${ ({ page }) => page === 'selected' ? `color: #8FE388; font-size: 2rem;` : '&:focus,&:hover {transform: scale(1.1);}' };
+    ${({page}) => page === 'selected' ? `color: #8FE388; font-size: 2rem;` : '&:focus,&:hover {transform: scale(1.1);}'};
   }
 `;
 

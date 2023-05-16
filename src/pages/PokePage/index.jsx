@@ -19,18 +19,18 @@ import {
 } from './styles.js';
 import { useEffect, useState, useContext } from 'react';
 import { ThemeProvider } from 'styled-components';
-import { themes } from '../../globalStyles/styles.js';
+import { themes } from '../../utils/globalStyles/styles.js';
 import { PokeAbout } from '../../components/PokeAbout/index.jsx';
 import { PokeStats } from '../../components/PokeStats/index.jsx';
 import { PokeEvolutions } from '../../components/PokeEvolutions/index.jsx';
 import { useParams, useNavigate } from 'react-router-dom';
 import { LoadingComponent } from '../../components/LoadingComponent/index.jsx';
 import { useColors } from '../../hooks/useColors/index.js';
-import { FavoritesContext } from '../../contexts/favorites.jsx';
-import { PokemonsContext } from '../../contexts/pokemons.jsx';
+import { FavoritesContext } from '../../context/favorites.jsx';
+import { PokemonsContext } from '../../context/pokemons.jsx';
 
 export const PokePage = () => {
-  const { favorites, addFavorite, removeFavorite, isFavorite } = useContext(FavoritesContext);
+  const { favorites, addFavorite, removeFavorite, isFavorite, userId } = useContext(FavoritesContext);
   const { getPokemonByName, pokeList } = useContext(PokemonsContext);
   const { pokemon } = useParams();
   const pokeArray = Object.values(pokeList);
@@ -44,6 +44,8 @@ export const PokePage = () => {
   const color = getTextColor(bgColor);
   const [addFavStatus, setAddFavStatus] = useState(false);
   const [removeFavStatus, setRemoveFavStatus] = useState(false);
+
+  console.log(userId);
 
   useEffect(() => {
     async function getPokeData() {
@@ -78,10 +80,10 @@ export const PokePage = () => {
 
   const handleFavoriteClick = () => {
     if (favorite === 'true') {
-      removeFavorite(poke);
+      removeFavorite(poke, userId);
       setRemoveFavStatus(true);
     } else {
-      addFavorite(poke);
+      addFavorite(poke, userId);
       setAddFavStatus(true);
     }
   };

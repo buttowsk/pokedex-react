@@ -10,7 +10,7 @@ import { TbPokeball } from 'react-icons/tb';
 import { GiPokecog } from 'react-icons/gi';
 
 
-export const Menu = ({ username }) => {
+export const Menu = ({ username, currentPage }) => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -37,10 +37,10 @@ export const Menu = ({ username }) => {
       <MenuIcon onClick={ toggleDropdown }/>
       <DropdownContent isOpen={ isOpen }>
         <DropdownText><AiOutlineUser/>{ username }</DropdownText>
-        <DropdownLink to={ '/favorites' }><BsHeartFill/> Favorites</DropdownLink>
-        <DropdownLink to={ '/home' }><HiHome/> Home</DropdownLink>
-        <DropdownLink to={ '/pokedex' }><TbPokeball/> Pokedex</DropdownLink>
-        <DropdownLink to={ '/items' }><GiPokecog/> Items</DropdownLink>
+        <DropdownLink to={ '/favorites' } page={currentPage === 'favorites' ? 'selected' : ''}><BsHeartFill/> Favorites</DropdownLink>
+        <DropdownLink to={ '/' }><HiHome/> Home</DropdownLink>
+        <DropdownLink to={ '/pokedex' } page={currentPage === 'pokedex' ? 'selected' : ''}><TbPokeball/> Pokedex</DropdownLink>
+        <DropdownLink to={ '/items' } page={currentPage === 'items' ? 'selected' : ''}><GiPokecog/> Items</DropdownLink>
         <LogoutButton type={ 'button' } onClick={ handleLogout }><FiLogOut/> Logout</LogoutButton>
       </DropdownContent>
     </Container>

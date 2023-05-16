@@ -9,8 +9,8 @@ import {
   LoginButton, Text, SuccessMessage, ErrorMessage, ErrorContainer, SuccessContainer,
 } from './styles.js';
 import { Input } from '../../components/Input/index.jsx';
-import { loginSchema } from '../../schemas/Login/index.js';
-import { SignUpSchema } from '../../schemas/SignUp/index.js';
+import { loginSchema } from '../../utils/schemas/Login/index.js';
+import { SignUpSchema } from '../../utils/schemas/SignUp/index.js';
 import { useFormik } from 'formik';
 import { useMemo, useState } from 'react';
 import { useColors } from '../../hooks/useColors/index.js';

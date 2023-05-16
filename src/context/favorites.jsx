@@ -1,6 +1,6 @@
 import { createContext, useCallback, useState } from 'react';
-import { Item } from '../models/Item/index.js';
-import { Pokemon } from '../models/Pokemon/index.js';
+import { Item } from '../utils/models/Item/index.js';
+import { Pokemon } from '../utils/models/Pokemon/index.js';
 import { dbApi } from '../services/dbApi.js';
 
 export const FavoritesContext = createContext({
@@ -73,7 +73,7 @@ export const FavoritesProvider = ({ children }) => {
     items: favoriteItems,
   };
 
-  const addFavorite = (favorite) => {
+  const addFavorite = (favorite, userId) => {
     if (favorite instanceof Pokemon) {
       setFavoritePokemons((prevFavorites) => [...prevFavorites, favorite]);
       dbApi.post(`/users/${ userId }/favorites/pokemon`, {
@@ -96,7 +96,7 @@ export const FavoritesProvider = ({ children }) => {
     }
   };
 
-  const removeFavorite = (favorite) => {
+  const removeFavorite = (favorite, userId) => {
     if (favorite instanceof Pokemon) {
       setFavoritePokemons((prevFavorites) => prevFavorites.filter((fav) => fav.id !== favorite.id));
       dbApi.delete(`/users/${ userId }/favorites/pokemon/${ favorite.id }`);
@@ -122,6 +122,7 @@ export const FavoritesProvider = ({ children }) => {
     getPokemons,
     getItems,
     setUserId,
+    userId,
   };
 
   return (

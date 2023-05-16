@@ -4,7 +4,7 @@ import { ItemCard } from '../../components/ItemCard/index.jsx';
 import { LoadingComponent } from '../../components/LoadingComponent/index.jsx';
 import { ScrollBackComponent } from '../../components/ScrollBackComponent/index.jsx';
 import { Header } from '../../components/Header/index.jsx';
-import { ItemsContext } from '../../contexts/items.jsx';
+import { ItemsContext } from '../../context/items.jsx';
 
 export const Items = () => {
   const { items, itemsLoading: loading, hasMoreItems: hasMore, setItemsPage: setPage } = useContext(ItemsContext);

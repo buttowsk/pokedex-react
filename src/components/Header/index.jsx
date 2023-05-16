@@ -1,4 +1,4 @@
-import { Container, DropdownContent, MenuContainer, BackIcon, NavText, DropdownText } from './styles.js';
+import { Container, DropdownContent, MenuContainer, BackIcon, NavText, DropdownText, CurrentPage } from './styles.js';
 import { Menu } from '../Menu/index.jsx';
 import { dbApi } from '../../services/dbApi.js';
 import { useNavigate } from 'react-router-dom';
@@ -27,7 +27,6 @@ export const Header = ({ currentPage }) => {
     };
   }, [dropdownRef]);
 
-
   const handleLogout = () => {
     dbApi.post('/logout')
       .then((response) => {
@@ -48,18 +47,21 @@ export const Header = ({ currentPage }) => {
 
   return (
     <Container>
-      <BackIcon onClick={() => navigate(-1)}/>
+      <BackIcon onClick={ () => navigate(-1) }/>
+      <CurrentPage>{ currentPage }</CurrentPage>
       <MenuContainer>
-        <NavText page={ currentPage === 'pokedex' ? 'selected' : '' } onClick={ () => navigate('/pokedex') }>Pokedex</NavText>
+        <NavText page={ currentPage === 'pokedex' ? 'selected' : '' }
+                 onClick={ () => navigate('/pokedex') }>Pokedex</NavText>
         <NavText page={ currentPage === 'items' ? 'selected' : '' } onClick={ () => navigate('/items') }>Itens</NavText>
-        <NavText page={ currentPage === 'favorites' ? 'selected' : '' } onClick={ () => navigate('/favorites') }>Favorites</NavText>
+        <NavText page={ currentPage === 'favorites' ? 'selected' : '' }
+                 onClick={ () => navigate('/favorites') }>Favorites</NavText>
         <NavText onClick={ () => navigate('/') }>Home</NavText>
         <NavText onClick={ toggleDropdown }>{ <HiCog/> }</NavText>
         <DropdownContent isOpen={ isOpen } ref={ dropdownRef }>
           <DropdownText><AiOutlineUser/>{ username }</DropdownText>
           <DropdownText onClick={ handleLogout }><FiLogOut/>Logout</DropdownText>
         </DropdownContent>
-        <Menu username={ username }/>
+        <Menu username={ username } currentPage={ currentPage }/>
       </MenuContainer>
     </Container>
   );

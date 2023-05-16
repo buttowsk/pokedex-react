@@ -9,12 +9,28 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import { LoadingComponent } from '../../components/LoadingComponent/index.jsx';
 import { ScrollBackComponent } from '../../components/ScrollBackComponent/index.jsx';
 import { Header } from '../../components/Header/index.jsx';
-import { PokemonsContext } from '../../contexts/pokemons.jsx';
+import { PokemonsContext } from '../../context/pokemons.jsx';
+import { FavoritesContext } from '../../context/favorites.jsx';
+import { dbApi } from '../../services/dbApi.js';
 
 export const Pokedex = () => {
   const { pokeList, hasMorePoke: hasMore, setPokePage: setPage, isLoading: loading } = useContext(PokemonsContext);
+  const { setUserId } = useContext(FavoritesContext);
   const [pokeArray, setPokeArray] = useState(Object.values(pokeList));
   const loaderRef = useRef(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await dbApi.get('/get-user-id');
+        const { user_id } = data;
+        setUserId(user_id);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+  }, [setUserId]);
 
   useEffect(() => {
     const scrollPosition = localStorage.getItem('scrollPosition');
@@ -56,7 +72,7 @@ export const Pokedex = () => {
 
   return (
     <Container>
-      <Header currentPage={'pokedex'}/>
+      <Header currentPage={ 'pokedex' }/>
       <Content>
         <ScrollBackComponent/>
         <List>

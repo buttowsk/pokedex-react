@@ -1,6 +1,6 @@
 import { pokeApi } from '../../services/pokeApi.js';
 import { useCallback, useEffect, useState } from 'react';
-import { Item } from '../../models/Item/index.js';
+import { Item } from '../../utils/models/Item/index.js';
 
 export const useAllItems = () => {
   const [items, setItems] = useState([]);

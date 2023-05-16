@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { pokeApi } from '../../services/pokeApi.js';
-import { Pokemon } from '../../models/Pokemon/index.js';
-import { Evolution } from '../../models/Evolution/index.js';
+import { Pokemon } from '../../utils/models/Pokemon/index.js';
+import { Evolution } from '../../utils/models/Evolution/index.js';
 
 export const useAllPokemons = () => {
   const [loading, setLoading] = useState(true);

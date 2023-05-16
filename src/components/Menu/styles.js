@@ -43,6 +43,7 @@ export const DropdownLink = styled(Link)`
   display: flex;
   align-items: center;
   gap: 1.32rem;
+  ${ ({ page }) => page === 'selected' && `color: #ee0000;`};
 
   &:hover {
     background-color: #ED2B2A;
