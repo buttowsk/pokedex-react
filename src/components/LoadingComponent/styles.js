@@ -27,7 +27,7 @@ export const Ring = styled.div`
 
   &:nth-child(1) {
     border-bottom-width: 8px;
-    border-color: rgb(255, 255, 255);
+    border-color: rgb(253, 255, 43);
     animation: rotate1 2s linear infinite;
     -webkit-animation: rotate1 2s linear infinite;
   }

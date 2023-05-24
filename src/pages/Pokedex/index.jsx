@@ -12,6 +12,7 @@ import { Header } from '../../components/Header/index.jsx';
 import { PokemonsContext } from '../../context/pokemons.jsx';
 import { FavoritesContext } from '../../context/favorites.jsx';
 import { dbApi } from '../../services/dbApi.js';
+import {LoadingComponent2} from "../../components/LoadingComponent2/index.jsx";
 
 export const Pokedex = () => {
   const { pokeList, hasMorePoke: hasMore, setPokePage: setPage, isLoading: loading } = useContext(PokemonsContext);

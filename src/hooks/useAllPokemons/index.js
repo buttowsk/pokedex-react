@@ -146,5 +146,5 @@ export const useAllPokemons = () => {
   }, []);
 
 
-  return { loading, error, pokeList, hasMorePoke, setPokePage, getPokemonByName };
+  return { loading, error, pokeList, hasMorePoke, setPokePage, getPokemonByName, fetchPokemons };
 };

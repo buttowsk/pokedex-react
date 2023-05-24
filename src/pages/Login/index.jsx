@@ -17,6 +17,7 @@ import { useColors } from '../../hooks/useColors/index.js';
 import { LoadingComponent } from '../../components/LoadingComponent/index.jsx';
 import { dbApi } from '../../services/dbApi.js';
 import { useNavigate } from 'react-router-dom';
+import {LoadingComponent2} from "../../components/LoadingComponent2/index.jsx";
 
 
 export const Login = () => {
