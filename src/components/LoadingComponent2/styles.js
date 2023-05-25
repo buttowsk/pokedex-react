@@ -79,12 +79,10 @@ export const PokeballImage = styled.img.attrs(
     75% {
       transform: rotateZ(270deg) scale(1.4);
       left: 3rem;
-      z-index: 1;
     }
     100% {
       transform: rotateZ(360deg) scale(1);
       left: -3rem;
-      z-index: 0;
     }
   }
 `;
