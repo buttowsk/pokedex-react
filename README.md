@@ -1,7 +1,4 @@
-# pokedex-react
-
-
-## Uma pokewiki feita usando react e consumindo a PokeApi
+### Uma pokewiki feita usando react e consumindo a PokeApi
 
 ### Para visualizar o projeto:
 ### https://buttowsk.github.io/pokedex-react/
