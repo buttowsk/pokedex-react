@@ -17,7 +17,7 @@ import { useColors } from '../../hooks/useColors/index.js';
 import { LoadingComponent } from '../../components/LoadingComponent/index.jsx';
 import { dbApi } from '../../services/dbApi.js';
 import { useNavigate } from 'react-router-dom';
-import {LoadingComponent2} from "../../components/LoadingComponent2/index.jsx";
+import { GoogleLoginButton } from '../../components/GoogleLoginButton/index.jsx';
 
 
 export const Login = () => {
@@ -57,7 +57,6 @@ export const Login = () => {
 
   const SignUpFormik = useFormik({
     initialValues: {
-      fullname: '',
       username: '',
       email: '',
       password: '',
@@ -65,8 +64,8 @@ export const Login = () => {
     },
     validationSchema: SignUpSchema,
     onSubmit: (values, { resetForm }) => {
-      const { fullname, username, email, password, confirmPassword } = values;
-      dbApi.post('/register', { username, fullname, email, password })
+      const { username, email, password } = values;
+      dbApi.post('/register', { username, email, password })
         .then((response) => {
           console.log(response);
           if (response.status === 201) {
@@ -130,6 +129,10 @@ export const Login = () => {
             Não tem uma conta?
             <LoginButton type={ 'reset' } onClick={ handleFormState }>Cadastrar</LoginButton>
           </Text>
+          <Text>
+            Ou
+          </Text>
+          <GoogleLoginButton/>
         </LoginForm>
         <SignUpForm formState={ formState } onSubmit={ SignUpFormik.handleSubmit }>
           <Title>Sign Up</Title>
@@ -138,15 +141,6 @@ export const Login = () => {
               <SuccessMessage>Conta criada com sucesso!</SuccessMessage>
             </SuccessContainer>
           ) }
-          <InputMemo
-            onBlur={ SignUpFormik.handleBlur }
-            onChange={ SignUpFormik.handleChange }
-            value={ SignUpFormik.values.fullname }
-            type={ 'text' }
-            name="fullname"
-            label="Nome completo"
-            error={ SignUpFormik.touched.fullname && SignUpFormik.errors.fullname }
-          />
           <InputMemo
             onBlur={ SignUpFormik.handleBlur }
             onChange={ SignUpFormik.handleChange }

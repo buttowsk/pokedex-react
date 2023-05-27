@@ -23,11 +23,18 @@ function PrivateRoutes({ element, ...rest }) {
           } else {
             setIsAuthorized(false);
           }
-        })
-        .catch((error) => {
-          setIsAuthorized(false);
-          console.log(error);
         });
+    } else if (!token) {
+      const params = new URLSearchParams(location.search);
+      const url_token = params.get('token');
+      if (url_token) {
+        localStorage.setItem('token', url_token);
+        dbApi.defaults.headers.common['Authorization'] = `Bearer ${ url_token }`;
+        window.location.href = 'http://localhost:5173/pokedex-react/';
+        setIsAuthorized(true);
+      } else {
+        setIsAuthorized(false);
+      }
     } else {
       setIsAuthorized(false);
     }
