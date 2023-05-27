@@ -30,7 +30,6 @@ function PrivateRoutes({ element, ...rest }) {
       if (url_token) {
         localStorage.setItem('token', url_token);
         dbApi.defaults.headers.common['Authorization'] = `Bearer ${ url_token }`;
-        window.location.href = 'http://localhost:5173/pokedex-react/';
         setIsAuthorized(true);
       } else {
         setIsAuthorized(false);
