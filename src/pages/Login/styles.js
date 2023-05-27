@@ -28,7 +28,7 @@ export const FormContainer = styled.div`
     width: 50%;
     height: 100%;
     background: ${ ({ bgImage }) => `url(${ bgImage }) center / contain no-repeat` };
-    ${ ({ formState }) => formState === 'login' ? 'transform: translateX(-100%);' +
+    ${ ({ formState }) => formState === 'signup' ? 'transform: translateX(-100%);' +
             'border-radius: 10px 0 0 10px;'
             : 'transform: translateX(0);' + 'border-radius: 0 10px 10px 0;' };
     transition: .5s;
@@ -44,7 +44,7 @@ export const FormContainer = styled.div`
     width: 50%;
     height: 100%;
     background: ${ ({ bgColor }) => bgColor };
-    ${ ({ formState }) => formState === 'login' ? 'transform: translateX(-100%);' +
+    ${ ({ formState }) => formState === 'signup' ? 'transform: translateX(-100%);' +
             'border-radius: 10px 0 0 10px;'
             : 'transform: translateX(0);' + 'border-radius: 0 10px 10px 0;' };
     transition: .5s;
@@ -54,7 +54,7 @@ export const FormContainer = styled.div`
   @media (max-width: 769px) {
     content: '';
     width: 100%;
-    height: 100vh;
+    height: 100%;
     flex-direction: column;
     align-items: center;
     border-radius: 0;
@@ -84,10 +84,9 @@ export const LoginForm = styled.form`
 
   @media (max-width: 769px) {
     padding: 2rem 0;
-    flex: 0;
+    width: 100%;
     gap: 2rem;
     display: ${ ({ formState }) => formState === 'signup' ? 'none;' : 'flex;' };
-    transform: ${ ({ rotate }) => rotate };
   }
 `;
 
@@ -111,9 +110,11 @@ export const SignUpForm = styled.form`
 
   @media (max-width: 769px) {
     padding: 2rem 0;
-    flex: 0;
+    width: 100%;
+    height: 100%;
     transition: .5s;
     display: ${ ({ formState }) => formState === 'login' ? 'none' : 'flex' };
+    transform: ${ ({ rotate }) => rotate };
   }
 `;
 

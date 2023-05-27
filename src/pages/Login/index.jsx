@@ -22,7 +22,7 @@ import { GoogleLoginButton } from '../../components/GoogleLoginButton/index.jsx'
 
 export const Login = () => {
   const { getBgColor } = useColors();
-  const [formState, setFormState] = useState('signup');
+  const [formState, setFormState] = useState('login');
   const [rotate, setRotate] = useState('rotateY(0deg)');
   const [createAccountSuccess, setCreateAccountSuccess] = useState(false);
   const [wrongCredentials, setWrongCredentials] = useState(false);
@@ -99,7 +99,7 @@ export const Login = () => {
   return (
     <Container>
       <FormContainer rotate={ rotate } formState={ formState } bgImage={ randomBg } bgColor={ bgColor }>
-        <LoginForm rotate={ rotate } formState={ formState } onSubmit={ loginFormik.handleSubmit }>
+        <LoginForm formState={ formState } onSubmit={ loginFormik.handleSubmit }>
           <Title>Login</Title>
           { wrongCredentials && (
             <ErrorContainer>
@@ -134,7 +134,7 @@ export const Login = () => {
           </Text>
           <GoogleLoginButton/>
         </LoginForm>
-        <SignUpForm formState={ formState } onSubmit={ SignUpFormik.handleSubmit }>
+        <SignUpForm rotate={ rotate } formState={ formState } onSubmit={ SignUpFormik.handleSubmit }>
           <Title>Sign Up</Title>
           { createAccountSuccess && (
             <SuccessContainer>
