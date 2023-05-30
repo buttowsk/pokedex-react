@@ -7,7 +7,6 @@ export const AuthorizationContext = createContext();
 export const AuthorizationProvider = ({ children }) => {
   const [isAuthorized, setIsAuthorized] = useState(false);
   const location = useLocation();
-  const params = new URLSearchParams(location.search);
   const token = localStorage.getItem('token');
   const navigate = useNavigate();
 
@@ -27,7 +26,7 @@ export const AuthorizationProvider = ({ children }) => {
         }
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
       setIsAuthorized(false);
       localStorage.removeItem('token');
       localStorage.removeItem('name');
@@ -38,25 +37,25 @@ export const AuthorizationProvider = ({ children }) => {
   }, [token]);
 
   const authorized = useCallback(async () => {
+    const params = new URLSearchParams(location.search);
     const urlToken = params.get('token');
-    try {
-      if (urlToken) {
-        await verifyToken(urlToken);
-        navigate('/');
-      }
-    } catch (error) {
+    if (urlToken) {
+      await verifyToken(urlToken);
+      navigate('/');
+    } else {
+      console.log('no token')
       setIsAuthorized(false);
       localStorage.removeItem('token');
       localStorage.removeItem('name');
-      navigate('/login')
+      navigate('/login');
     }
-  }, [params, verifyToken, navigate, token]);
+  }, [verifyToken, navigate, token]);
 
-  useEffect(() => {
+  useEffect(async () => {
     if (token) {
-      verifyToken(token);
+      await verifyToken(token);
     } else {
-      authorized();
+      await authorized();
     }
   }, [token, verifyToken]);
 
