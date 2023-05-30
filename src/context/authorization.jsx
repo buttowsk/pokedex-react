@@ -27,6 +27,7 @@ export const AuthorizationProvider = ({ children }) => {
         }
       }
     } catch (error) {
+      console.log(error)
       setIsAuthorized(false);
       localStorage.removeItem('token');
       localStorage.removeItem('name');
@@ -36,17 +37,18 @@ export const AuthorizationProvider = ({ children }) => {
     }
   }, [token]);
 
-  const authorized = useCallback(() => {
+  const authorized = useCallback(async () => {
     const urlToken = params.get('token');
     try {
       if (urlToken) {
-        verifyToken(urlToken);
+        await verifyToken(urlToken);
         navigate('/');
       }
     } catch (error) {
       setIsAuthorized(false);
       localStorage.removeItem('token');
       localStorage.removeItem('name');
+      navigate('/login')
     }
   }, [params, verifyToken, navigate, token]);
 
