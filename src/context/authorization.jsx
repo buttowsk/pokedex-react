@@ -5,43 +5,48 @@ import { useLocation, useNavigate } from 'react-router-dom';
 export const AuthorizationContext = createContext();
 
 export const AuthorizationProvider = ({ children }) => {
-  const [isAuthorized, setIsAuthorized] = useState(null);
+  const [isAuthorized, setIsAuthorized] = useState(false);
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const token = localStorage.getItem('token');
   const navigate = useNavigate();
 
   const verifyToken = useCallback(async (token) => {
-    const response = await dbApi.get('/check-token', { headers: { Authorization: `Bearer ${ token }` } });
-    if (response.status === 200) {
-      localStorage.setItem('token', token);
-      dbApi.defaults.headers.common['Authorization'] = `Bearer ${ token }`;
-      const getNameResponse = await dbApi.get('/get-name');
-      if (getNameResponse.status === 200) {
-        localStorage.setItem('name', getNameResponse.data.name);
-        setIsAuthorized(true);
-        if (location.pathname === '/login') {
-          navigate('/');
+    try {
+      const response = await dbApi.get('/check-token', { headers: { Authorization: `Bearer ${ token }` } });
+      if (response.status === 200) {
+        localStorage.setItem('token', token);
+        dbApi.defaults.headers.common['Authorization'] = `Bearer ${ token }`;
+        const getNameResponse = await dbApi.get('/get-name');
+        if (getNameResponse.status === 200) {
+          localStorage.setItem('name', getNameResponse.data.name);
+          setIsAuthorized(true);
+          if (location.pathname === '/login') {
+            navigate('/');
+          }
         }
-      } else {
-        setIsAuthorized(false);
-        localStorage.removeItem('token');
-        localStorage.removeItem('name');
       }
-    } else {
+    } catch (error) {
       setIsAuthorized(false);
       localStorage.removeItem('token');
       localStorage.removeItem('name');
+      if (location.pathname !== '/login') {
+        navigate('/login');
+      }
     }
-  }, []);
+  }, [token]);
 
   const authorized = useCallback(() => {
     const urlToken = params.get('token');
-    if (urlToken) {
-      verifyToken(urlToken);
-      navigate('/')
-    } else {
+    try {
+      if (urlToken) {
+        verifyToken(urlToken);
+        navigate('/');
+      }
+    } catch (error) {
       setIsAuthorized(false);
+      localStorage.removeItem('token');
+      localStorage.removeItem('name');
     }
   }, [params, verifyToken, navigate, token]);
 
