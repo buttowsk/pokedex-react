@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+
 export const InputBox = styled.div`
   max-height: 3rem;
   width: 80%;
@@ -32,13 +33,14 @@ export const InputLabel = styled.label`
   top: 50%;
   transform: translateY(-50%);
   transition: .5s;
-  
+  ${({text}) => text !== '' ? 'top: -8px; font-size: 14px; color: #ccc;' : ''};
+
   @media (max-width: 769px) {
     font-size: 1rem;
   }
 
-  ${ InputText }:focus ~ &,
-  ${ InputText }:not(:placeholder-shown):not([value=""]) ~ & {
+
+  ${ InputText }:focus ~ & {
     top: -8px;
     font-size: 14px;
     color: #ccc;

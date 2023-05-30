@@ -1,5 +1,5 @@
 import {EvolutionChain, PokeArrow, PokeContainer, PokeImage, PokeName, Container, Title } from "./styles.js";
-import { LoadingComponent } from '../LoadingComponent/index.jsx';
+import { LoadingComponent } from '../../../components/LoadingComponent/index.jsx';
 import { useNavigate } from 'react-router-dom';
 export const PokeEvolutions = ({ poke, textColor }) => {
   const navigate = useNavigate();

@@ -1,5 +1,5 @@
 import { Container, NumberText, StatusBar, StatusRow, StatusText, StatusValueDiv } from './styles.js';
-import { LoadingComponent } from '../LoadingComponent/index.jsx';
+import { LoadingComponent } from '../../../components/LoadingComponent/index.jsx';
 
 export const PokeStats = ({ poke }) => {
   if (!poke) {

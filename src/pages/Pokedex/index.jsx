@@ -4,15 +4,14 @@ import {
   Content,
   DivLoadMore,
 } from './styles';
-import { PokeCard } from '../../components/PokeCard/index.jsx';
+import { PokeCard } from '../../components/PokeCard';
 import { useContext, useEffect, useRef, useState } from 'react';
-import { LoadingComponent } from '../../components/LoadingComponent/index.jsx';
-import { ScrollBackComponent } from '../../components/ScrollBackComponent/index.jsx';
-import { Header } from '../../components/Header/index.jsx';
+import { LoadingComponent } from '../../components/LoadingComponent';
+import { ScrollBackComponent } from '../../components/ScrollBackComponent';
+import { Header } from '../../components/Header';
 import { PokemonsContext } from '../../context/pokemons.jsx';
 import { FavoritesContext } from '../../context/favorites.jsx';
 import { dbApi } from '../../services/dbApi.js';
-import {LoadingComponent2} from "../../components/LoadingComponent2/index.jsx";
 
 export const Pokedex = () => {
   const { pokeList, hasMorePoke: hasMore, setPokePage: setPage, isLoading: loading } = useContext(PokemonsContext);

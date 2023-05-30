@@ -126,10 +126,13 @@ export const Button = styled.button`
   font-style: normal;
   font-weight: 600;
   font-size: 1rem;
-  border: none;
   border-radius: 18px;
   margin-top: 1rem;
-  cursor: pointer;
+    
+  &:hover, &:focus {
+    background-color: #FE4E00;
+    opacity: .8;
+  }
 `;
 
 export const LoginButton = styled.button`
@@ -138,9 +141,8 @@ export const LoginButton = styled.button`
   border: none;
   font-size: 1rem;
   color: #9bf6f6;
-  cursor: pointer;
 
-  &:hover {
+  &:hover, &:focus {
     text-decoration: underline;
   }
 `;
@@ -153,7 +155,7 @@ export const SignUpButton = styled.button`
   color: #9bf6f6;
   cursor: pointer;
 
-  &:hover {
+  &:hover, &:focus {
     text-decoration: underline;
   }
 `;

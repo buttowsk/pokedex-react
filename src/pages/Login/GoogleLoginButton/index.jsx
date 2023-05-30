@@ -3,7 +3,7 @@ import { GoogleIcon, Text, Button } from './styles.js';
 export const GoogleLoginButton = () => {
 
   const handleOnclick = () => {
-    window.location.href = 'https://buttowsk.pythonanywhere.com/login/google';
+    window.location.href = 'http://localhost:5000/login/google';
   };
 
 

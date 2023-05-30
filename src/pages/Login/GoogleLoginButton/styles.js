@@ -13,19 +13,33 @@ export const Button = styled.button`
   font-style: normal;
   font-weight: 600;
   font-size: 1rem;
-  border: none;
   border-radius: 18px;
-  cursor: pointer;
+  position: relative;
+  
+  &:hover,
+  &:focus {
+    background-color: #e6e6e6;
+  }
 `;
 
 export const GoogleIcon = styled(FcGoogle)`
   width: 1.5rem;
   height: 1.5rem;
   margin-right: 1rem;
+  position: absolute;
+  left: 1.5rem;
+  
+  @media (max-width: 768px) {
+    left: 1rem;
+  }
 `;
 
 export const Text = styled.p`
   font-style: normal;
   font-weight: 600;
   font-size: 1rem;
+  
+  @media (max-width: 768px) {
+    font-size: .8rem;
+  }
 `;

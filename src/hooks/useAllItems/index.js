@@ -69,12 +69,14 @@ export const useAllItems = () => {
     try {
       const response = await pokeApi.get(`/item/${ id }`);
       const { data } = response;
+      const heldBy = await handleHeldBy(data.held_by_pokemon)
       return new Item(
         data.name,
         data.sprites.default,
         data.id,
         data.effect_entries[0].effect,
         data.cost,
+        heldBy,
         data.pokemon,
         data.name,
         data.category.name,

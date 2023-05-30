@@ -8,20 +8,22 @@ import {
   SignUpButton,
   LoginButton, Text, SuccessMessage, ErrorMessage, ErrorContainer, SuccessContainer,
 } from './styles.js';
-import { Input } from '../../components/Input/index.jsx';
-import { loginSchema } from '../../utils/schemas/Login/index.js';
-import { SignUpSchema } from '../../utils/schemas/SignUp/index.js';
-import { useFormik } from 'formik';
-import { useMemo, useState } from 'react';
-import { useColors } from '../../hooks/useColors/index.js';
-import { LoadingComponent } from '../../components/LoadingComponent/index.jsx';
+import { Input } from './Input/index.jsx';
+import { loginSchema, SignUpSchema } from '../../utils/schemas';
+import { useForm } from 'react-hook-form';
+import { useContext, useMemo, useState } from 'react';
+import { useColors } from '../../hooks/useColors';
+import { LoadingComponent } from '../../components/LoadingComponent';
 import { dbApi } from '../../services/dbApi.js';
 import { useNavigate } from 'react-router-dom';
-import { GoogleLoginButton } from '../../components/GoogleLoginButton/index.jsx';
+import { GoogleLoginButton } from './GoogleLoginButton';
+import { AuthorizationContext } from '../../context/authorization.jsx';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 
 export const Login = () => {
   const { getBgColor } = useColors();
+  const { isAuthorized, setIsAuthorized } = useContext(AuthorizationContext);
   const [formState, setFormState] = useState('login');
   const [rotate, setRotate] = useState('rotateY(0deg)');
   const [createAccountSuccess, setCreateAccountSuccess] = useState(false);
@@ -31,66 +33,72 @@ export const Login = () => {
   const bgColor = getBgColor(randomBg);
   const navigate = useNavigate();
 
-  const loginFormik = useFormik({
-    initialValues: {
+  const {
+    register: registerLogin,
+    watch: watchLogin,
+    reset: resetLogin,
+    handleSubmit: handleSubmitLogin,
+    formState: { errors: errorsLogin },
+  } = useForm({
+    resolver: yupResolver(loginSchema),
+    mode: 'all',
+    defaultValues: {
       email: '',
       password: '',
-    },
-    validationSchema: loginSchema,
-    onSubmit: (values, { resetForm }) => {
-      const { email, password } = values;
-      dbApi.post('/login', { email, password })
-        .then((response) => {
-          if (response.status === 200) {
-            localStorage.setItem('token', response.data.access_token);
-            navigate('/');
-          }
-        })
-        .catch((error) => {
-          // Exibe uma mensagem de erro para o usuário
-          setWrongCredentials(true);
-          console.log(error);
-        });
-      resetForm();
-    },
+    }
   });
 
-  const SignUpFormik = useFormik({
-    initialValues: {
+  const {
+    register: registerSignUp,
+    watch: watchSignUp,
+    reset: resetSignUp,
+    handleSubmit: handleSubmitSignUp,
+    formState: { errors: errorsSignUp },
+  } = useForm({
+    resolver: yupResolver(SignUpSchema),
+    mode: 'all',
+    defaultValues: {
       username: '',
       email: '',
       password: '',
       confirmPassword: '',
-    },
-    validationSchema: SignUpSchema,
-    onSubmit: (values, { resetForm }) => {
-      const { username, email, password } = values;
-      dbApi.post('/register', { username, email, password })
-        .then((response) => {
-          console.log(response);
-          if (response.status === 201) {
-            setCreateAccountSuccess(true);
-            handleFormState();
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-      resetForm();
-    },
+    }
   });
 
+  const loginSubmit = async (data) => {
+    const { email, password } = data;
+    const result = await dbApi.post('/login', { email, password });
+    if (result.status === 200) {
+      setWrongCredentials(false);
+      localStorage.setItem('token', result.data.access_token);
+      setIsAuthorized(true);
+      navigate('/');
+    } else {
+      setWrongCredentials(true);
+    }
+  };
+
+  const signUpSubmit = async (data) => {
+    const { username, email, password } = data;
+    const result = await dbApi.post('/register', { username, email, password });
+    if (result) {
+      setCreateAccountSuccess(true);
+      setFormState('login');
+      setRotate('rotateY(0deg)');
+      resetSignUp();
+    } else {
+      setCreateAccountSuccess(false);
+    }
+  };
 
   const handleFormState = () => {
     formState === 'signup' ? setFormState('login') : setFormState('signup');
     setRotate(rotate === 'rotateY(0deg)' ? 'rotateY(180deg)' : 'rotateY(0deg)');
     setCreateAccountSuccess(false);
     setWrongCredentials(false);
-    SignUpFormik.resetForm();
-    loginFormik.resetForm();
+    resetLogin();
+    resetSignUp();
   };
-
-  const InputMemo = useMemo(() => Input, []);
 
   if (!bgColor) {
     return <LoadingComponent/>;
@@ -99,30 +107,28 @@ export const Login = () => {
   return (
     <Container>
       <FormContainer rotate={ rotate } formState={ formState } bgImage={ randomBg } bgColor={ bgColor }>
-        <LoginForm formState={ formState } onSubmit={ loginFormik.handleSubmit }>
+        <LoginForm formState={ formState } onSubmit={ handleSubmitLogin(loginSubmit) }>
           <Title>Login</Title>
           { wrongCredentials && (
             <ErrorContainer>
               <ErrorMessage>Usuário ou senha incorretos</ErrorMessage>
             </ErrorContainer>
           ) }
-          <InputMemo
-            onBlur={ loginFormik.handleBlur }
-            onChange={ loginFormik.handleChange }
-            value={ loginFormik.values.email }
-            type={ 'email' }
+          <Input
+            register={ registerLogin }
+            type={ 'text' }
             name="email"
             label="Email"
-            error={ loginFormik.touched.email && loginFormik.errors.email }
+            text={ watchLogin('email', false)}
+            error={ errorsLogin.email?.message }
           />
-          <InputMemo
-            onBlur={ loginFormik.handleBlur }
-            onChange={ loginFormik.handleChange }
-            value={ loginFormik.values.password }
+          <Input
+            register={ registerLogin }
             type={ 'password' }
             name="password"
             label="Senha"
-            error={ loginFormik.touched.password && loginFormik.errors.password }
+            text={ watchLogin('password', false)}
+            error={ errorsLogin.password?.message }
           />
           <Button type={ 'submit' }>Login</Button>
           <Text>
@@ -134,48 +140,44 @@ export const Login = () => {
           </Text>
           <GoogleLoginButton/>
         </LoginForm>
-        <SignUpForm rotate={ rotate } formState={ formState } onSubmit={ SignUpFormik.handleSubmit }>
+        <SignUpForm rotate={ rotate } formState={ formState } onSubmit={ handleSubmitSignUp(signUpSubmit) }>
           <Title>Sign Up</Title>
           { createAccountSuccess && (
             <SuccessContainer>
               <SuccessMessage>Conta criada com sucesso!</SuccessMessage>
             </SuccessContainer>
           ) }
-          <InputMemo
-            onBlur={ SignUpFormik.handleBlur }
-            onChange={ SignUpFormik.handleChange }
-            value={ SignUpFormik.values.username }
+          <Input
+            register={ registerSignUp }
             type={ 'text' }
             name="username"
-            label="Username"
-            error={ SignUpFormik.touched.username && SignUpFormik.errors.username }
+            label="Nome de usuário"
+            text={ watchSignUp('username', false)}
+            error={ errorsSignUp.username?.message }
           />
-          <InputMemo
-            onBlur={ SignUpFormik.handleBlur }
-            onChange={ SignUpFormik.handleChange }
-            value={ SignUpFormik.values.email }
-            type={ 'email' }
+          <Input
+            register={ registerSignUp }
+            type={ 'text' }
             name="email"
             label="Email"
-            error={ SignUpFormik.touched.email && SignUpFormik.errors.email }
+            text={ watchSignUp('email', false)}
+            error={ errorsSignUp.email?.message }
           />
-          <InputMemo
-            onBlur={ SignUpFormik.handleBlur }
-            onChange={ SignUpFormik.handleChange }
-            value={ SignUpFormik.values.password }
+          <Input
+            register={ registerSignUp }
             type={ 'password' }
             name="password"
             label="Senha"
-            error={ SignUpFormik.touched.password && SignUpFormik.errors.password }
+            text={ watchSignUp('password', false)}
+            error={ errorsSignUp.password?.message }
           />
-          <InputMemo
-            onBlur={ SignUpFormik.handleBlur }
-            onChange={ SignUpFormik.handleChange }
-            value={ SignUpFormik.values.confirmPassword }
+          <Input
+            register={ registerSignUp }
             type={ 'password' }
             name="confirmPassword"
-            label="Confirme a senha"
-            error={ SignUpFormik.touched.confirmPassword && SignUpFormik.errors.confirmPassword }
+            label="Confirmar senha"
+            text={ watchSignUp('confirmPassword', false)}
+            error={ errorsSignUp.confirmPassword?.message }
           />
           <Button type={ 'submit' }>Cadastrar</Button>
           <Text>

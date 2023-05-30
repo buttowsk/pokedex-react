@@ -20,9 +20,9 @@ import {
 import { useEffect, useState, useContext } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { themes } from '../../utils/globalStyles/styles.js';
-import { PokeAbout } from '../../components/PokeAbout/index.jsx';
-import { PokeStats } from '../../components/PokeStats/index.jsx';
-import { PokeEvolutions } from '../../components/PokeEvolutions/index.jsx';
+import { PokeAbout } from './PokeAbout/index.jsx';
+import { PokeStats } from './PokeStats/index.jsx';
+import { PokeEvolutions } from './PokeEvolutions/index.jsx';
 import { useParams, useNavigate } from 'react-router-dom';
 import { LoadingComponent } from '../../components/LoadingComponent/index.jsx';
 import { useColors } from '../../hooks/useColors/index.js';

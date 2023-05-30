@@ -13,6 +13,27 @@ export const GlobalStyle = createGlobalStyle`
     background-color: #F6F6F6;
   }
 
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+  }
+
+  input {
+    border: none;
+    outline: none;
+  }
+
+
   *::-webkit-scrollbar {
     height: 5px;
     width: 5px;

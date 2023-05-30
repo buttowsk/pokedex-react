@@ -1,6 +1,6 @@
-import { InfoRow, InfoText, Container, TextRow, TypeRow, TypeText } from './styles';
-import { themes } from '../../utils/globalStyles/styles.js';
-import { LoadingComponent } from '../LoadingComponent/index.jsx';
+import { InfoRow, InfoText, Container, TextRow, TypeRow, TypeText } from './styles.js';
+import { themes } from '../../../utils/globalStyles/styles.js';
+import { LoadingComponent } from '../../../components/LoadingComponent/index.jsx';
 
 export const PokeAbout = ({ poke }) => {
   if (!poke) {

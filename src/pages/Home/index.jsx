@@ -12,11 +12,10 @@ import { useContext, useEffect } from 'react';
 import { FavoritesContext } from '../../context/favorites.jsx';
 import { dbApi } from '../../services/dbApi.js';
 import { PokemonsContext } from '../../context/pokemons.jsx';
-import {LoadingComponent2} from "../../components/LoadingComponent2/index.jsx";
 
 export const Home = () => {
   const { getPokemons, getItems, setUserId } = useContext(FavoritesContext);
-  const { fetchPokemons, isLoading } = useContext(PokemonsContext);
+  const { getAllPokemons, isLoading } = useContext(PokemonsContext);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,7 +24,7 @@ export const Home = () => {
         const { user_id } = data;
         console.log(user_id)
         setUserId(user_id);
-        fetchPokemons(1);
+        getAllPokemons(1);
       } catch (err) {
         console.log(err);
       }

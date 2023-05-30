@@ -11,84 +11,6 @@ export const useAllPokemons = () => {
   const [totalPokePages, setTotalPokePages] = useState(1);
   const [hasMorePoke, setHasMorePoke] = useState(true);
 
-
-  const fetchPokemons = useCallback(async (page) => {
-    try {
-      setLoading(true);
-      const response = await pokeApi.get(`/pokemon?limit=60&offset=${ (page - 1) * 60 }`);
-      const { data } = response;
-      const { results } = data;
-      const pokemonPromises = results.map(async (result) => {
-        const id = result.url.split('/').slice(-2, -1)[0];
-        const { data: pokemonData } = await pokeApi.get(`/pokemon/${ id }`);
-        const { data: speciesData } = await pokeApi.get(`/pokemon-species/${ pokemonData.id ?? pokemonData.name }`);
-        const evolutionChainUrl = speciesData?.evolution_chain?.url;
-        const evolutionChainId = evolutionChainUrl?.split('/').slice(-2, -1)[0];
-        const { data: evolutionChain } = await pokeApi.get(`/evolution-chain/${ evolutionChainId }`);
-        const { chain } = evolutionChain;
-        const evolutionsList = [];
-        let currentChainItem = chain;
-        do {
-          const { species, evolution_details: evolutionDetails } = currentChainItem;
-          const id = species.url.split('/').slice(-2, -1)[0];
-          const { data: speciesData } = await pokeApi.get(`/pokemon-species/${ id }`);
-          const { data } = await pokeApi.get(`/pokemon/${ speciesData.id }`);
-          const evolutions = new Evolution(
-            species.name,
-            data.sprites.other['official-artwork'].front_default,
-            evolutionDetails[0],
-          );
-          evolutionsList.push(evolutions);
-          currentChainItem = currentChainItem?.evolves_to?.[0];
-        } while (currentChainItem);
-        const abilities = pokemonData.abilities.map(({ ability }) => ability.name);
-        const moves = pokemonData.moves.map(({ move }) => move.name);
-        const stats = pokemonData.stats.map(({ base_stat, stat }) => ({ name: stat.name, value: base_stat }));
-        const types = pokemonData.types.map(({ type }) => type.name);
-        const genderRate = speciesData.gender_rate === -1 ? { genderless: true } : {
-          male: `${ (100 - (speciesData.gender_rate * 10)) }%`,
-          female: `${ 10 * speciesData.gender_rate }%`,
-        };
-        const generation = speciesData.generation.name;
-        const pokemon = new Pokemon(
-          pokemonData.name,
-          types,
-          pokemonData.sprites.other['official-artwork'].front_default,
-          pokemonData.id,
-          evolutionsList,
-          genderRate,
-          abilities,
-          pokemonData.height,
-          pokemonData.weight,
-          moves,
-          stats,
-          generation,
-          pokemonData.sprites.other['official-artwork'].front_shiny,
-        );
-        return [id, pokemon];
-      });
-      const pokeList = await Promise.all(pokemonPromises);
-      const newPokeList = Object.fromEntries(pokeList);
-      setPokeList((prevPokeList) => ({ ...prevPokeList, ...newPokeList }));
-      setTotalPokePages(Math.ceil(data.count / 60));
-      setHasMorePoke(page < totalPokePages);
-    } catch (error) {
-      console.log(error);
-      setError(true);
-    } finally {
-      setLoading(false);
-    }
-  }, [totalPokePages]);
-
-  useEffect(() => {
-    fetchPokemons(pokePage);
-  }, [fetchPokemons, pokePage]);
-
-
-  useEffect(() => {
-    sessionStorage.setItem('pokeList', JSON.stringify(pokeList));
-  }, [pokeList]);
-
   const getPokemonByName = useCallback(async (name) => {
     try {
       const response = await pokeApi.get(`/pokemon/${ name }`);
@@ -146,5 +68,39 @@ export const useAllPokemons = () => {
   }, []);
 
 
-  return { loading, error, pokeList, hasMorePoke, setPokePage, getPokemonByName, fetchPokemons };
+  const getAllPokemons = useCallback(async (page) => {
+    try {
+      setLoading(true);
+      const response = await pokeApi.get(`/pokemon?limit=60&offset=${ (page - 1) * 60 }`);
+      const { data } = response;
+      const { results } = data;
+      const pokemonPromises = results.map(async (result) => {
+        const { name } = result;
+        const pokemon = await getPokemonByName(name);
+        return [name, pokemon];
+      });
+      const pokeList = await Promise.all(pokemonPromises);
+      const newPokeList = Object.fromEntries(pokeList);
+      setPokeList((prevPokeList) => ({ ...prevPokeList, ...newPokeList }));
+      setTotalPokePages(Math.ceil(data.count / 60));
+      setHasMorePoke(page < totalPokePages);
+    } catch (error) {
+      console.log(error);
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
+  }, [totalPokePages]);
+
+  useEffect(() => {
+    getAllPokemons(pokePage);
+  }, [getAllPokemons, pokePage]);
+
+
+  useEffect(() => {
+    sessionStorage.setItem('pokeList', JSON.stringify(pokeList));
+  }, [pokeList]);
+
+
+  return { loading, error, pokeList, hasMorePoke, setPokePage, getPokemonByName, getAllPokemons };
 };

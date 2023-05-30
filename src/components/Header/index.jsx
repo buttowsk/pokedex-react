@@ -3,15 +3,17 @@ import { Menu } from '../Menu/index.jsx';
 import { dbApi } from '../../services/dbApi.js';
 import { useNavigate } from 'react-router-dom';
 import { FiLogOut } from 'react-icons/fi';
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { HiCog } from 'react-icons/hi';
 import { AiOutlineUser } from 'react-icons/ai';
+import { AuthorizationContext} from '../../context/authorization.jsx';
 
 export const Header = ({ currentPage }) => {
   const username = localStorage.getItem('name');
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const dropdownRef = useRef();
+  const { setIsAuthorized } = useContext(AuthorizationContext);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -33,6 +35,7 @@ export const Header = ({ currentPage }) => {
         if (response.status === 200) {
           localStorage.removeItem('token');
           localStorage.removeItem('name');
+          setIsAuthorized(false);
           navigate('/login');
         }
       })
