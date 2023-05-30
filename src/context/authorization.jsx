@@ -25,6 +25,8 @@ export const AuthorizationProvider = ({ children }) => {
         }
       } else {
         setIsAuthorized(false);
+        localStorage.removeItem('token');
+        localStorage.removeItem('name');
       }
     } else {
       setIsAuthorized(false);
