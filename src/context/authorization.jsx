@@ -36,14 +36,15 @@ export const AuthorizationProvider = ({ children }) => {
     }
   }, [token]);
 
-  const authorized = useCallback(async () => {
+  const authorized = useCallback( () => {
     const params = new URLSearchParams(location.search);
     const urlToken = params.get('token');
     if (urlToken) {
-      await verifyToken(urlToken);
-      navigate('/');
+       verifyToken(urlToken).then(r =>{
+         navigate('/')
+       });
     } else {
-      console.log('no token')
+      console.log('no token');
       setIsAuthorized(false);
       localStorage.removeItem('token');
       localStorage.removeItem('name');
@@ -51,11 +52,11 @@ export const AuthorizationProvider = ({ children }) => {
     }
   }, [verifyToken, navigate, token]);
 
-  useEffect(async () => {
+  useEffect(() => {
     if (token) {
-      await verifyToken(token);
+      verifyToken(token);
     } else {
-      await authorized();
+      authorized();
     }
   }, [token, verifyToken]);
 
