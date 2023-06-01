@@ -11,6 +11,10 @@ function PrivateRoutes({ element, ...rest }) {
 
   console.log('isAuthorized', isAuthorized)
 
+  if (isAuthorized === null) {
+    return <LoadingComponent/>;
+  }
+
   if (isAuthorized) {
     return (
       <FavoritesProvider>
