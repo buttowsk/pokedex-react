@@ -20,7 +20,7 @@ export const AuthorizationProvider = ({ children }) => {
         if (getNameResponse.status === 200) {
           localStorage.setItem('name', getNameResponse.data.name);
           setIsAuthorized(true);
-          if (location.pathname === '/login') {
+          if (location.pathname === '/login' || location.pathname === '/') {
             navigate('/');
           }
         }
