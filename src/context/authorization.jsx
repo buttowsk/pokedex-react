@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 export const AuthorizationContext = createContext();
 
 export const AuthorizationProvider = ({ children }) => {
-  const [isAuthorized, setIsAuthorized] = useState(false);
+  const [isAuthorized, setIsAuthorized] = useState(null);
   const location = useLocation();
   const token = localStorage.getItem('token');
   const navigate = useNavigate();
